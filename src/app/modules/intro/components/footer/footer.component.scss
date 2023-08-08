@@ -1,0 +1,17 @@
+.fill-tran{
+  transition: fill .36s ease;
+}
+
+.tran-text {
+  transition: color .36s ease;
+}
+
+@media screen and (max-width: 767.5px) {
+  .div-line1{
+    margin-top: 0 !important;
+    margin-bottom: 3px !important;
+  }
+  .social{
+    margin-top: .7rem !important;
+  }
+}

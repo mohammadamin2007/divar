@@ -1,0 +1,8 @@
+<ul class="navbar justify-around p-[8px] flex">
+  <li class="nav-item" *ngFor="let navItem of navList">
+    <a *ngIf="navItem.isLink" class="nav-link text-[rgba(0,0,0,.56)] font-sans text-[12px] leading-[24px]" href="{{navItem.href}}">{{navItem.text}}</a>
+    <a *ngIf="!navItem.isLink" class="nav-link text-[rgba(0,0,0,.56)] font-sans text-[12px] leading-[24px]" (click)="changeNavbarStatus(navItem.activateList, navItem.which)" routerLink="{{navItem.href}}">{{navItem.text}}</a>
+  </li>
+</ul>
+<div class="div-line w-[100%] h-[1px] bg-[rgba(0,0,0,.12)] flex mt-[-2.1px]"></div>
+

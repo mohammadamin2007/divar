@@ -10,11 +10,11 @@ import { GlobalValueService } from 'src/app/services/global-value.service';
 export class MainComponent {
   title = "دیوار: بزرگترین سایت نیازمندی های رایگان در ایران"
 
-  constructor(private navbar: NavbarService, private globalValue: GlobalValueService) {
+  constructor(private navbar: NavbarService) {
     this.navbar.shouldActivated = "none";
     this.navbar.whichLinks = [];
     setTimeout(() => {
-      this.globalValue.showNavbar = false;
+      this.navbar.showNavbar = false;
     },500)
     //@ts-ignore
     document.querySelector("title").textContent = this.title

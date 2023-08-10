@@ -9,7 +9,7 @@ import { NavbarService } from 'src/app/services/navbar.service';
 })
 export class NavbarComponent {
   
-  constructor(public navbarService: NavbarService, public globalValue: GlobalValueService) {
+  constructor(public navbarService: NavbarService) {
     
   }
 

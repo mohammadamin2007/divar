@@ -10,14 +10,9 @@ import { NavbarService } from 'src/app/services/navbar.service';
 })
 export class SupportMainComponent {
   title = "مرکز پشتیبانی دیوار"
-  formGroup: FormGroup;
 
-  constructor(private navbarService: NavbarService, private globalValue: GlobalValueService) {
-    this.globalValue.showNavbar = true;
-    this.formGroup = new FormGroup({
-      search: new FormControl("")
-    })
-    console.log(this.formGroup.get("search"))
+  constructor(private navbarService: NavbarService) {
+    this.navbarService.showNavbar = true;
     setTimeout(() => {
       this.navbarService.shouldActivated = 'posht';
     }, 500)
@@ -25,7 +20,7 @@ export class SupportMainComponent {
     document.querySelector("title").textContent = this.title;
   }
 
-  search() {
-    console.log(this.formGroup.get("search")?.value)
+  search(searchValue: string) {
+    console.log(searchValue)
   }
 }

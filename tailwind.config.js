@@ -5,7 +5,10 @@ module.exports = {
     "./src/app/app.component.html"
   ],
   theme: {
-    extend: {},
+    extend: {
+      "xsm": "320px",
+      "l": "1024px"
+    },
   },
   plugins: [],
 }

@@ -6,6 +6,7 @@ import {Injectable, OnChanges, SimpleChanges} from '@angular/core';
 export class NavbarService{
   shouldActivated: string = "none"
   whichLinks: string[] = []
+  showNavbar:boolean = false
 
   constructor() { }
 }

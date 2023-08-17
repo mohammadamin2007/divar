@@ -1,1 +1,53 @@
-<p>support-item works!</p>
+<div class="category-item px-[0.5rem] w-[100%] pb-[2rem]" [ngClass]="{'mt-[0.05rem]': index > 2 && index < 6}">
+    <div class="category-item-container">
+        <div class="category-title">
+            <div class="category-img w-[4rem]">
+                <img src="assets/images/0{{index + 1}}.png" class="w-[100%]" alt="help-category-item-img">
+            </div>
+            <p class="category-title-text text-[rgba(0,0,0,0.87)] text-[1rem] leading-[2rem] mb-[0.5rem] mt-[0.25rem]">{{support.title}}</p>
+        </div>
+        <div class="category-body">
+            <ul class="category-body-list">
+                <li class="nav-item" *ngFor="let helpItem of support.categoryHelp; let i = index">
+                    <a routerLink="" (click)="open(model, modelBody, title, i)" class="nav-link transition-[color] duration-[360ms] ease-in-out  cursor-pointer hover:text-black flex text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[1.75rem] mb-[0.25rem]">
+                        {{helpItem.title}}
+                    </a>
+                    <div #model class="hidden model transform-[translateY(0)] z-[10000000000000000000000] model-{{index}}-{{i}} bg-[#00000078] backdrop-blur-[2px] model w-[100%] top-0 bottom-0 left-0 right-0 absolute">
+                        <div class="z-[3] relative m-[8rem] model-body  bg-white rounded-[12px] overflow-y-scroll">
+                            <div #title class="title p-[1rem] text-[1.1rem] text-[500]"></div>
+                            <div #modelBody class="body p-[1rem] pb-[3rem] text-center text-[400]">
+                            </div>
+                            <div class="help-item">
+                                <div class="navigationbar flex justify-center gap-[3rem]">
+                                    <button (click)="handelNavigation(0)" [ngClass]="{'button-active': active === 0}" class="nav overflow-hidden hover:bg-[#efefef] rounded-[3px] pt-[0.7rem]">
+                                        <span class="px-[0.7rem]"><i class="icon pl-[0.3rem] fa fa-globe"></i>وب‌سایت</span>
+                                        <div [ngClass]="{'transform-translateX-100': this.active !== 0}"  class="indicator-line bg-[#A62626] h-[1px] mt-[0.7rem]"></div>
+                                    </button>
+                                    <button (click)="handelNavigation(1)" [ngClass]="{'button-active': active === 1}" class="nav overflow-hidden hover:bg-[#efefef] rounded-[3px] pt-[0.7rem]">
+                                        <span class="px-[0.7rem]"><i class="icon pl-[0.3rem] fa fa-android"></i>اندروید</span>
+                                        <div [ngClass]="{'transform-translateX-100': this.active !== 1}"  class="indicator-line bg-[#A62626] h-[1px] mt-[0.7rem]"></div>
+                                    </button>
+                                    <button (click)="handelNavigation(2)" [ngClass]="{'button-active': active === 2}" class="nav overflow-hidden hover:bg-[#efefef] rounded-[3px] pt-[0.7rem]">
+                                        <span class="px-[0.7rem]"><i class="icon pl-[0.3rem] fa fa-apple"></i>ای‌او‌اس</span>
+                                        <div [ngClass]="{'transform-translateX-100': this.active !== 2}" class="indicator-line bg-[#A62626] h-[1px] mt-[0.7rem]"></div>
+                                    </button>
+                                </div>
+                                <div class="indicator h-[1px] bg-[#b1b1b1] mb-[1rem]">
+                                </div>
+                                <ul *ngFor="let helpList of helpItem.helps" [ngClass]="{'hidden': activeBar !== helpList.type, 'flex': activeBar === helpList.type}" class="flex-col pr-[4rem] gap-8 nav-content {{helpList.type}}-{{index}}-{{i}}">
+                                    <li *ngFor="let levels of helpList.body"><p class="cursor-pointer">{{levels.text}}</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div (click)="close(model)" class="z-[1] absolute top-0 h-[100%] w-[100%]"></div>
+                    </div>
+                </li>
+                <li class="nav-item nav-more">
+                    <a routerLink="" class="nav-link cursor-pointer flex text-[#A62626] text-[0.875rem] leading-[1.75rem] mb-[0.25rem]">
+                        موارد بیشتر
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

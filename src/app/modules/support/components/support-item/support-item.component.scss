@@ -1,0 +1,28 @@
+.model {
+    transition: opacity .5s ease-in-out;
+    .model-body{
+        height: calc(100vh - 16rem);
+    }
+    .nav {
+        transition: background-color .3s ease-in-out, color .3s ease-in-out;
+    }
+    .nav.button-active {
+        color: #A62626 !important;
+    }
+    .indicator-line{
+        transition:  transform .4s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    .indicator-line.transform-translateX--100 {
+        transform: translateX(-100%);
+    }
+    .indicator-line.transform-translateX-100 {
+        transform: translateX(100%);
+    }
+    .nav-content {
+        list-style: lower-roman;
+    }
+    .text-bold {
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+}

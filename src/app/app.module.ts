@@ -10,6 +10,7 @@ import {NavbarService} from "./services/navbar.service";
 import {ServerService} from "./services/server.service";
 import {GlobalValueService} from "./services/global-value.service";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SupportModule } from './modules/support/support.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule, 
     FormsModule,
     IntroModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    SupportModule
   ],
   providers: [
     NavbarService,

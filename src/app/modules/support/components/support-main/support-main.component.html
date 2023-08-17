@@ -1,15 +1,18 @@
 <section id="support-main">
-    <div class="container px-[1rem] max-l:max-w-[960px] max-md:max-w-[758px] max-xms:max-w-[100%]">
-        <div class="support-header">
-            <div class="support-header-title">
+    <div class="container-custome pt-[4rem] px-[1rem] xxl:max-w-[1184px] l:max-w-[960px] md:max-w-[758px] xsm:max-w-[100%] mx-auto">
+        <div class="support-header mx-auto flex flex-col text-center px-[0.2rem] mt-[2.5rem]">
+            <div class="support-header-title mb-[2.5rem] text-[18px]">
                 چطور می‌توانیم کمکتان کنیم؟
             </div>
             <div class="support-search">
                 <form class="relative">
-                    <input (keyup)="search(searchInput.value)" formControlName="search" #searchInput type="text" placeholder="جستجو در مقالات راهنما" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] pr-[40px] pl-[16px]">
-                    <i class="fa fa-search absolute right-0 text-[1.3rem] text-[rgba(0,0,0,.33)] pr-[0.6rem] pt-[0.6rem] top-0"></i>
+                    <input (keyup)="search(searchInput.value)" formControlName="search" #searchInput type="text" placeholder="جستجو در مقالات راهنما" class="mt-[-3px] hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] pr-[40px] pl-[16px]">
+                    <i class="fa fa-search absolute right-0 text-[1.1rem] text-[rgba(0,0,0,0.56)] pr-[0.8rem] pt-[0.5rem] top-0"></i>
                 </form>
             </div>
+        </div>
+        <div class="flex category-container flex-wrap mt-[5rem] mx-[-0.5rem]">
+            <app-support-item class="flex" *ngFor="let supportItem of supportList;let i = index" [supportObj]="supportItem" [index]="i"></app-support-item>
         </div>
     </div>
 </section>

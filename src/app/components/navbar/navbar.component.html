@@ -1,5 +1,5 @@
-<nav class="poshtibani-navbar navbar navbar h-[4rem] px-[1rem]" *ngIf="this.navbarService.showNavbar"  [ngClass]="{'hide': !(navbarService.shouldActivated === 'posht'), 'show': navbarService.shouldActivated === 'posht'}">
-  <div class="navbar-container h-[100%] px-[1rem] flex justify-between py-[0.3rem]">
+<nav class="poshtibani-navbar navbar h-[4rem] px-[1rem] fixed top-0 bg-white w-[100%] z-[10000]" *ngIf="this.navbarService.showNavbar"  [ngClass]="{'hide': !(navbarService.shouldActivated === 'posht'), 'show': navbarService.shouldActivated === 'posht'}">
+  <div class="navbar-container h-[100%] px-[1rem] flex justify-between py-[0.3rem] max-w-[90rem] mx-[auto]">
     <div class="navbar-icon h-[48px]">
       <img class="w-[100%] h-[100%]" src="assets/images/divar.svg" alt="divar-navbar-icon">
     </div>
@@ -22,8 +22,8 @@
     </ul>
   </div>
 </nav>
-<nav class="navbar navbar h-[4rem] px-[1rem]" *ngIf="navbarService.shouldActivated === 'all'">
-  <div class="navbar-container h-[100%] px-[0] flex justify-between py-[0.3rem] items-center">
+<nav class="all-navbar navbar h-[4rem] px-[1rem] fixed top-0 bg-white w-[100%] z-[10000]" *ngIf="navbarService.shouldActivated === 'all'">
+  <div class="navbar-container h-[100%] px-[0] flex justify-between py-[0.3rem] items-center max-w-[90rem] mx-[auto">
     <div class="navbar-icon h-[48px]">
       <img class="w-[100%] h-[100%]" src="assets/images/divar.svg" alt="divar-navbar-icon">
     </div>

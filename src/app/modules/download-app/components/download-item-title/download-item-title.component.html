@@ -1,0 +1,13 @@
+<div *ngIf="downloadItem.text">
+    <a href="#" class="button rounded-[4px] text-[rgba(0,0,0,.56)] hover:bg-[rgba(0,0,0,.04)] hover:text-[black] flex h-[48px] items-center min-w-[4rem] px-[12px]">
+        <div class="button-icon text-[1rem] ml-[4px] mr-[-3px]">
+            <i class="fa fa-{{downloadItem.textIcon}}"></i>
+        </div>
+        <div class="text text-[0.875rem]">
+            {{downloadItem.textContent}}
+        </div>
+    </a>
+</div>
+<div *ngIf="!downloadItem.text">
+  <a href="#"><img class="h-[48px] w-[162px] aspect-auto " src="assets/images/{{downloadItem.image}}.svg" alt="download-img"></a>
+</div>

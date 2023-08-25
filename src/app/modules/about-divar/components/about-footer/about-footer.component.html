@@ -1,0 +1,31 @@
+<div class="about-footer flex l-c:max-w-[49%] mx-auto mt-[72px]">
+  <div class="about-footer-container">
+    <div class="footer-title mb-[7px]">
+      <p class="title text-[1.5rem] text-center leading-[2]">ارتباط با دیوار</p>
+    </div>
+    <div class="footer-description text-[rgba(0,0,0,.56)] text-[1rem] text-center mb-[2rem] leading-[2] pt-[0.2rem] min-h-[3rem] whitespace-normal">مشکلات دیوار، انتقاد و پیشنهاد خود را با پشتیبانی دیوار در میان بگذارید. همچنین در صورت ایجاد مزاحمت برای شما، اطلاعات تماس پلیس فتای محل سکونت خود را از سایت پلیس فتا دریافت و موضوع را از آن راه پیگیری کنید.</div>
+    <ul class="links pt-[3px]">
+      <li *ngFor="let footerLink of footerLinkList" class="nav-item link flex flex-col">
+        <a href="{{footerLink.link}}" class="nav-link text-[rgba(0,0,0,.56)] items-center flex text-[1rem] justify-between leading-[2] py-[7.5px] whitespace-normal">
+          <span class="text text-black">{{footerLink.text}}</span>
+          <span class="link-icon flex text-[1.2rem] pl-[0.45rem] pt-[0.2rem] text-[rgba(0,0,0,0.32)] font-bold">
+            <i class="fa fa-angle-left"></i>
+          </span>
+        </a>
+        <div class="divider mt-[1px] bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto] w-[100%]"></div>
+      </li>
+    </ul>
+    <div class="information mt-[-1px]">
+      <p class="post-address mt-[17px] text-[1rem] leading-[2] text-[rgba(0,0,0,0.87)]">آدرس پستی: تهران، اوین، بلوار دانشجو، ساختمان دانشگاه شهید بهشتی، پارک علم و فناوری شهید بهشتی، طبقهٔ منفی سه، واحد ۸<br>
+        صندوق پستی: ۶۹۷۵۴- ۱۹۸۳۹</p>
+      <div class="warning bg-[rgba(230,80,0,.12)] text-[rgba(0,0,0,.87)] p-[16px] pt-[12px] my-[8px] rounded-[4px]"><span class="text-[0.75rem] leading-[2]">تیم‌های فنی ما در این آدرس هستند، اما متأسفانه نمی‌توانیم پذیرای مراجعان حضوری باشیم.</span></div>
+      <div class="divider bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto]"></div>
+      <p class="post-address mt-[17px] text-[1rem] leading-[2] text-[rgba(0,0,0,0.87)]">آدرس پستی: تهران، سعادت‌آباد، خیابان گلستان، خیابان باغستان، پلاک ۲، طبقهٔ چهارم واحد شمال شرقی<br>
+      صندوق پستی: ۳۵۸۲۵-۱۹۹۸۶<br>
+        شمارهٔ تماس پشتیبانی: ۷۹۴۵۸۰۰۰-۰۲۱</p>
+    </div>
+    <div class="map mt-[8px]">
+      <img src="assets/images/balad-map.png" alt="map">
+    </div>
+  </div>
+</div>

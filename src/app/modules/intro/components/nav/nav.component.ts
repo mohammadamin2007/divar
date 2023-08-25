@@ -33,7 +33,7 @@ export class NavComponent {
       activateList: [],
       which: "none"
     },{
-      href: "b/support-users/fa",
+      href: "/b/support-users/fa",
       isLink: false,
       text: "پشتیبانی",
       activateList: ["my-divar", "support", "chat"],

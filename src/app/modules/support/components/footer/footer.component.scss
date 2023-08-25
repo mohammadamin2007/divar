@@ -1,0 +1,17 @@
+.separator{
+  border-left: 1px solid rgba(0,0,0,.12);
+}
+.download-footer-icon {
+  a *{
+   transition: color .36s ease, fill .36s ease;
+  }
+}
+
+.divar-icon {
+  img {
+    transition: filter .36s ease;
+  }
+  img:hover {
+    filter: drop-shadow(2px 4px 6px black);
+  }
+}

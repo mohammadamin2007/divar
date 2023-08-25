@@ -9,6 +9,7 @@ import { TrustComponent } from './components/trust/trust.component';
 import { NavComponent } from './components/nav/nav.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
+import {IntroRoutingModule} from "./intro-routing.module";
 
 
 
@@ -25,7 +26,8 @@ import {RouterModule} from "@angular/router";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    IntroRoutingModule
   ],
   exports: [
     MainComponent

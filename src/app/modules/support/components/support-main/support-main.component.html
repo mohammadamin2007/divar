@@ -1,5 +1,5 @@
 <section id="support-main">
-    <div class="container-custome pt-[4rem] px-[1rem] xxl:max-w-[1184px] l:max-w-[960px] md:max-w-[758px] xsm:max-w-[100%] mx-auto">
+    <div class="container-custom pt-[4rem] px-[1rem] xxl:max-w-[1184px] l:max-w-[960px] md:max-w-[758px] xsm:max-w-[100%] mx-auto">
         <div class="support-header mx-auto flex flex-col text-center px-[0.2rem] mt-[2.5rem]">
             <div class="support-header-title mb-[2.5rem] text-[18px]">
                 چطور می‌توانیم کمکتان کنیم؟
@@ -14,5 +14,7 @@
         <div class="flex category-container flex-wrap mt-[5rem] mx-[-0.5rem]">
             <app-support-item class="flex" *ngFor="let supportItem of supportList;let i = index" [supportObj]="supportItem" [index]="i"></app-support-item>
         </div>
+      <app-major-support></app-major-support>
+      <app-footer></app-footer>
     </div>
 </section>

@@ -1,0 +1,26 @@
+<div class="cooperation pt-[64px]">
+  <div class="cooperation-container">
+    <div class="cooperation-title mb-[64px]">
+      <p class="title text-[1.5rem] text-center">همکاران تجاری دیوار</p>
+    </div>
+    <div class="main-cooperation flex mx-[4.4rem]">
+      <div class="mb-[32px] l-c:max-w-[50%] {{cooperationItem.padding}}" *ngFor="let cooperationItem of cooperationList">
+        <div class="cooperation-item-image flex justify-center">
+          <img class="w-[48px] h-[48px]" [src]="cooperationItem.image" alt="cooperation-image">
+        </div>
+        <div class="cooperation-item-title mt-[0.7rem] mb-[0.75rem]">
+          <p class="title text-[1rem] font-[700] leading-[2] text-center">
+            {{cooperationItem.title}}
+          </p>
+        </div>
+        <div class="cooperation-description text-[rgba(0,0,0,.56)] text-[0.85rem] text-center leading-[2] pt-[0.2rem] min-h-[3rem] whitespace-normal">
+          {{cooperationItem.description}}
+        </div>
+      </div>
+    </div>
+    <div class="cooperation-end flex justify-center mt-[3rem]">
+      <div><a routerLink="details" class="learn-more px-[1rem] mt-[3px] min-w-[6rem] flex h-[2.4rem] items-center text-[rgb(166,38,38)] rounded-[4px] hover:bg-[rgba(166,38,38,.04)]"><span class="mt-[-2px]">بیشتر بخوانید</span></a></div>
+    </div>
+  </div>
+</div>
+<div class="divider bg-[rgba(0,0,0,0.12)] h-[1px] l-c:w-[85%] m-[auto] mt-[49px]"></div>

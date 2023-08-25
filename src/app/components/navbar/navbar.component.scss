@@ -14,3 +14,6 @@
 .nav-item {
   transition: color .36s ease,background-color .36s ease,box-shadow .36s ease,border-color .36s ease,transform .36s ease,-webkit-transform .36s ease;
 }
+.separator{
+   border-left: 1px solid rgba(0,0,0,.12);
+ }

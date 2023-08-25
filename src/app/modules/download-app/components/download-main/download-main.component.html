@@ -1,0 +1,23 @@
+<section class="download flex w-[100%] flex-col  max-w-[954px] mx-[auto]">
+  <div class="download-cotaniner flex pt-[4rem] mt-[12vh]">
+    <div class="download-main ml-[201px] w-[469px]">
+        <div class="download-main-texts mt-[34px]">
+            <div class="small-title text-[0.875rem]">جستجو در میان هزاران آگهی</div>
+            <div class="big-title text-[2rem] font-[700] mt-[12px] mb-[16px]">دریافت برنامهٔ دیوار</div>
+            <div class="title-discription text-[1rem] font-[400] leading-[2] text-[rgba(0,0,0,.56)] mt-[1px]">برنامه را در گوشی خود نصب کنید، کالای موردنظرتان را پیدا کنید یا آگهی رایگان ثبت کنید.</div>
+        </div>
+        <div class="download-links mt-[5px] flex flex-col">
+            <div class="download-links-container" *ngFor="let downloadItem of downloadList">
+                <app-download-item class="flex mt-[32px]" [data]="downloadItem"></app-download-item>
+            </div>
+        </div>
+    </div>
+    <div class="download-img relative">
+        <div class="img-container">
+            <img class="h-[580px] w-[284px]" src="assets/images/download-divar.svg" alt="attending-to-divar-gif">
+        </div>
+        <div class="box-shadow-maker top-[50px] left-[4px] z-[-1]"></div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</section>

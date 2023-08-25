@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar.service';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-support-main',
@@ -42,7 +43,7 @@ export class SupportMainComponent {
               {text: "پس از وارد کردن کد تأیید، حساب‌کاربری شما با موفقیت ساخته می‌شود."}
             ], pic: []}
           ]
-          
+
         },{
           title: "چگونه اپلیکیشن دیوار را دانلود کنم؟",
           body: "",
@@ -381,18 +382,9 @@ export class SupportMainComponent {
         }
       ]
     },{
-      title: "ورود و حساب کاربری",
+      title: "دیوار کسب و کارها",
       categoryName: "",
       categoryHelp: [
-        {
-          title: "دیوار کسب و کارها",
-          body: "",
-          helps: [
-            {type: "", body: [], pic: []},
-            {type: "", body: [], pic: []},
-            {type: "", body: [], pic: []}
-          ]
-        },
         {
           title: "فروشگاه شما در دیوار",
           body: "",
@@ -442,14 +434,13 @@ export class SupportMainComponent {
     },
   ]
 
-  constructor(private navbarService: NavbarService) {
+  constructor(private navbarService: NavbarService, private titleService: Title) {
     console.log(this.supportList)
     this.navbarService.showNavbar = true;
     setTimeout(() => {
       this.navbarService.shouldActivated = 'posht';
     }, 500)
-    //@ts-ignore
-    document.querySelector("title").textContent = this.title;
+    this.titleService.setTitle(this.title)
   }
 
 

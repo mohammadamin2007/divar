@@ -1,0 +1,19 @@
+<div class="download-item-icon items-center flex text-[1.7rem] text-[rgba(0,0,0,.32)] h-[32px] ml-[15px]" [ngClass]="{'mt-[7px]': download.type !== 'pwa-icon', 'mt-[12px]': download.type === 'pwa-icon'}">
+  <div class="flex justify-center w-[29px] mr-[2px] ml-[1px] mt-[-5.5px]" *ngIf="download.type === 'android'">
+    <svg viewBox="94.6242 111.9239 279.8134 154.3087">
+      <path fill-rule="evenodd" d="M 87.38 28.866 C 86.826 28.859 86.328 28.526 86.11 28.016 C 85.802 27.218 86.276 26.333 87.11 26.146 C 87.959 25.992 88.743 26.634 88.76 27.496 C 88.76 28.256 88.14 28.866 87.38 28.866 Z M 72.2 28.866 C 71.646 28.859 71.148 28.526 70.93 28.016 C 70.622 27.218 71.096 26.333 71.93 26.146 C 72.775 25.999 73.552 26.639 73.57 27.496 C 73.57 28.246 72.96 28.866 72.2 28.866 Z M 87.88 20.596 L 90.62 15.846 C 90.769 15.574 90.681 15.233 90.42 15.066 C 90.146 14.911 89.798 14.999 89.63 15.266 L 86.85 20.086 C 82.359 18.072 77.221 18.072 72.73 20.086 L 69.96 15.276 C 69.8 15.007 69.454 14.914 69.18 15.066 C 68.911 15.227 68.818 15.572 68.97 15.846 L 71.71 20.596 C 66.896 23.22 63.735 28.1 63.31 33.566 L 96.28 33.566 C 95.855 28.1 92.695 23.22 87.88 20.596 Z" clip-rule="evenodd" style="fill: rgba(0, 0, 0, 0.32);" transform="matrix(8.486909866333008, 0, 0, 8.306718826293945, -442.6820983886719, -12.590700149536136)"></path>
+    </svg>
+  </div>
+  <div class="flex justify-center w-[32px]" *ngIf="download.type !== 'pwa-icon' && download.type !== 'android'">
+    <i class="fa fa-{{download.type}}"></i>
+  </div>
+  <div class="h-[100%] flex w-[29px] mr-[2px] ml-[1px]" *ngIf="download.type === 'pwa-icon'">
+    <img class="w-[100%] h-[100%]" src="assets/images/{{download.type}}.svg" alt="pwa-icon">
+  </div>
+  <div class="separator pl-[16px] h-[24px]"></div>
+</div>
+<div class="download-item-content flex-wrap flex gap-[1rem]">
+    <div class="download" *ngFor="let downloadItem of download.images">
+        <app-download-item-title [downloadItem]="downloadItem"></app-download-item-title>
+    </div>
+</div>

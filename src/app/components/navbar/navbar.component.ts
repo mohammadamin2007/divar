@@ -8,9 +8,8 @@ import { NavbarService } from 'src/app/services/navbar.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  
+
   constructor(public navbarService: NavbarService) {
-    
   }
 
 }

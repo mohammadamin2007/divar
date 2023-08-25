@@ -3,3 +3,7 @@
 @tailwind components;
 @tailwind screens;
 @tailwind utilities;
+.router > *{
+    width: 100%;
+    display: flex;
+}

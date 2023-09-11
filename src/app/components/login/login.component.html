@@ -1,0 +1,56 @@
+<div #loginModel class="login-model z-[100000000000000000000000000000] hidden fixed top-0 right-0 w-full h-full grid">
+  <div (click)="closeModel(loginModel, 'abnormal')" class="close-login-model absolute top-0 right-0 w-full h-full z-[100000000000000000000000000001] bg-[rgba(0,0,0,0.56)]"></div>
+  <div class="login-model-content fixed z-[100000000000000000000000000002] zero:w-full lgsm:w-[488px] h-[458px] rounded-[0.25rem] bg-white self-center justify-self-center" [ngClass]="{'h-[485px_!important]': (formGroup.dirty || formGroup.touched) && formGroup.get('phoneNumber')?.invalid && showPhoneNumber, 'h-[407px_!important]': !showPhoneNumber, 'h-[436px_!important]': codeWrong && !showPhoneNumber}">
+    <div class="header-container flex justify-between p-[2rem] shadow-[0_1px_2px_0_rgba(0,0,0,.12)]">
+      <div class="wrapper m-[-6px] flex items-center justify-between flex-grow">
+        <span class="login-model-title text-[1rem] text-[rgba(0,0,0,.87)] leading-[1.5] m-[0_6px_0_8px]">ورود به حساب کاربری</span>
+        <a (click)="closeModel(loginModel, 'abnormal')" class="close-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+          <i class="link-icon w-[1.25rem] h-[1.25rem]">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-full h-full" fill="#707070"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.3945 12.0002L18.3435 7.05025C18.7345 6.66025 18.7345 6.02725 18.3435 5.63625C17.9535 5.24625 17.3205 5.24625 16.9295 5.63625L11.9805 10.5862L7.03049 5.63625C6.63949 5.24625 6.00649 5.24625 5.61649 5.63625C5.22549 6.02725 5.22549 6.66025 5.61649 7.05025L10.5665 12.0002L5.61649 16.9502C5.22549 17.3403 5.22549 17.9733 5.61649 18.3643C5.81149 18.5592 6.06749 18.6573 6.32349 18.6573C6.57949 18.6573 6.83449 18.5592 7.03049 18.3643L11.9805 13.4143L16.9295 18.3643C17.1245 18.5592 17.3805 18.6573 17.6365 18.6573C17.8925 18.6573 18.1485 18.5592 18.3435 18.3643C18.7345 17.9733 18.7345 17.3403 18.3435 16.9502L13.3945 12.0002Z"></path></svg>
+          </i>
+        </a>
+      </div>
+    </div>
+    <div class="content-main pt-[29px] zero:p-[16px_16px_0] lgsm:p-[32px_32px_0] flex flex-col">
+      <div class="content-main-title text-[0.875rem] mb-[1.4375rem] mt-[1rem]">
+        <span [ngClass]="{'opacity-100': showPhoneNumberOpacity, 'opacity-0': !showPhoneNumberOpacity, 'block': showPhoneNumber, 'hidden': !showPhoneNumber}">شمارهٔ موبایل خود را وارد کنید</span>
+        <span [ngClass]="{'opacity-100': !showPhoneNumberOpacity, 'opacity-0': showPhoneNumberOpacity, 'block': !showPhoneNumber, 'hidden': showPhoneNumber}">کد تأیید را وارد کنید</span>
+      </div>
+        <div class="content-description mb-[1.125rem] mt-[1rem] text-[rgba(0,0,0,.56)] text-[0.775rem] font-[400] leading-[2]" [ngClass]="{'mb-[1.0625rem]': (formGroup.dirty || formGroup.touched) && formGroup.get('phoneNumber')?.invalid, 'opacity-100': showPhoneNumberOpacity, 'opacity-0': !showPhoneNumberOpacity, 'block': showPhoneNumber, 'hidden': !showPhoneNumber}">
+          قبل از ثبت آگهی، لطفاً وارد حساب خود شوید. کد تأیید به این شماره پیامک می‌شود.
+        </div>
+        <div class="content-description mb-[0.875rem] mt-[1rem] text-[rgba(0,0,0,.56)] text-[0.775rem] font-[400] leading-[2]" [ngClass]="{'opacity-100': !showPhoneNumberOpacity, 'opacity-0': showPhoneNumberOpacity, 'block': !showPhoneNumber, 'hidden': showPhoneNumber}">
+          {{'کد پیامک‌شده به شمارۀ «'+  userPhoneNumber  +'» را وارد کنید.'}}
+        </div>
+        <div class="content-input mb-[0.1875rem]">
+          <form [formGroup]="formGroup">
+            <div class="relative transition-[opacity_0.5s_ease]" [ngClass]="{'opacity-100': showPhoneNumberOpacity, 'opacity-0': !showPhoneNumberOpacity, 'block': showPhoneNumber, 'hidden': !showPhoneNumber}">
+              <div class="zero-placeholder absolute h-[24px] leading-[24px] bg-[rgba(0,0,0,.04)] rounded-[12px] text-[0.75rem] mt-[10px] pl-[10px] pr-[12px] left-[8px] top-[0]" [ngClass]="{'text-[red_!important]': (formGroup.dirty || formGroup.touched) && formGroup.get('phoneNumber')?.invalid}" dir="ltr">+۹۸</div>
+              <input (keyup)="phoneNumber(phoneNumberInput.value)" maxlength="10" [ngClass]="{'border-[red_!important]': (formGroup.dirty || formGroup.touched) && formGroup.get('phoneNumber')?.invalid}" #phoneNumberInput formControlName="phoneNumber" type="text" placeholder="شماره موبایل" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0  border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] pl-[40px] pr-[16px]">
+              <div class="error text-[red] text-[0.75rem] leading-[2]  p-[4px_8px_0_0]" *ngIf="(formGroup.dirty || formGroup.touched) && formGroup.get('phoneNumber')?.hasError('required')">وارد کردن شماره موبایل الزامی است</div>
+              <div class="error text-[red] text-[0.75rem] leading-[2]  p-[4px_8px_0_0]" *ngIf="(formGroup.dirty || formGroup.touched) && formGroup.get('phoneNumber')?.hasError('pattern')">لطفا یک شماره موبایل معتبر وارد نمایید.</div>
+            </div>
+            <div class="relative transition-[opacity_0.5s_ease]"  [ngClass]="{'opacity-100': showCodeNumberOpacity, 'opacity-0': !showCodeNumberOpacity, 'grid': !showPhoneNumber, 'hidden': showPhoneNumber}">
+              <input (keyup)="codeNumber(codeNumberInput.value)" #codeNumberInput formControlName="codeNumber" type="text" maxlength="6" placeholder="کد تایید ۶ رقمی" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 px-[1rem] border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem]">
+              <div class="error text-[red] text-[0.75rem] leading-[2]  p-[4px_8px_0_0]" *ngIf="codeWrong">کد تایید معتبر نیست.</div>
+              <a (click)="changePhoneNumber()" class="zero-placeholder cursor-pointer transition-[background-color_.36s_ease] leading-[24px] bg-[rgba(0,0,0,.04)] rounded-[12px] hover:bg-[rgba(0,0,0,.12)] text-[10px] mt-[8px] pl-[10px] pr-[12px] h-[1.75rem] text-[rgba(0,0,0,0.56)] mr-auto" dir="ltr">تغییر شماره موبایل</a>
+            </div>
+          </form>
+        </div>
+        <div [ngClass]="{'opacity-100': showPhoneNumberOpacity, 'opacity-0': !showPhoneNumberOpacity, 'block': showPhoneNumber, 'hidden': !showPhoneNumber}" class="user-warning mb-[0.875rem] mt-[1rem] text-[rgba(0,0,0,.56)] text-[0.775rem] font-[400] leading-[2]">
+          <a class="text-[#a62626]" href="https://divar.ir/tos">شرایط استفاده از خدمات</a>
+          و
+          <a class="text-[#a62626]" href="https://divar.ir/policy">حریم خصوصی</a>
+          دیوار را می‌پذیرم.
+        </div>
+    </div>
+    <div class="button-container mt-[2rem] flex justify-end shadow-[0_-1px_2px_0_rgba(0,0,0,.12)] p-[12px_8px]" [ngClass]="{'mt-[1.8125rem]': !showPhoneNumber}">
+      <a *ngIf="!showPhoneNumber" [ngClass]="{'mx-[8px] zero:ml-[0px] zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] h-[2.5rem] min-w-[6rem] rounded-[0.25rem] text-[0.875rem] leading-[1.5714285714] items-center justify-center link-option text-[rgba(0,0,0,.32)] cursor-not-allowed px-[20px]': timer !== 0, 'send-again cursor-pointer px-[1rem] min-w-[4rem] hover:border-[#a62626] ml-[8px] border-solid border-[1px] border-[#CD8585] word rounded-[0.25rem] text-[#A62626] text-[0.875rem] leading-[1.5714285714] h-[2.5rem] items-center flex hover:bg-[rgba(166,38,38,0.04)] link-option': timer === 0}" (click)="sendAgain()">
+        درخواست {{timer !== 0? 'مجدد': 'کد'}}
+        <span class="timer w-[24px] mr-[21px]" *ngIf="timer !== 0">{{timer < 10? '0' + timer: timer}}</span>
+      </a>
+
+      <a (click)="showPhoneNumber?phoneNumber(phoneNumberInput.value):codeNumber(codeNumberInput.value)" class="submit-button mx-[8px] zero:ml-[0px] zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] text-white hover:bg-[rgb(191,44,44)] bg-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option" >{{showPhoneNumber?'تایید': 'ورود'}}</a>
+    </div>
+  </div>
+</div>

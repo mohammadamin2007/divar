@@ -1,20 +1,112 @@
+<app-navbar></app-navbar>
 <section id="support-main">
     <div class="container-custom pt-[4rem] px-[1rem] xxl:max-w-[1184px] l:max-w-[960px] md:max-w-[758px] xsm:max-w-[100%] mx-auto">
-        <div class="support-header mx-auto flex flex-col text-center px-[0.2rem] mt-[2.5rem]">
+        <div class="support-header mx-auto flex flex-col text-center l-c:px-[0.2rem] l-c:pl-[0.19rem] xxl:pl-[0.3rem] xxxl:px-[0.25rem] mt-[2.5rem]">
             <div class="support-header-title mb-[2.5rem] text-[18px]">
                 چطور می‌توانیم کمکتان کنیم؟
             </div>
             <div class="support-search">
                 <form class="relative">
-                    <input (keyup)="search(searchInput.value)" formControlName="search" #searchInput type="text" placeholder="جستجو در مقالات راهنما" class="mt-[-3px] hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] pr-[40px] pl-[16px]">
+                    <input (keyup)="search(searchInput.value)" #searchInput type="text" placeholder="جستجو در مقالات راهنما" class="mt-[-3px] hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] pr-[40px] pl-[16px]">
                     <i class="fa fa-search absolute right-0 text-[1.1rem] text-[rgba(0,0,0,0.56)] pr-[0.8rem] pt-[0.5rem] top-0"></i>
                 </form>
             </div>
         </div>
-        <div class="flex category-container flex-wrap mt-[5rem] mx-[-0.5rem]">
-            <app-support-item class="flex" *ngFor="let supportItem of supportList;let i = index" [supportObj]="supportItem" [index]="i"></app-support-item>
-        </div>
-      <app-major-support></app-major-support>
-      <app-footer></app-footer>
+      <router-outlet></router-outlet>
     </div>
+    <div #quickSupportModel class="quick-support-container w-full h-full hidden fixed z-[10000000000000000000000000000000000] top-0 right-0">
+      <div (click)="closeModel(quickSupportModel)" [routerLink]="globalValue.currentRoute" [queryParams]="{}"  class="close-contact-model z-[-1] absolute top-0 right-0 w-full h-full bg-[rgba(0,0,0,0.56)]"></div>
+      <div class="contact-model-content flex flex-col zero:w-full zero:h-full absolute bg-white mdsm:left-[35px] md:right-[35px] md:left-auto mdsm:w-[440px] mdsm:bottom-[80px] z-[0] mdsm:h-[640px] rounded-[10px]">
+        <div class="model-content-header py-[0.65rem] grid">
+          <div class="close-button-container absolute flex">
+            <a *ngIf="!showSupportList && !showQuickSupportContent"  [routerLink]="globalValue.currentRoute" [queryParams]="{}" class="close-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+              <i class="link-icon w-[1.25rem] h-[1.25rem]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-full h-full" fill="#707070"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.3945 12.0002L18.3435 7.05025C18.7345 6.66025 18.7345 6.02725 18.3435 5.63625C17.9535 5.24625 17.3205 5.24625 16.9295 5.63625L11.9805 10.5862L7.03049 5.63625C6.63949 5.24625 6.00649 5.24625 5.61649 5.63625C5.22549 6.02725 5.22549 6.66025 5.61649 7.05025L10.5665 12.0002L5.61649 16.9502C5.22549 17.3403 5.22549 17.9733 5.61649 18.3643C5.81149 18.5592 6.06749 18.6573 6.32349 18.6573C6.57949 18.6573 6.83449 18.5592 7.03049 18.3643L11.9805 13.4143L16.9295 18.3643C17.1245 18.5592 17.3805 18.6573 17.6365 18.6573C17.8925 18.6573 18.1485 18.5592 18.3435 18.3643C18.7345 17.9733 18.7345 17.3403 18.3435 16.9502L13.3945 12.0002Z"></path></svg>
+              </i>
+            </a>
+            <a *ngIf="showSupportList || showQuickSupportContent" [routerLink]="globalValue.currentRoute" [queryParams]="showSupportList? {'quickSupport': true}: {'quickSupport': true, 'activated': quickSupportOpen}" class="close-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+              <i class="link-icon w-[1.25rem] h-[1.25rem]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="jss896" style="width: 100%; height: 100%;"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.8135 11.9895C15.8135 11.7135 15.7015 11.4625 15.5195 11.2815L9.85249 5.6345C9.46049 5.2455 8.82849 5.2475 8.43849 5.6365C8.04749 6.0285 8.04949 6.6615 8.44049 7.0515L13.3975 11.9905L8.43949 16.9495C8.04849 17.3405 8.04849 17.9725 8.43949 18.3635C8.63449 18.5585 8.89049 18.6565 9.14649 18.6565C9.40249 18.6565 9.65849 18.5585 9.85349 18.3635L15.5185 12.6985C15.7015 12.5175 15.8135 12.2665 15.8135 11.9895Z"></path></svg>
+              </i>
+            </a>
+          </div>
+          <span class="leading-[2.45] justify-self-center">پشتیبانی</span>
+        </div>
+        <div class="quick-support-main px-[28px] pt-[4px]" [ngClass]="{'overflow-y-scroll': showQuickSupportContent}">
+          <ul class="links pt-[3px]" *ngIf="!showSupportList && !showQuickSupportContent">
+            <li class="nav-item link flex flex-col" *ngFor="let quickSupportItem of quickSupportList; let i = index">
+              <a [routerLink]="globalValue.currentRoute" [queryParams]="{'quickSupport': 'true', 'activated': i}" class="nav-link text-[rgba(0,0,0,.56)] items-center flex text-[0.875rem] justify-between leading-[32px] py-[7.5px] whitespace-normal">
+                <span class="text text-black">{{quickSupportItem.text}}</span>
+                <span class="link-icon flex text-[1.2rem] pl-[0.45rem] pt-[0.2rem] text-[rgba(0,0,0,0.32)] font-bold">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <div class="divider mt-[1px] bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto] w-[100%]"></div>
+            </li>
+            <li class="nav-item link flex flex-col">
+              <a [routerLink]="globalValue.currentRoute" [queryParams]="{'quickSupport': 'true', activated: quickSupportList.length}" class="nav-link text-[rgba(0,0,0,.56)] items-center flex text-[0.875rem] justify-between leading-[32px] py-[7.5px] whitespace-normal">
+                <span class="text text-black">دریافت درخواست مشکوک به کلاهبرداری</span>
+                <span class="link-icon flex text-[1.2rem] pl-[0.45rem] pt-[0.2rem] text-[rgba(0,0,0,0.32)] font-bold">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <div class="divider mt-[1px] bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto] w-[100%]"></div>
+            </li>
+          </ul >
+          <ul class="links-item pt-[3px]" *ngIf="showSupportList">
+            <li class="nav-item link flex flex-col" *ngFor="let quickSupportItem of quickSupportOpenList; let i = index">
+              <a [routerLink]="globalValue.currentRoute" [queryParams]="{'quickSupport': 'true', 'activated': quickSupportOpen, 'content': i}" class="nav-link text-[rgba(0,0,0,.56)] items-center flex text-[0.875rem] justify-between leading-[32px] py-[7.5px] whitespace-normal">
+                <span class="text text-black">{{quickSupportItem.text}}</span>
+                <span class="link-icon flex text-[1.2rem] pl-[0.45rem] pt-[0.2rem] text-[rgba(0,0,0,0.32)] font-bold">
+                  <i class="fa fa-angle-left"></i>
+                </span>
+              </a>
+              <div class="divider mt-[1px] bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto] w-[100%]"></div>
+            </li>
+            <div class="not-found mb-[0.5rem] mt-[1rem] leading-[1.75]">مشکلتان در لیست بالا نیست؟</div>
+            <div class="contact flex justify-between py-[0.625rem] mb-[1rem]">
+              <div class="contact-text leading-[1.625] text-[#707070]">تماس با پشتیبانی</div>
+              <a  class="contact-quick-support cursor-pointer h-[2rem] px-[0.75rem] min-w-[4rem] rounded-[0.25rem] text-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center flex hover:bg-[rgba(166,38,38,0.04)] link-option" routerLink="/b/support-users/fa/contact">تماس تلفنی</a>
+            </div>
+          </ul>
+          <div class="content" *ngIf="showQuickSupportContent">
+            <div class="title text-[rgba(0,0,0,0.87)] mt-[1.5rem] text-[1.125rem] leading-[1.7777777778]" appLinkBoldListedText>{{quickSupportContent.title}}</div>
+            <div class="description text-[rgba(0,0,0,0.87)] leading-[32px] my-[1rem]" appLinkBoldListedText>{{quickSupportContent.content}}</div>
+            <div class="footer">
+              <div class="h-[1px] w-full bg-[rgba(0,0,0,0.12)] mt-[1rem]"></div>
+              <div class="footer-content flex justify-between pb-[1rem] mt-[1rem]" *ngIf="showFooter">
+                <div class="text text-[0.875rem] leading-[1.5714285714] flex items-center">آیا این مقاله مفید بود؟</div>
+                <div class="footer-icon flex">
+                  <a (click)="sendFeedback('no', successMessageContainer, contentIndex)" class="close-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+                    <i class="link-icon w-[1.25rem] h-[1.25rem]">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-full h-full" fill="rgba(0,0,0,0.56)"><path fill-rule="evenodd" clip-rule="evenodd" d="M6.0157 5.549L2.4717 12.548C2.2427 12.999 2.4227 13.381 2.5117 13.524C2.5997 13.667 2.8587 14 3.3637 14H9.5237C9.8247 14 10.1097 14.135 10.2987 14.369C10.4897 14.602 10.5637 14.909 10.5027 15.203L9.6477 19.324C9.5947 19.577 9.7527 19.699 9.8527 19.75C9.8987 19.773 9.9647 19.797 10.0387 19.797C10.1257 19.797 10.2227 19.765 10.3157 19.663L14.7447 14.725C14.9097 14.542 14.9997 14.304 14.9997 14.058V6C14.9997 5.448 14.5527 5 13.9997 5H6.9087C6.5317 5 6.1857 5.212 6.0157 5.549ZM8.2947 16H3.3657C2.7807 16 2.1867 15.867 1.7097 15.528C0.377701 14.578 0.021701 12.957 0.686701 11.645L4.2797 4.55C4.7607 3.6 5.7367 3 6.8027 3H14.1717C15.7337 3 16.9997 4.267 16.9997 5.829V14.058C16.9997 14.8 16.7277 15.512 16.2317 16.063L11.8037 20.998C10.8777 22.03 9.2777 22.102 8.2087 20.979C7.6957 20.439 7.5357 19.648 7.6887 18.919L8.2947 16ZM22 12.5001V5.5001C22 5.2241 21.776 5.0001 21.5 5.0001H20.499C20.223 5.0001 19.999 5.2241 19.999 5.5001L20 12.5001C20 12.7761 20.224 13.0001 20.5 13.0001H21.5C21.776 13.0001 22 12.7761 22 12.5001ZM22 15.0001H20C18.896 15.0001 18 14.1041 18 13.0001V5.0001C18 3.8961 18.896 3.0001 20 3.0001H22C23.104 3.0001 24 3.8961 24 5.0001V13.0001C24 14.1041 23.104 15.0001 22 15.0001Z"></path></svg>
+                    </i>
+                  </a>
+                  <a (click)="sendFeedback('yes', successMessageContainer, contentIndex)" class="close-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+                    <i class="link-icon w-[1.25rem] h-[1.25rem]">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-full h-full" fill="rgba(0,0,0,0.56)"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.9843 18.4509L21.5283 11.4519C21.7573 11.0009 21.5773 10.6189 21.4883 10.4759C21.4003 10.3329 21.1413 9.99987 20.6363 9.99987H14.4763C14.1753 9.99987 13.8903 9.86487 13.7013 9.63087C13.5103 9.39787 13.4363 9.09087 13.4973 8.79687L14.3523 4.67587C14.4053 4.42287 14.2473 4.30087 14.1473 4.24987C14.1013 4.22687 14.0353 4.20287 13.9613 4.20287C13.8743 4.20287 13.7773 4.23487 13.6843 4.33687L9.2553 9.27487C9.0903 9.45787 9.0003 9.69587 9.0003 9.94187V17.9999C9.0003 18.5519 9.4473 18.9999 10.0003 18.9999H17.0913C17.4683 18.9999 17.8143 18.7879 17.9843 18.4509ZM15.7053 7.99987H20.6343C21.2193 7.99987 21.8133 8.13287 22.2903 8.47187C23.6223 9.42187 23.9783 11.0429 23.3133 12.3549L19.7203 19.4499C19.2393 20.3999 18.2633 20.9999 17.1973 20.9999H9.8283C8.2663 20.9999 7.0003 19.7329 7.0003 18.1709V9.94187C7.0003 9.19987 7.2723 8.48787 7.7683 7.93687L12.1963 3.00187C13.1223 1.96987 14.7223 1.89787 15.7913 3.02087C16.3043 3.56087 16.4643 4.35187 16.3113 5.08087L15.7053 7.99987ZM2 11.4998V18.4998C2 18.7758 2.224 18.9998 2.5 18.9998H3.501C3.777 18.9998 4.001 18.7758 4.001 18.4998L4 11.4998C4 11.2238 3.776 10.9998 3.5 10.9998H2.5C2.224 10.9998 2 11.2238 2 11.4998ZM2 8.99977H4C5.104 8.99977 6 9.89577 6 10.9998V18.9998C6 20.1038 5.104 20.9998 4 20.9998H2C0.896 20.9998 0 20.1038 0 18.9998V10.9998C0 9.89577 0.896 8.99977 2 8.99977Z"></path></svg>
+                    </i>
+                  </a>
+                </div>
+              </div>
+              <div class="h-[1px] w-full bg-[rgba(0,0,0,0.12)]"></div>
+            </div>
+            <div class="contact flex justify-between py-[0.625rem] mb-[1rem]">
+              <div class="contact-text leading-[1.625] text-[#707070]">تماس با پشتیبانی</div>
+              <a  class="contact-quick-support cursor-pointer h-[2rem] px-[0.75rem] min-w-[4rem] rounded-[0.25rem] text-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center flex hover:bg-[rgba(166,38,38,0.04)] link-option" routerLink="/b/support-users/fa/contact">تماس تلفنی</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a [routerLink]="globalValue.currentRoute" [queryParams]="{'quickSupport': 'true'}" class="quick-support cursor-pointer fixed w-[3rem] h-[3rem] bg-[#A62626] hover:bg-[rgb(191,44,44)] rounded-[50px] p-[9px] bottom-[25px] transform hover:translate-y-[2px]">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-full h-full"><path fill-rule="evenodd" clip-rule="evenodd" d="M21 12.277V12C21 7.037 16.963 3 12 3C7.037 3 3 7.037 3 12V12.277C2.404 12.624 2 13.261 2 14V16C2 17.104 2.896 18 4 18C4.553 18 5 17.552 5 17V12C5 8.14 8.141 5 12 5C15.859 5 19 8.14 19 12V17V18C19 18.551 18.552 19 18 19H12C11.447 19 11 19.447 11 20C11 20.552 11.447 21 12 21H18C19.654 21 21 19.654 21 18V17.722C21.596 17.376 22 16.738 22 16V14C22 13.261 21.596 12.624 21 12.277ZM8 12.9997C8 12.4477 8.447 11.9997 9 11.9997C9.553 11.9997 10 12.4477 10 12.9997C10 13.5517 9.553 13.9997 9 13.9997C8.447 13.9997 8 13.5517 8 12.9997ZM15 13.9997C14.447 13.9997 14 13.5517 14 12.9997C14 12.4477 14.447 11.9997 15 11.9997C15.553 11.9997 16 12.4477 16 12.9997C16 13.5517 15.553 13.9997 15 13.9997ZM17.7481 10.2973C17.8521 10.6523 17.5701 10.9913 17.2031 10.9543C14.8051 10.7163 12.7211 9.4203 11.4211 7.5373C11.1861 7.1973 10.6821 7.2683 10.5451 7.6593C9.8771 9.5513 8.5151 11.1143 6.7671 12.0503C6.3161 12.2913 5.9791 12.0813 6.0151 11.5703C6.2351 8.4563 8.8311 5.9993 12.0001 5.9993C14.7221 5.9993 17.0151 7.8133 17.7481 10.2973Z"></path></svg>
+    </a>
 </section>
+<div #successMessageContainer class="success-message z-[10000000000000000000000000000000005] w-full fixed bottom-0 flex justify-center right-0 mb-[1rem]"  style="transform: translateY(10vh)">
+  <div class="success-message-container px-[1rem] py-[0.5rem] bg-gray-700 rounded-[5px]">
+    <span class="text-white text-[0.875rem] leading-[2]">بازخورد با موفقیت ثبت شد</span>
+  </div>
+</div>
+
+

@@ -3,8 +3,8 @@
     <div class="cooperation-title mb-[64px]">
       <p class="title text-[1.5rem] text-center">همکاران تجاری دیوار</p>
     </div>
-    <div class="main-cooperation flex mx-[4.4rem]">
-      <div class="mb-[32px] l-c:max-w-[50%] {{cooperationItem.padding}}" *ngFor="let cooperationItem of cooperationList">
+    <div class="main-cooperation flex mx-[4.4rem] l-c:flex-row zero:flex-col ">
+      <div class="mb-[32px] w-[100%] zero:max-w-[100%] l-c:max-w-[50%] {{cooperationItem.padding}}" *ngFor="let cooperationItem of cooperationList">
         <div class="cooperation-item-image flex justify-center">
           <img class="w-[48px] h-[48px]" [src]="cooperationItem.image" alt="cooperation-image">
         </div>

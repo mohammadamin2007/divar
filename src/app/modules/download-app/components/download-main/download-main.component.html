@@ -1,6 +1,7 @@
+<app-navbar></app-navbar>
 <section class="download flex w-[100%] flex-col  max-w-[954px] mx-[auto]">
-  <div class="download-cotaniner flex pt-[4rem] mt-[12vh]">
-    <div class="download-main ml-[201px] w-[469px]">
+  <div class="download-cotaniner flex zero:flex-col-reverse l:flex-row l:pt-[4rem] mt-[12vh]">
+    <div class="download-main max-w-full zero:text-center l:text-start zero:self-center l:self-start zero:mt-[1.5rem] l:mt-[0] l:ml-[201px] w-[469px]">
         <div class="download-main-texts mt-[34px]">
             <div class="small-title text-[0.875rem]">جستجو در میان هزاران آگهی</div>
             <div class="big-title text-[2rem] font-[700] mt-[12px] mb-[16px]">دریافت برنامهٔ دیوار</div>
@@ -8,15 +9,15 @@
         </div>
         <div class="download-links mt-[5px] flex flex-col">
             <div class="download-links-container" *ngFor="let downloadItem of downloadList">
-                <app-download-item class="flex mt-[32px]" [data]="downloadItem"></app-download-item>
+                <app-download-item class="flex zero:flex-col sm-c:items-center zero:items-center sm-c:flex-row mt-[32px]" [data]="downloadItem"></app-download-item>
             </div>
         </div>
     </div>
-    <div class="download-img relative">
+    <div class="download-img relative flex justify-center">
         <div class="img-container">
-            <img class="h-[580px] w-[284px]" src="assets/images/download-divar.svg" alt="attending-to-divar-gif">
+            <img class="zero:h-[436px] l:h-[580px] w-[284px]" src="assets/images/download-divar.svg" alt="attending-to-divar-gif">
         </div>
-        <div class="box-shadow-maker top-[50px] left-[4px] z-[-1]"></div>
+        <div class="box-shadow-maker top-[50px] l:left-[4px] z-[-1] absolute opacity-[0.56] h-[88%] zero:w-[190px] l:w-[90%] rounded-[38px]"></div>
     </div>
   </div>
   <app-footer></app-footer>

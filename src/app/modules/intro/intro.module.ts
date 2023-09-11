@@ -29,8 +29,9 @@ import {IntroRoutingModule} from "./intro-routing.module";
     RouterModule,
     IntroRoutingModule
   ],
-  exports: [
-    MainComponent
-  ]
+    exports: [
+        MainComponent,
+        SearchComponent
+    ]
 })
 export class IntroModule { }

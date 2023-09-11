@@ -16,6 +16,54 @@ section {
   }
 }
 
+.model-content-header{
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+.quick-support-container{
+  transition: opacity 360ms ease, visibility 360ms ease;
+}
+
+.close-button {
+  transition: background-color 360ms ease,transform 360ms ease,box-shadow 400ms ease,border-color 360ms ease;
+}
+
+.contact-option-button {
+  border: 1px solid #CD8585;
+}
+
+.contact-button {
+  transition: background-color 360ms ease, border-color 360ms ease;
+}
+
+.contact-button:hover{
+  border-color: #A62626 !important;
+}
+.contact-model {
+  transition: opacity 360ms ease;
+  .close-button {
+    transition: background-color 360ms ease;
+  }
+}
+
+.quick-support{
+    right: calc(100vw - 85px);
+  @media screen and (min-width: 768px) {
+    right: auto !important;
+    left: calc(100vw - 85px);
+  }
+  box-shadow: 0 8px 9px -4px rgba(166, 38, 38, 0.24), 0 14px 16px 2px rgba(166, 38, 38, 0.14), 0 5px 20px 4px rgba(166, 38, 38, 0.12);
+  transition: background-color 360ms ease,transform 360ms ease,box-shadow 400ms ease,border-color 360ms ease;
+}
+
+.contact-model-content{
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.04), 0 -8px 32px -4px rgba(0, 0, 0, 0.08), 0 16px 24px -6px rgba(0, 0, 0, 0.04);
+}
+
+.quick-support:hover {
+  box-shadow: 0 0 4px -2px rgba(166, 38, 38, 0.56), 0 4px 8px 0 rgba(166, 38, 38, 0.14), 0 0 8px 2px rgba(166, 38, 38, 0.12) !important;
+}
+
 @media screen and (min-width: 320px) {
   .support-header {
     flex-grow: 0;
@@ -23,20 +71,12 @@ section {
     flex-basis: 100%;
     flex-shrink: 0;
   }
-  app-support-item {
-    flex-grow: 0;
-    max-width: 100%;
-    flex-basis: 100%;
-    flex-shrink: 0;
-}
 }
 
 @media (min-width: 768px){
-  app-support-item {
-      flex-grow: 0;
-      max-width: 50%;
-      flex-basis: 50%;
-      flex-shrink: 0;
+  .container-custom {
+    padding-right: 0.65rem !important;
+    padding-left: 0.7rem !important;
   }
 }
 
@@ -47,12 +87,6 @@ section {
     flex-basis: 66.666667%;
     flex-shrink: 0;
   }
-  app-support-item {
-    flex-grow: 0;
-    max-width: 33.333333%;
-    flex-basis: 33.333333%;
-    flex-shrink: 0;
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -61,6 +95,10 @@ section {
     max-width: 58.333333%;
     flex-basis: 58.333333%;
     flex-shrink: 0;
+  }
+  .container-custom {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
   }
 }
 @media (min-width: 1366px){

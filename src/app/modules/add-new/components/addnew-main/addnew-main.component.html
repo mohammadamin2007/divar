@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<section id="add-new-main" class="w-full">
+  <div class="container-custom pt-[4rem] px-[1rem] xxl:max-w-[1184px] l:max-w-[960px] md:max-w-[758px] xsm:max-w-[100%] mx-auto">
+    <div class="rotator w-full" *ngIf="globalService.newDataIsLoading">
+      <span class="py-[2rem]  flex justify-center w-full h-[88px]">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+          <g class="loading-container">
+            <path fill="rgba(0,0,0,.12)" d="M8,16a8,8,0,1,1,8-8A8,8,0,0,1,8,16ZM8,2a6,6,0,1,0,6,6A6,6,0,0,0,8,2Z"></path>
+            <circle class="circle" cx="8" cy="8" r="7" fill="none"></circle>
+          </g>
+        </svg>
+      </span>
+    </div>
+    <div *ngIf="loginService.loggedIn">
+      <router-outlet></router-outlet>
+    </div>
+    <div *ngIf="!loginService.loggedIn">
+      <app-login></app-login>
+    </div>
+  </div>
+</section>

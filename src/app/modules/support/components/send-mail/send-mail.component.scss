@@ -1,0 +1,110 @@
+@media screen and (min-width: 320px) {
+  .custom-container {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+    flex-shrink: 0;
+  }
+  .form-file-container {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (min-width: 520px) {
+  .form-file-container {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+    flex-shrink: 0;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .custom-container {
+    flex-grow: 0;
+    max-width: 65.9%;
+    flex-basis: 65.9%;
+    flex-shrink: 0;
+  }
+  .custom-container {
+    margin-right: 8.55%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .custom-container {
+    flex-grow: 0;
+    max-width: 58.15%;
+    flex-basis: 58.15%;
+    flex-shrink: 0;
+  }
+  .form-file-container {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+    flex-shrink: 0;
+  }
+  .custom-container {
+    margin-right: 16.666667%;
+  }
+  .custom-container {
+    padding-right: 0.15rem;
+    padding-left: 0.15rem;
+  }
+}
+@media (min-width: 1366px){
+  .custom-container {
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+  }
+  .custom-container {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+    flex-shrink: 0;
+  }
+  .custom-container {
+    margin-right: 25%;
+  }
+}
+
+.form-control {
+  transition: border-color 240ms ease;
+}
+.options-container {
+  transition: opacity 240ms ease;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.08), 0 -8px 32px -4px rgba(0,0,0,.04), 0 16px 24px -6px rgba(0,0,0,.04);
+  .option{
+    padding: 10px 16px 9px;
+  }
+}
+.send-mail-button {
+  border: 1px solid #CD8585;
+}
+
+.send-mail-button, .submit-button {
+  transition: background-color 360ms ease, border-color 360ms ease;
+}
+
+.form-file-container:hover{
+  .dashed-img-svg, .file-icon-svg {
+    fill: rgba(0,0,0,.48);
+  }
+}
+.form-file-container{
+  .dashed-img-svg, .file-icon-svg {
+    transition: fill 360ms ease;
+  }
+}
+
+.separator{
+  border-left: 1px solid rgba(0,0,0,.12);
+}
+.download-footer-icon {
+  a *{
+    transition: color .36s ease, fill .36s ease;
+  }
+}

@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./download-item-title.component.scss']
 })
 export class DownloadItemTitleComponent {
-  @Input('downloadItem') downloadItem: {text: boolean, image: string, textContent: string, textIcon: string}
-  
+  @Input('downloadItem') downloadItem: {text: boolean, image: string, textContent: string, textIcon: string, link: string }
+
 }

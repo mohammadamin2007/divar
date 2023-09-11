@@ -1,0 +1,8 @@
+<ul class="navigation mt-[2rem] pr-[5px] flex">
+  <li [routerLink]="navigationItem.link" [queryParams]="navigationItem.queryParams" (mouseenter)="hoveredNav = i" (mouseleave)="hoveredNav = navigation.length + 1" class="nav-item cursor-pointer flex items-center" *ngFor="let navigationItem of navigation; let i = index">
+    <a  [ngClass]="{'text-black': hoveredNav <= i}" class="nav-link text-[#707070] text-[0.75rem] max-w-[7.5rem] leading-[1.6666666667]" >{{navigationItem.text}}</a>
+    <div class="nav-icon w-[1rem] h-[1rem] flex min-w-[1rem] transform" [ngClass]="{'rotate-[180deg]': hoveredNav <= i}" *ngIf="i < navigation.length - 1">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="#707070" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M10.8125 11.9999L14.6865 8.12586C15.0785 7.73386 15.0785 7.09886 14.6865 6.70686C14.2935 6.31386 13.6595 6.31386 13.2665 6.70686L8.6825 11.2909C8.2915 11.6829 8.2915 12.3169 8.6825 12.7089L13.2665 17.2929C13.4625 17.4889 13.7195 17.5869 13.9765 17.5869C14.2335 17.5869 14.4905 17.4889 14.6865 17.2929C15.0785 16.9009 15.0785 16.2659 14.6865 15.8739L10.8125 11.9999Z"></path></svg>
+    </div>
+  </li>
+</ul>

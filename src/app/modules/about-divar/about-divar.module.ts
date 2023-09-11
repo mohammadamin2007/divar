@@ -8,6 +8,7 @@ import { AboutFooterComponent } from './components/about-footer/about-footer.com
 import {AboutRoutingModule} from "./about-routing.module";
 import { AboutDetailsComponent } from './components/about-details/about-details.component';
 import { AboutJobComponent } from './components/about-job/about-job.component';
+import {NavbarComponent} from "./components/navbar/navbar.component";
 
 
 @NgModule({
@@ -18,14 +19,16 @@ import { AboutJobComponent } from './components/about-job/about-job.component';
     FooterComponent,
     AboutFooterComponent,
     AboutDetailsComponent,
-    AboutJobComponent
+    AboutJobComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
     AboutRoutingModule
   ],
-  exports: [
-    AboutMainComponent
-  ]
+    exports: [
+        AboutMainComponent,
+        AboutFooterComponent
+    ]
 })
 export class AboutDivarModule { }

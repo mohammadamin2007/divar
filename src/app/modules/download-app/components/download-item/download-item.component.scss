@@ -1,3 +1,9 @@
-.separator{
-  border-left: 1px solid rgba(0,0,0,.12);
+@media screen and (min-width: 576px) {
+  .separator{
+    border-left: 1px solid rgba(0,0,0,.12);
+    border-bottom: none !important;
+  }
+}
+.separator {
+  border-bottom: 1px solid rgba(0,0,0,.12);
 }

@@ -1,0 +1,23 @@
+<div class="category-items pb-[32px]">
+  <div class="category-items-container custom-container px-[0.5rem] pt-[2rem]">
+    <div class="title-wrapper mt-[24px] mb-[16px]">
+      <div class="category-items-title">ثبت آگهی</div>
+      <div class="category-items-description text-[rgba(0,0,0,.56)] text-[0.8rem] leading-[2] mt-[9px]">انتخاب دسته‌بندی</div>
+    </div>
+    <div class="change-view flex justify-between mt-[28px] mb-[0.7rem]">
+      <div class="text text-[rgba(0,0,0,.87)] text-[0.8rem] leading-[2]">نمایش راهنمای دسته‌بندی</div>
+      <a (click)="detailed = !detailed;" class="changer cursor-pointer bg-[rgba(0,0,0,0.24)] rounded-[12px] h-[24px] w-[42px]" [ngClass]="{'bg-[#a62626_!important]': detailed}">
+        <div class="changer-circle relative rounded-[50%] m-[2px] h-[20px] w-[20px] bg-white" [ngClass]="{'activated': detailed}">
+          <div class="box-shadow absolute bg-[rgba(0,0,0,.04)] z-[10000] rounded-[50px]" [ngClass]="{'bg-[rgba(166,38,38,.08)_!important]': detailed}"></div>
+          <div class="back-white absolute bg-white w-full z-[10001] h-full rounded-[50px]"></div>
+          <div class="box-shadow-red absolute bg-[rgba(166,38,38,.08)] z-[10000] rounded-[50px]"></div>
+        </div>
+      </a>
+    </div>
+    <div class="category-items-content-container">
+      <ul>
+        <app-category-items *ngFor="let addNewItem of addNewData; let i = index"  [data]="{title:addNewItem.text, spClass: addNewItem.spClass, group: addNewItem.group, detailed: detailed, image: addNewItem.image, boxHeight: addNewItem.boxHeight, index: i}"></app-category-items>
+      </ul>
+    </div>
+  </div>
+</div>

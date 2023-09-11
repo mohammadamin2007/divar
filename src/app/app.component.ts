@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { routeAnimation } from './route-animation';
+import {GlobalValueService} from "./services/global-value.service";
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,7 @@ import { routeAnimation } from './route-animation';
   animations: [routeAnimation]
 })
 export class AppComponent {
-  title = 'divar';
+
+  constructor(private globalValue: GlobalValueService) {
+  }
 }

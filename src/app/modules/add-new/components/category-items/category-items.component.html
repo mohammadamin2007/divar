@@ -1,0 +1,17 @@
+<li class="nav-item link flex flex-col">
+  <a routerLink="/new/groups/{{data.index}}" class="nav-link text-[rgba(0,0,0,.56)] items-center">
+    <div class="flex text-[0.875rem] justify-between leading-[32px] py-[7.5px] whitespace-normal">
+      <div class="flex">
+        <div class="category-icon text-[22px] ml-[1rem] {{data.spClass}}">
+          <i class="fa fa-{{data.image}} w-full h-full " alt="category-icon-image"></i>
+        </div>
+        <span class="text text-black">{{data.title}}</span>
+      </div>
+      <span class="link-icon flex pl-[0.45rem] pt-[0.2rem] text-[rgba(0,0,0,0.32)] font-bold">
+      <i class="fa fa-angle-left"></i>
+      </span>
+    </div>
+    <div #groups class="groups overflow-hidden text-[0.8rem] leading-[2] pr-[2.5rem]" [ngStyle]="{'height': data.boxHeight}" [ngClass]="{'pb-[0.5rem]': data.detailed, 'h-[0_!important]': !data.detailed}">{{data.group}}</div>
+  </a>
+  <div class="divider mt-[1px] bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto] w-[100%]"></div>
+</li>

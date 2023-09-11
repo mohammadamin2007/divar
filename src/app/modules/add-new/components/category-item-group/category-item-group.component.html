@@ -1,0 +1,38 @@
+<div class="category-items pb-[32px]">
+  <div class="category-items-container custom-container px-[0.5rem] pt-[2rem]">
+    <div class="title-wrapper mt-[24px] mb-[16px]">
+      <div class="category-items-title">زیردسته‌های {{categoryList.title}}</div>
+      <div class="category-items-description text-[rgba(0,0,0,.56)] text-[0.8rem] leading-[2] mt-[9px]">انتخاب دسته‌بندی</div>
+    </div>
+    <div class="return-to-all">
+      <a routerLink="/new/groups/{{activatedRoute.snapshot.params['id']}}" class="nav-link text-[rgba(0,0,0,.56)] items-center">
+        <div class="flex text-[0.875rem] items-center leading-[32px] py-[7.5px] whitespace-normal">
+          <span class="link-icon flex pr-[0.4375rem] ml-[1.25rem] text-[rgba(0,0,0,.56)] font-bold">
+            <i class="fas fa-arrow-right"></i>
+          </span>
+          <div class="flex">
+            <span class="text text-black">بازگشت به همهٔ {{categoryList.majorTitle}}</span>
+          </div>
+        </div>
+      </a>
+      <div class="divider mt-[1px] bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto] w-[100%]"></div>
+    </div>
+    <div class="category-items-content-container">
+      <ul>
+        <li class="nav-item link flex flex-col" *ngFor="let categoryItem of categoryList.groups; let i = index">
+          <a routerLink="/new/groups/{{activatedRoute.snapshot.params['id']}}/{{activatedRoute.snapshot.params['id2']}}/{{i}}/form" class="nav-link text-[rgba(0,0,0,.56)] items-center">
+            <div class="flex text-[0.875rem] justify-between items-center leading-[32px] py-[7.5px] whitespace-normal">
+              <div class="flex">
+                <span class="text text-black">{{categoryItem.text}}</span>
+              </div>
+              <span class="link-icon flex pl-[0.45rem] pt-[0.2rem] text-[rgba(0,0,0,0.32)] font-bold">
+                <i class="fa fa-angle-left"></i>
+              </span>
+            </div>
+          </a>
+          <div class="divider mt-[1px] bg-[rgba(0,0,0,0.12)] h-[1px] m-[auto] w-[100%]"></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

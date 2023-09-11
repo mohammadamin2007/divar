@@ -7,7 +7,13 @@ import {FooterComponent} from "./components/footer/footer.component";
 import { MajorSupportComponent } from './components/major-support/major-support.component';
 import {RouterModule} from "@angular/router";
 import {SupportRoutingModule} from "./support-routing.module";
-
+import { LinkBoldListedTextDirective } from './directive/link-bold-listed-text.directive';
+import { ContactComponent } from './components/contact/contact.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { NavigationComponent } from './components/navigation/navigation.component';
+import { SendMailComponent } from './components/send-mail/send-mail.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { SupportItemMainComponent } from './components/support-item-main/support-item-main.component';
 
 
 @NgModule({
@@ -15,12 +21,19 @@ import {SupportRoutingModule} from "./support-routing.module";
     SupportMainComponent,
     SupportItemComponent,
     FooterComponent,
-    MajorSupportComponent
+    MajorSupportComponent,
+    LinkBoldListedTextDirective,
+    ContactComponent,
+    NavigationComponent,
+    SendMailComponent,
+    NavbarComponent,
+    SupportItemMainComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    SupportRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule,
+        SupportRoutingModule,
+        ReactiveFormsModule
+    ]
 })
 export class SupportModule { }

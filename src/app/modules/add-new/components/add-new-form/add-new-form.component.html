@@ -1,0 +1,152 @@
+<div class="exiter absolute top-0 right-0 w-full h-full z-[10001]" (click)="exit()" *ngIf="open || open2 || open3"></div>
+<div class="add-new-form-section">
+  <div class="custom-container">
+    <div class="form-section-title">
+      <div class="title pb-[1rem] mt-[3rem] text-[#303030] text-[1.25rem] leading-[1.5]">ثبت آگهی</div>
+      <div class="content-container flex justify-between items-center mt-[1rem] h-[7.5rem] border-solid border-[1px] border-[rgba(0,0,0,0.24)] rounded-[4px]">
+        <div class="form-name leading-[1.5] text-[1.1rem] w-[8.652rem] mr-[8px] text-[rgba(0,0,0,0.56)] flex justify-center">{{addNewFormName}}</div>
+        <div class="content-wrapper flex">
+          <div class="form-img">
+            <img src="assets/images/new-{{activatedRoute.snapshot.params['id']}}.png" class="w-[15rem] h-[10.5rem]" alt="form-image">
+          </div>
+          <div class="button-container ml-[-48px] flex items-center">
+            <a routerLink="/new" class="submit-button transform hover:translate-y-[.125rem] zero:ml-[0px] zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[17.5px] min-w-[6rem] rounded-[0.25rem] text-white hover:bg-[rgb(191,44,44)] bg-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option">تغییر دسته‌بندی</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="send-new-form" [formGroup]="sendNew">
+      <div class="form-control-container mt-[2rem]">
+        <div class="label">
+          <label class="leading-[2]">شهر</label>
+        </div>
+        <div class="custom-select relative">
+          <div (click)="openOption()" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="contactNumber">
+            <span [ngClass]="{'text-[#ADADAD]': selectedCity === 'انتخاب شهر...', 'text-[#212121]': selectedCity !== 'انتخاب شهر...'}" class="flex-grow flex items-center leading-[1.625]">{{selectedCity}}</span>
+            <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+            </i>
+          </div>
+          <div *ngIf="open" [ngClass]="{'block': open, 'hidden': !open, 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+            <a *ngFor="let option of cityOption" (click)="selectCity(option.city)" [ngClass]="{'text-[#707070]': option.city !== selectedCity, 'text-[#A62626]': option.city === selectedCity}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">{{option.city}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-control-container mt-[2rem]" *ngIf="selectedCity !== 'انتخاب شهر...'">
+        <div class="label">
+          <label class="leading-[2]">محله</label>
+        </div>
+        <div class="custom-select relative"  formControlName="Neighbourhood">
+          <div (click)="openOption('ne')" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="contactNumber">
+            <span [ngClass]="{'text-[#ADADAD]': selectedNeighbor === 'انتخاب محله...', 'text-[#212121]': selectedNeighbor !== 'انتخاب محله...'}" class="flex-grow flex items-center leading-[1.625]">{{selectedNeighbor}}</span>
+            <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+            </i>
+          </div>
+          <div *ngIf="open2" [ngClass]="{'block': open2, 'hidden': !open2, 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+            <a *ngFor="let option of cityOption" (click)="selectCity(option.city, 'ne')" [ngClass]="{'text-[#707070]': option.city !== selectedNeighbor, 'text-[#A62626]': option.city === selectedNeighbor}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">{{option.city}}</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-control-container mt-[35px] justify-start">
+        <div class="label">
+          <label class="leading-[2] pt-[1rem]">عکس آگهی</label>
+        </div>
+        <div class="form-control-description text-[rgba(0,0,0,0.56)] mt-[11px] mb-[8px] text-[0.68rem] leading-[2]">
+          عکس‌هایی از فضای داخل و بیرون ملک اضافه کنید. آگهی‌های دارای عکس تا «۳ برابر» بیشتر توسط کاربران دیده می‌شوند.
+        </div>
+        <div class="form-file-container cursor-pointer flex justify-start items-center relative border-dashed border-[rgba(0,0,0,.24)]">
+          <div class="send-file mb-[6px] mt-[7px] w-[6.9rem] h-[6.9rem] relative">
+            <div class="w-full pt-[3px] h-full absolute flex justify-center items-center cursor-pointer">
+              <div class="wrapper relative">
+                <div class="file-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="rgba(0,0,0,.24)" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="file-icon-svg w-[2rem] h-[2rem] min-w-[2rem] min-h-[2rem]"><path fill-rule="evenodd" clip-rule="evenodd" d="M19 18C19 18.551 18.552 19 18 19H6C5.448 19 5 18.551 5 18V6C5 5.449 5.448 5 6 5H18C18.552 5 19 5.449 19 6V18ZM18 3H6C4.346 3 3 4.346 3 6V18C3 19.654 4.346 21 6 21H18C19.654 21 21 19.654 21 18V6C21 4.346 19.654 3 18 3ZM8 12.9595H11C11.553 12.9595 12 12.5115 12 11.9595C12 11.4075 11.553 10.9595 11 10.9595H8C7.447 10.9595 7 11.4075 7 11.9595C7 12.5115 7.447 12.9595 8 12.9595ZM8.1934 14.9595H14.1934C14.7464 14.9595 15.1934 15.4075 15.1934 15.9595C15.1934 16.5115 14.7464 16.9595 14.1934 16.9595H8.1934C7.6404 16.9595 7.1934 16.5115 7.1934 15.9595C7.1934 15.4075 7.6404 14.9595 8.1934 14.9595Z"></path></svg></div>
+                <div class="plus-icon bg-white absolute top-[calc(50%-20px)] left-[50%]"><svg xmlns="http://www.w3.org/2000/svg" fill="#A62626" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-[1.25rem] h-[1.25rem] min-w-[1.25rem] min-h-[1.25re]"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.2422 13H13.0002V16.243C13.0002 16.795 12.5532 17.243 12.0002 17.243C11.4472 17.243 11.0002 16.795 11.0002 16.243V13H7.7582C7.2052 13 6.7582 12.552 6.7582 12C6.7582 11.448 7.2052 11 7.7582 11H11.0002V7.757C11.0002 7.205 11.4472 6.757 12.0002 6.757C12.5532 6.757 13.0002 7.205 13.0002 7.757V11H16.2422C16.7952 11 17.2422 11.448 17.2422 12C17.2422 12.552 16.7952 13 16.2422 13ZM12.0002 2C6.4862 2 2.0002 6.486 2.0002 12C2.0002 17.514 6.4862 22 12.0002 22C17.5132 22 22.0002 17.514 22.0002 12C22.0002 6.486 17.5132 2 12.0002 2Z"></path></svg></div>
+              </div>
+            </div>
+            <div class="dashed-img absolute w-full h-full pt-[1px] cursor-pointer">
+              <svg xmlns="http://www.w3.org/2000/svg" class="dashed-img-svg" viewBox="0 0 96 96" fill="rgba(0,0,0,.24)"><path d="M5.5,0h-1A4.45,4.45,0,0,0,0,4.45v1A.5.5,0,0,0,.5,6,.5.5,0,0,0,1,5.5v-1A3.46,3.46,0,0,1,4.46,1h1A.5.5,0,0,0,6,.5.5.5,0,0,0,5.5,0Z"/><path d="M63.25,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,0-1Z"/><path d="M57.44,0H55.49a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1.95a.5.5,0,0,0,.5-.5A.5.5,0,0,0,57.44,0Z"/><path d="M51.64,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,51.64,0Z"/><path d="M86.46,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M74.85,0H72.9a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1.95a.5.5,0,0,0,.5-.5A.5.5,0,0,0,74.85,0Z"/><path d="M80.65,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,80.65,0Z"/><path d="M28.43,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,0-1Z"/><path d="M22.62,0H20.67a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1.95a.5.5,0,0,0,.5-.5A.5.5,0,0,0,22.62,0Z"/><path d="M16.82,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,16.82,0Z"/><path d="M11,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M40,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,40,0Z"/><path d="M45.84,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,0-1Z"/><path d="M34.23,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,34.23,0Z"/><path d="M69.05,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M5.5,95h-1A3.46,3.46,0,0,1,1,91.54v-1A.5.5,0,0,0,.5,90a.5.5,0,0,0-.5.5v1A4.45,4.45,0,0,0,4.45,96h1a.5.5,0,0,0,0-1Z"/><path d="M34.23,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M69.05,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,1,0,0-1Z"/><path d="M28.43,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,1,0,0-1Z"/><path d="M63.25,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M45.84,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M57.44,95H55.49a.5.5,0,0,0,0,1h1.95a.5.5,0,0,0,0-1Z"/><path d="M40,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M51.64,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M22.62,95H20.67a.5.5,0,0,0,0,1h1.95a.5.5,0,1,0,0-1Z"/><path d="M80.65,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M86.46,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M11,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M16.82,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M74.85,95H72.9a.5.5,0,0,0,0,1h1.95a.5.5,0,0,0,0-1Z"/><path d="M96,4.45A4.45,4.45,0,0,0,91.55,0h-1a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1A3.46,3.46,0,0,1,95,4.46v1a.5.5,0,0,0,1,0Z"/><path d="M95.5,73.1a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,73.1Z"/><path d="M95.5,9.26a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,9.26Z"/><path d="M95.5,15.07a.5.5,0,0,0-.5.5v1.95a.5.5,0,0,0,1,0V15.57A.5.5,0,0,0,95.5,15.07Z"/><path d="M95.5,44.08a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,44.08Z"/><path d="M95.5,67.3a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,67.3Z"/><path d="M95.5,78.9a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,78.9Z"/><path d="M95.5,84.71a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,84.71Z"/><path d="M95.5,20.87a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,20.87Z"/><path d="M95.5,38.28a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,38.28Z"/><path d="M95.5,55.69a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,55.69Z"/><path d="M95.5,49.89a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,49.89Z"/><path d="M95.5,32.48a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0V33A.5.5,0,0,0,95.5,32.48Z"/><path d="M95.5,26.67a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,26.67Z"/><path d="M95.5,61.49a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0V62A.5.5,0,0,0,95.5,61.49Z"/><path d="M95.5,90a.5.5,0,0,0-.5.5v1A3.46,3.46,0,0,1,91.54,95h-1a.5.5,0,0,0,0,1h1A4.45,4.45,0,0,0,96,91.55v-1A.5.5,0,0,0,95.5,90Z"/><path d="M.5,41.24a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,41.24Z"/><path d="M.5,47a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,47Z"/><path d="M.5,29.63a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,29.63Z"/><path d="M.5,12.22a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,12.22Z"/><path d="M.5,18a.5.5,0,0,0,.5-.5V15.57a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v1.95A.5.5,0,0,0,.5,18Z"/><path d="M.5,23.83a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,23.83Z"/><path d="M.5,35.43a.5.5,0,0,0,.5-.5V33a.5.5,0,0,0-.5-.5A.5.5,0,0,0,0,33v2A.5.5,0,0,0,.5,35.43Z"/><path d="M.5,81.86a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,81.86Z"/><path d="M.5,76.05a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,76.05Z"/><path d="M.5,52.84a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,52.84Z"/><path d="M.5,87.66a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,87.66Z"/><path d="M.5,70.25a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,70.25Z"/><path d="M.5,58.65a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,58.65Z"/><path d="M.5,64.45A.5.5,0,0,0,1,64V62a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,64.45Z"/></svg>
+            </div>
+            <input #fileInput (change)="handelFile(fileInput)" class="w-full h-full send-mail-file-input opacity-0 z-[11] cursor-pointer" type="file" formControlName="file">
+          </div>
+          <div *ngFor="let file of filesList">
+            <img src="{{file.file}}" alt="uploadedImage">
+          </div>
+        </div>
+        <div class="form-control-warning p-[1px_8px_0_0] text-[rgba(0,0,0,0.56)] text-[0.665rem] leading-[2]">
+          تعداد عکس‌های انتخاب شده نباید بیشتر از ۲۰ باشد.
+        </div>
+        <div></div>
+      </div>
+      <div class="individual-information">
+        <div class="title">تأیید هویت</div>
+        <div></div>
+        <div class="form-control-container mt-[2rem]" *ngIf="selectedCity !== 'انتخاب شهر...'">
+          <div class="label">
+            <label class="leading-[2]">محله</label>
+          </div>
+          <div class="custom-select relative">
+            <div (click)="openOption('person-type')" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="contactNumber">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]">{{selectedPersonType}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div *ngIf="open3" [ngClass]="{'block': open3, 'hidden': !open3, 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+              <a (click)="selectCity('ایرانی', 'person-type')" [ngClass]="{'text-[#707070]': 'ایرانی' !== selectedPersonType, 'text-[#A62626]': 'ایرانی' === selectedPersonType}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">ایرانی</a>
+              <a (click)="selectCity('اتباع خارجی', 'person-type')" [ngClass]="{'text-[#707070]': 'اتباع خارجی' !== selectedPersonType, 'text-[#A62626]': 'اتباع خارجی' === selectedPersonType}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">اتباع خارجی</a>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[2rem]">
+          <div class="label">
+            <label class="leading-[2]">عنوان آگهی (های) مورد نظر</label>
+          </div>
+          <input class="mt-[0.5rem] form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="title">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>
+<div>.</div>

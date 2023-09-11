@@ -1,0 +1,12 @@
+.login-model {
+  transition: opacity 360ms ease, visibility 360ms ease;
+}
+.button-container a {
+  display: flex;
+  align-items: center;
+}
+.button-container{
+  .send-again {
+    word-spacing: 3px;
+  }
+}

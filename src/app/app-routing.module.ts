@@ -6,6 +6,7 @@ const routes: Routes = [
   {path: "b/support-users/fa", loadChildren: () => import("./modules/support/support.module").then(m => m.SupportModule), data: {animation: "support"}},
   {path: "download", loadChildren: () => import("./modules/download-app/download-app.module").then(m => m.DownloadAppModule), data: {animation: "download"}},
   {path: "about", loadChildren: () => import("./modules/about-divar/about-divar.module").then(m => m.AboutDivarModule), data: {animation: "about"}},
+  {path: "new", loadChildren: () => import("./modules/add-new/add-new.module").then(m => m.AddNewModule), data: {animation: "new"}},
   {path: "**", loadChildren: () => import("./modules/intro/intro.module").then(m => m.IntroModule),},
 ];
 

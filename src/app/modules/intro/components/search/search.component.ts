@@ -67,10 +67,8 @@ export class SearchComponent {
           this.searchList.push([this.server.availableCities[this.server.availableCitiesInPersian.indexOf(city)], city])
         }
       })
-      console.log(this.searchList)
       if(this.searchList.length === 0) {
         this.searchList = [["NOTFOUND"]]
-        console.log(this.searchList)
         this.notFound = true;
       }
     } else {

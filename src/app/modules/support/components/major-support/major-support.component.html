@@ -1,8 +1,8 @@
 <div class="div-line w-[100%] h-[1px] bg-[rgba(0,0,0,.12)] flex my-[1rem]"></div>
 <div class="major-support flex flex-wrap">
-  <div class="major-support-container flex pb-[2rem] mx-[-8px]">
+  <div class="major-support-container flex pb-[2rem] mx-[-8px] flex-wrap">
     <div class="major-item px-[0.5rem] mt-[1rem] ml-[1rem]" *ngFor="let majorItem of majorList">
-      <p class="major-title pb-[4px]">{{majorItem.title}}</p>
+      <p class="major-title leading-[1.75rem]">{{majorItem.title}}</p>
       <p class="major-description text-[rgba(0,0,0,0.56)] leading-[1.75rem] text-[0.875rem] mb-[1rem]">{{majorItem.description}}</p>
       <a routerLink="{{majorItem.routerLink}}" class="nav-link cursor-pointer flex text-[#A62626] text-[0.875rem] leading-[1.75rem] mb-[0.25rem]">
         {{majorItem.routerText}}

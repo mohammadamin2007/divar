@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -8,20 +8,17 @@ import { Component } from '@angular/core';
 export class FooterComponent {
   navList = [
     {
-      text: "درباره دیوار"
-    }, {
-      text: "پشتیبانی و قوانین"
-    }, {
-      text: "بلاگ دیوار"
-    }
-  ]
-  iconList = [
-    {
-      svvg: "fa fa-twitter",
-      href: "https://twitter.com/divar_official"
+      text: "درباره دیوار",
+      routerLink: "/about",
+      queryParams: {}
     },{
-      svvg: "fa fa-instagram",
-      href: "https://www.instagram.com/divar.official"
+      text: "پشتیبانی و قوانین",
+      routerLink: "/b/support-users/fa",
+      queryParams: {}
+    }, {
+      text: "بلاگ دیوار",
+      routerLink: "",
+      queryParams: {}
     }
   ]
 }

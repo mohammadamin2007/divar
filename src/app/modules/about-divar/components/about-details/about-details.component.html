@@ -1,1 +1,23 @@
-<p>about-details works!</p>
+<section id="details-divar" class="pt-[4rem] w-[100%]">
+  <div class="details-container px-[1rem] pt-[2rem] xxl:max-w-[1184px] l:max-w-[960px] md:max-w-[758px] xsm:max-w-[100%] mx-auto">
+    <div class="{{detailItem.class}} w-[83%] mx-[auto]" *ngFor="let detailItem of detailList">
+      <div class="detail-item-title mt-[2rem] text-[1.5rem]">{{detailItem.title}}</div>
+      <div class="detail-item-description whitespace-pre-wrap py-[1rem] text-[0.95rem] leading-[2] text-[rgba(0,0,0,.56)]">{{detailItem.description}}</div>
+    </div>
+    <div class="cooperation w-[83%] mx-[auto]">
+      <div class="cooperation-container-{{cooperationItem.class}}" *ngFor="let cooperationItem of cooperationList">
+        <div class="cooperation-title mt-[2rem] flex">
+          <div class="cooperation-img w-[3rem] h-[3rem] ml-[1rem]">
+            <img [src]="cooperationItem.img" class="h-[100%] w-[100%]" alt="cooperation-image">
+          </div>
+          <div class="title-description">
+            <div class="title">{{cooperationItem.title}}</div>
+            <div class="link text-[0.75rem] text-[rgba(0,0,0,.56)] leading-[2] mt-[4px]">{{cooperationItem.linkText}}</div>
+          </div>
+        </div>
+        <div class="cooperation-detail whitespace-pre-wrap py-[1rem] text-[0.95rem] leading-[2] text-[rgba(0,0,0,.56)] {{cooperationItem.descriptionClass}}">{{cooperationItem.description}}</div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</section>

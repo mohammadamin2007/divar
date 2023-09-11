@@ -6,7 +6,8 @@ import {Injectable} from '@angular/core';
 export class NavbarService{
   shouldActivated: string = "none"
   whichLinks: string[] = []
-  showNavbar:boolean = false
+  showNavbar:boolean = false;
+  marginRight = false;
 
   constructor() { }
 }

@@ -2,7 +2,6 @@
   .main-about-container{
     .text-container {
       @media (min-width: 768px){
-        margin-right: 16.6666666667%;
         flex: 0 0 66.6666666667%;
         max-width: 66.6666666667%;
       }
@@ -13,11 +12,10 @@
       }
     }
     .image-container {
-      .img {
+      margin-right: 2.95%;
+      img {
         flex-grow: 1 ;
-        max-width: 460px ;
-        margin: 0 auto 0 8.3333333333%;
-
+        width: 441px;
       }
     }
   }

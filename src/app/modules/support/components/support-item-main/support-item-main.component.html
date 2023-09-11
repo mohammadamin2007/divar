@@ -1,0 +1,5 @@
+<div class="flex category-container flex-wrap mt-[5rem] mx-[-0.5rem]">
+  <app-support-item class="flex" *ngFor="let supportItem of supportList;let i = index" [supportObj]="supportItem" [index]="i"></app-support-item>
+</div>
+<app-major-support></app-major-support>
+<app-footer></app-footer>

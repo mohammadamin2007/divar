@@ -6,18 +6,20 @@
             </div>
             <p class="category-title-text text-[rgba(0,0,0,0.87)] text-[1rem] leading-[2rem] mb-[0.5rem] mt-[0.25rem]">{{support.title}}</p>
         </div>
-        <div class="category-body">
+        <div class="category-body"  >
             <ul class="category-body-list">
                 <li class="nav-item" *ngFor="let helpItem of support.categoryHelp; let i = index">
-                    <a routerLink="" (click)="open(model, modelBody, title, i)" class="nav-link transition-[color] duration-[360ms] ease-in-out  cursor-pointer hover:text-black flex text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[1.75rem] mb-[0.25rem]">
+                    <a (click)="open(model, modelBody, title, i, index)" class="nav-link transition-[color] duration-[360ms] ease-in-out  cursor-pointer hover:text-black flex text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[1.75rem] mb-[0.25rem]">
                         {{helpItem.title}}
                     </a>
-                    <div #model class="hidden model transform-[translateY(0)] z-[10000000000000000000000] model-{{index}}-{{i}} bg-[#00000078] backdrop-blur-[2px] model w-[100%] top-0 bottom-0 left-0 right-0 absolute">
-                        <div class="z-[3] relative m-[8rem] model-body  bg-white rounded-[12px] overflow-y-scroll">
-                            <div #title class="title p-[1rem] text-[1.1rem] text-[500]"></div>
-                            <div #modelBody class="body p-[1rem] pb-[3rem] text-center text-[400]">
+                    <div #model  class="hidden fixed model transform-[translateY(0)] z-[10000000000000000000000] model-{{index}}-{{i}} bg-[#00000078] backdrop-blur-[2px] model w-[100%] top-0 bottom-0 left-0 right-0">
+                        <div class="close-model-button text-[1.6rem] absolute text-white pr-[0.5rem] z-[10000000000000000000000000000] cursor-pointer" (click)="close(model)"><i class="fa fa-close"></i></div>
+                        <div  class="z-[3] relative m-[8rem] model-body  bg-white rounded-[12px] overflow-y-scroll">
+                            <div #title class="title p-[1rem] text-[1.1rem] text-[500]" appLinkBoldListedText>{{helpItem.title}}</div>
+                            <div #modelBody class="body p-[1rem] pb-[3rem] text-center text-[400]" appLinkBoldListedText>
+                              {{helpItem.body}}
                             </div>
-                            <div class="help-item">
+                            <div class="help-item" >
                                 <div class="navigationbar flex justify-center gap-[3rem]">
                                     <button (click)="handelNavigation(0)" [ngClass]="{'button-active': active === 0}" class="nav overflow-hidden hover:bg-[#efefef] rounded-[3px] pt-[0.7rem]">
                                         <span class="px-[0.7rem]"><i class="icon pl-[0.3rem] fa fa-globe"></i>وب‌سایت</span>
@@ -34,8 +36,23 @@
                                 </div>
                                 <div class="indicator h-[1px] bg-[#b1b1b1] mb-[1rem]">
                                 </div>
-                                <ul *ngFor="let helpList of helpItem.helps" [ngClass]="{'hidden': activeBar !== helpList.type, 'flex': activeBar === helpList.type}" class="flex-col pr-[4rem] gap-8 nav-content {{helpList.type}}-{{index}}-{{i}}">
-                                    <li *ngFor="let levels of helpList.body"><p class="cursor-pointer">{{levels.text}}</p></li>
+                                <ul (mousemove)="handelDrag($event, slider)"  *ngFor="let helpList of helpItem.helps" [ngClass]="{'hidden': activeBar !== helpList.type, 'flex': activeBar === helpList.type}" class="flex-col mb-[4rem] pr-[4rem] gap-8 nav-content {{helpList.type}}-{{index}}-{{i}}">
+                                    <li *ngFor="let levels of helpList.body"><p class="step-item" appLinkBoldText>{{levels.text}}</p></li>
+                                    <div (pointerleave)="handelDisable($event,slider)"  (pointerup)="handelDisable($event,slider)" (pointerdown)="handelSet($event)" class="helpPic flex justify-center mr-[-4rem]">
+                                      <div class="slider-container w-[535px] overflow-hidden flex relative">
+                                        <div (click)="handelSlider('next', helpList.pic.length)" class="slider-next arrow z-[1000000000000000000000] pr-[0.65rem] hover:bg-[rgba(0,0,0,0.15)] flex justify-center top-[calc(50%-20px)] text-[rgba(0,0,0,0.75)] text-[2rem] w-[2.5rem] h-[2.5rem] cursor-pointer p-[0.5rem] rounded-[50rem] absolute left-[0.625rem]">
+                                          <i class="fa flex items-center fa-angle-left"></i>
+                                        </div>
+                                        <div #slider class="slider-main flex" [ngStyle]="{'transform': 'translateX(' + 535 * activeSlide + 'px)'}" [ngClass]="{'animated': changeByButton}">
+                                          <div class="slider-item" *ngFor="let sliderImageItem of helpList.pic">
+                                            <img draggable="false" class="w-[535px] h-[auto] max-w-[unset]" [src]="sliderImageItem.picture" alt="slider-img">
+                                          </div>
+                                        </div>
+                                        <div (click)="handelSlider('back', helpList.pic.length)" class="slider-back arrow z-[1000000000000000000000] pl-[0.65rem] hover:bg-[rgba(0,0,0,0.15)] flex justify-center top-[calc(50%-20px)] text-[rgba(0,0,0,0.75)] text-[2rem] w-[2.5rem] h-[2.5rem] cursor-pointer p-[0.5rem] rounded-[50rem] absolute right-[0.625rem]">
+                                          <i class="fa flex items-center fa-angle-right"></i>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </ul>
                             </div>
                         </div>

@@ -17,3 +17,15 @@
 .chat-side-main-chats::-webkit-scrollbar {
     display: none;
 }
+
+
+.pop-up{
+    box-shadow: 
+    0 1px 6px 0 rgba(0,0,0,.08),
+    0 -8px 32px -4px rgba(0,0,0,.04), 
+    0 16px 24px -6px rgba(0,0,0,.04);
+}
+
+.nav-link{
+    transition: color .36s ease,background-color .36s ease,box-shadow .36s ease,border-color .36s ease,transform .36s ease;
+}

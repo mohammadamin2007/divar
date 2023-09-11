@@ -1,4 +1,4 @@
-<div (click)="closeModel(optionPopUp)" class="close-contact-model z-[-1] absolute top-0 right-0 w-full h-full bg-[rgba(0,0,0,0.56)]" *ngIf="optionPopUp"></div>
+<div (click)="closeModel(optionPopUp)" class="close-contact-model z-[10000000000000000000000000] absolute top-0 right-0 w-full h-full" *ngIf="optionContainer"></div>
 <div class="chat-side-bar h-[100%] md:w-[336px]">
     <div class="chat-side-header flex items-center bg-[hsla(0,0%,100%,.98)] shadow-[0_1px_2px_rgba(0,0,0,.12)] h-[64px]">
         <a class="chat-header-option-container cursor-pointer relative text-[rgba(0,0,0,0.56)] mr-[6px] ml-[9px]">
@@ -7,13 +7,26 @@
                     <i class="fa fa-bars"></i>
                 </div>
             </a>
-            <div #optionPopUp class="options-pop-up hidden absolute">
-            
+            <div #optionPopUp class="options-pop-up pop-up rounded-[4px] top-[44px] right-[-8px] hidden z-[10000000000000000000000001] bg-white min-w-[226px] absolute">
+                <ul class="options-container flex flex-col">
+                    <ng-container *ngFor="let navLink of navLinkText; let i = index">
+                        <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[48px]">
+                            <a (mousedown)="openOptionModel(navLink.whichToOpen)" (click)="closeModel(optionPopUp)" class="nav-link flex h-full items-center hover:bg-[rgba(0,0,0,0.04)] hover:text-black pr-[20px] pl-[16px]">
+                                <i class="nav-link-icon text-[0.75rem] pt-[1px] {{navLink.icon}}"></i>
+                                <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.75rem] w-[1rem] h-[1rem]">{{navLink.text}}</span>
+                            </a>
+                        </li>
+                        <div class="bg-[rgba(0,0,0,0.12)] h-[1px] mx-[16px]" *ngIf="i !== navLinkText.length - 1"></div>
+                    </ng-container>
+                </ul>
             </div>
         </a>
         <div class="header-text text-[15px] pl-[13px] font-bold text-[rgba(0,0,0,0.56)]">چت دیوار</div>
     </div>
-    <div class="chat-side-main h-[calc(100%_-_64px)]">
+    <div class="chat-side-main h-[calc(100%_-_64px)] relative">
+        <div class="hidden h-[calc(100%_+_64px)] top-[-64px] absolute bg-white" #removeChats><app-remove-chats class="h-full block" ></app-remove-chats></div>
+        <div class="hidden h-[calc(100%_+_64px)] top-[-64px] absolute bg-white" #settings><app-settings class="h-full block"></app-settings></div>
+        <div class="hidden h-[calc(100%_+_64px)] top-[-64px] absolute bg-white" #whenCanAnswer><app-when-can-answer class="h-full block"></app-when-can-answer></div>
         <div class="chat-side-main-mode pl-[13px] p-[12px] mode-borders flex">
             <div class="bg-maker hover:bg-[rgba(0,0,0,0.02)] flex-grow">
                 <a (click)="changeChatMode('all')" [ngClass]="{'active': mode === 'all'}" class="mode-button h-full flex justify-center cursor-pointer items-center border-solid border-[1px] flex-grow rounded-tl-[0] border-l-0 rounded-bl-[0] rounded-[3px] text-[rgba(0,0,0,0.56)] border-[rgba(0,0,0,0.26)] min-h-[38px] min-w-[64px] px-[1rem] all">همهٔ چت‌ها</a>

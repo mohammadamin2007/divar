@@ -1,1 +1,38 @@
-<p>when-can-answer works!</p>
+<div class="closer bg-[rgba(0,0,0,.48)] z-[10000000000] w-[41rem] h-full absolute top-0 right-full"></div>
+<div class="when-can-answer-container h-full">
+    <div class="container-header shadow-[0_1px_2px_rgba(0,0,0,.12)] items-center flex h-[64px]">
+        <a class="header-button active:bg-[rgba(0,0,0,0.12)] hover:text-black mr-[6px] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+            <div class="header-icon text-[rgba(0,0,0,0.56)] text-[0.95rem]">
+                <i class="fa fa-arrow-right"></i>
+            </div>
+        </a>
+        <div class="header-text text-[0.85rem] mr-[8px] font-bold text-[rgba(0,0,0,0.56)]">ساعت پاسخگویی</div>
+    </div>
+    <form class="p-[16px]">
+        <div class="form-contents">
+            <p class="form-content-1 text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[2] mt-[13px]">می‌توانید ساعات پاسخگویی خود در چت را مشخص کنید.</p>
+            <p class="form-content-2 text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[2] mb-[13px]">این ساعات زیر اسم شما در چت و برای کاربران نمایش داده می‌شود.</p>
+        </div>
+        <div class="form-control-container">
+            <label class="form-control-label pt-[11px] min-h-[48px] flex font-bold leading-[2] text-[rgba(0,0,0,0.87)]">همهٔ روزهای هفته</label>
+            <div class="form-select-custom mt-[20px] mb-[16px]">
+                <div class="form-select-input items-center border-solid border-[1px] broder-[rgba(0,0,0,0.16)] rounded-[4px] h-[2.5rem] transition-[border-color_0.36_ease] flex justify-between">
+                    <span class="text-[rgba(0,0,0,0.32)] mr-[16px]">از ساعت</span>
+                    <i class="fa fa-angle-down m-[7px_8px] items-center text-[rgba(0,0,0,0.36)] text-[0.95rem] flex ml-[3px] h-[24px] w-[24px]"></i>
+                </div>
+                <div class="form-select-options" *ngIf="false">
+                    <div *ngFor="let optionFromText of optionFromList">{{optionFromText.text}}</div>
+                </div>
+            </div>
+            <div class="form-select-custom mt-[16px]">
+                <div class="form-select-input items-center border-solid border-[1px] broder-[rgba(0,0,0,0.16)] rounded-[4px] h-[2.5rem] transition-[border-color_0.36_ease] flex justify-between">
+                    <span class="text-[rgba(0,0,0,0.32)] mr-[16px]">تا ساعت</span>
+                    <i class="fa fa-angle-down m-[7px_8px] items-center text-[rgba(0,0,0,0.36)] text-[0.95rem] flex ml-[3px] h-[24px] w-[24px]"></i>
+                </div>
+                <div class="form-select-options" *ngIf="false">
+                    <div *ngFor="let optionTotext of optionToList">{{optionTotext.text}}</div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

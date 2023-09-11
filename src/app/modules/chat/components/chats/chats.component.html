@@ -1,0 +1,25 @@
+<div class="chat-window-container h-full w-full">
+    <div class="chat-mode-header relative w-full justify-between flex items-center bg-[hsla(0,0%,100%,.98)] shadow-[0_1px_2px_rgba(0,0,0,.12)] h-[64px]">
+        <div class="divider bg-white w-[3px] absolute right-[-1px] h-full">
+            <div *ngIf="chat !== undefined" class="divider-body w-[1px] bg-[rgb(0_0_0_/_12%)] my-[1rem] h-[calc(100%_-_2rem)]"></div>
+        </div>
+        <ng-template *ngIf="chat !== undefined">
+            <div class="header-text text-[0.825rem] mr-[1rem] font-bold text-[rgba(0,0,0,0.56)]">پستچی دیوار</div>
+            <a class="chat-header-option-container cursor-pointer relative text-[rgba(0,0,0,0.56)] ml-[1rem] mt-[0.5px]">
+                <a class="header-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+                    <div class="header-icon">
+                        <i class="fa fa-ellipsis-v"></i>
+                    </div>
+                </a>
+                <div class="options-pop-up absolute"></div>
+            </a>
+            
+        </ng-template>
+    </div>
+    <div class="choose-chat flex justify-center items-center h-full" *ngIf="chat === undefined">
+        <div class="title flex items-center mt-[-68px] text-[0.75rem] leading-[2] self-center text-[rgba(0,0,0,0.56)] text-center select-none">برای شروع چت یک مکالمه را انتخاب کنید.</div>
+    </div>
+    <div class="chat-window" *ngIf="chat !== undefined">
+
+    </div>
+</div>

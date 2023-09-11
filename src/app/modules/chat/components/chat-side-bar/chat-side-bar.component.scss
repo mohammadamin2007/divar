@@ -1,0 +1,19 @@
+.header-button {
+    transition: background-color 360ms ease,transform 360ms ease,box-shadow 400ms ease,border-color 360ms ease;
+}
+
+
+.mode-borders {
+    border-left: 1px solid rgba(0,0,0,.12);
+    border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.mode-button.active {
+    background-color: rgba(166,38,38,.04);
+    color: #a62626;
+    border-color: rgba(166,38,38,.56);
+}
+
+.chat-side-main-chats::-webkit-scrollbar {
+    display: none;
+}

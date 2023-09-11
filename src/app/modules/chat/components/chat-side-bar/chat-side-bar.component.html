@@ -1,0 +1,43 @@
+<div (click)="closeModel(optionPopUp)" class="close-contact-model z-[-1] absolute top-0 right-0 w-full h-full bg-[rgba(0,0,0,0.56)]" *ngIf="optionPopUp"></div>
+<div class="chat-side-bar h-[100%] md:w-[336px]">
+    <div class="chat-side-header flex items-center bg-[hsla(0,0%,100%,.98)] shadow-[0_1px_2px_rgba(0,0,0,.12)] h-[64px]">
+        <a class="chat-header-option-container cursor-pointer relative text-[rgba(0,0,0,0.56)] mr-[6px] ml-[9px]">
+            <a (click)="openModel(optionPopUp)" class="header-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+                <div class="header-icon">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </a>
+            <div #optionPopUp class="options-pop-up hidden absolute">
+            
+            </div>
+        </a>
+        <div class="header-text text-[15px] pl-[13px] font-bold text-[rgba(0,0,0,0.56)]">چت دیوار</div>
+    </div>
+    <div class="chat-side-main h-[calc(100%_-_64px)]">
+        <div class="chat-side-main-mode pl-[13px] p-[12px] mode-borders flex">
+            <div class="bg-maker hover:bg-[rgba(0,0,0,0.02)] flex-grow">
+                <a (click)="changeChatMode('all')" [ngClass]="{'active': mode === 'all'}" class="mode-button h-full flex justify-center cursor-pointer items-center border-solid border-[1px] flex-grow rounded-tl-[0] border-l-0 rounded-bl-[0] rounded-[3px] text-[rgba(0,0,0,0.56)] border-[rgba(0,0,0,0.26)] min-h-[38px] min-w-[64px] px-[1rem] all">همهٔ چت‌ها</a>
+            </div>
+            <div class="bg-maker hover:bg-[rgba(0,0,0,0.02)] flex-grow">
+                <a (click)="changeChatMode('notRead')" [ngClass]="{'active': mode === 'notRead'}" class="mode-button cursor-pointer items-center border-solid border-[1px] rounded-tr-[0] rounded-br-[0] border-r-[rgba(166,38,38,.56)] flex-grow rounded-[3px] flex justify-center text-[rgba(0,0,0,0.56)] border-[rgba(0,0,0,0.26)] min-h-[38px] min-w-[64px] px-[1rem] not-read">خوانده نشده (۱)</a>
+            </div> 
+        </div>
+        <ul class="chat-side-main-chats overflow-y-scroll h-[calc(100%_-_62px)] border-l border-l-[rgba(0, 0, 0, 0.12)]">
+            <li class="chat-item cursor-pointer bg-[rgba(240,250,255,.24)] hover:bg-[#f0faff] postci w-full">
+               <a class="nav-link p-[16px_16px_0] flex w-full h-full items-center">
+                    <div class="flex mb-[15px]">
+                        <div class="divar-icon">
+                            <img src="assets/images/postci-image.svg" alt="divar-image">
+                        </div>
+                        <div class="divar-text text-[.875rem] pr-[8px] leading-[2]">
+                            <span class="mt-[7px] flex">پستچی دیوار</span>
+                        </div>
+                    </div>
+                </a>
+                <div class="separator h-[1px] pl-[17px] pr-[16px] w-full">
+                    <div class="bg-[rgba(0,0,0,.12)] h-full w-full"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

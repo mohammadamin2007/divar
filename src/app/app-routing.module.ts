@@ -7,7 +7,8 @@ const routes: Routes = [
   {path: "download", loadChildren: () => import("./modules/download-app/download-app.module").then(m => m.DownloadAppModule), data: {animation: "download"}},
   {path: "about", loadChildren: () => import("./modules/about-divar/about-divar.module").then(m => m.AboutDivarModule), data: {animation: "about"}},
   {path: "new", loadChildren: () => import("./modules/add-new/add-new.module").then(m => m.AddNewModule), data: {animation: "new"}},
-  {path: "**", loadChildren: () => import("./modules/intro/intro.module").then(m => m.IntroModule),},
+  {path: "chat", loadChildren: () => import("./modules/chat/chat.module").then(m => m.ChatModule), data: {animation: "chat"}},
+  {path: "**", loadChildren: () => import("./modules/intro/intro.module").then(m => m.IntroModule), data: {animation: "notFound"}},
 ];
 
 @NgModule({

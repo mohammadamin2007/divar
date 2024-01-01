@@ -1,0 +1,21 @@
+<div class="divar-for-stores w-full mt-[47px]">
+  <div class="divar-for-stores-container">
+    <div class="container-title leading-[2] tracking-[-0.22px] mb-[16px]">با ثبت کسب‌وکار خود در دیوار از طرح‌های ویژه و امکانات حرفه‌ای دیوار برای کسب‌و‌کارها بهره‌مند شوید.</div>
+    <div class="options-container mt-[17px]">
+      <a [href]="optionItem.link" *ngFor="let optionItem of optionList" class="option-item cursor-pointer items-center flex justify-between mb-[16px] px-[15px] py-[15px] rounded-[4px] border-[rgba(0,0,0,.08)] border-[1px] border-solid">
+        <div class="option-content flex">
+          <div class="option-image">
+            <img src="assets/images/{{optionItem.image}}.svg" class="ml-[16px]" alt="divar-for-stores-item-image">
+          </div>
+          <div class="option-description flex-col flex">
+            <div class="title mb-[10px]">{{optionItem.title}}</div>
+            <div class="description text-[rgba(0,0,0,.56)] text-[0.875rem]">{{optionItem.description}}</div>
+          </div>
+        </div>
+        <div class="option-icon text-center text-[rgba(0,0,0,.56)] items-center flex justify-center w-[2.5rem] h-[2.4rem] rounded-[100px]">
+          <i class="fa fa-angle-left h-[20px] mt-[6px] w-[20px]"></i>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

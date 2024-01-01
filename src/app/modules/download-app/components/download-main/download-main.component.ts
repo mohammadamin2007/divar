@@ -78,7 +78,6 @@ export class DownloadMainComponent {
   ]
 
   constructor(private navbar: NavbarService, private titleService: Title, public globalValue: GlobalValueService) {
-    this.navbar.whichLinks = ["chooseShahr"]
     this.navbar.showNavbar = true;
     setTimeout(() => {
       this.navbar.shouldActivated = 'all';

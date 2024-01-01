@@ -1,0 +1,49 @@
+.disabled {
+  background-color: #f5f5f5 !important;
+  cursor: not-allowed !important;
+  color: rgba(0,0,0,.32) !important;
+}
+.name-input:focus {
+  box-shadow: inset 0 0 0 1px rgba(166,38,38,.56);
+}
+.name-input{
+  transition: color .15s ease,border-color .15s ease,box-shadow .15s ease;
+}
+.remove-button {
+  display: none;
+}
+.remove-button:hover {
+  display: flex;
+}
+.name-input:focus ~ .remove-button{
+  display: flex;
+}
+.name-input::placeholder{
+  color: rgba(0,0,0,.56);
+}
+.changer:hover {
+  .box-shadow {
+    transform: scale(2);
+  }
+}
+
+.changer:active {
+  .box-shadow-red {
+    transform: scale(2);
+  }
+}
+
+.changer {
+  .changer-circle {
+    transition: transform .15s cubic-bezier(.4,0,.2,1);
+  }
+  .changer-circle.activated {
+    transform: translateX(calc(-100% + 2px));
+  }
+  transition: background-color .15s cubic-bezier(.4,0,.2,1);
+  .box-shadow-red, .box-shadow {
+    transition: transform 0.15s cubic-bezier(.4,0,.2,1);
+    width: 100%;
+    height: 100%;
+  }
+}

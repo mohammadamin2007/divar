@@ -9,8 +9,10 @@ import { NavbarService } from 'src/app/services/navbar.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
+  userDropDown: boolean = false;
   constructor(public navbarService: NavbarService, public globalValue: GlobalValueService) {
   }
 
+  readonly document = document
+  protected readonly history = history;
 }

@@ -1,0 +1,53 @@
+<div class="options-pop-up pop-up user-drop-down rounded-[4px] top-[51px] right-0 z-[10000000000000000000000001] bg-white min-w-[226px] absolute">
+  <ul class="options-container flex flex-col">
+    <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[64px]" *ngIf="loginService.loggedIn">
+      <a routerLink="/myDivar/myPosts" (click)="this.close.emit('')" class="nav-link flex h-full p-[8px_16px_8px_10px] hover:bg-[rgba(0,0,0,0.04)]">
+        <i class="nav-link-icon text-[0.75rem] pt-[3px] fa fa-user"></i>
+        <div class="wrapper flex flex-col">
+          <span class="nav-link-text flex-grow pr-[9px]  text-[0.75rem] h-[1rem]">کاربر دیوار</span>
+          <span class="nav-link-text flex-grow pr-[9px] text-[rgba(0,0,0,0.32)] text-[0.75rem] h-[1rem]">تلفن: {{userPhoneNumber}}</span>
+        </div>
+      </a>
+      <div class="bg-[rgba(0,0,0,0.12)] h-[1px]"></div>
+    </li>
+    <ng-container *ngIf="!loginService.loggedIn">
+      <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[48px]">
+        <a (click)="login()" class="nav-link transition-[color_.36s_ease] flex h-full items-center hover:bg-[rgba(0,0,0,0.04)] hover:text-black pr-[20px] pl-[16px]">
+          <i class="nav-link-icon text-[0.75rem] pt-[1px] fa fa-sign-in"></i>
+          <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.75rem] w-[1rem] h-[1rem]">ورود</span>
+        </a>
+      </li>
+      <div class="bg-[rgba(0,0,0,0.12)] h-[1px] mx-[16px]"></div>
+    </ng-container>
+    <ng-container *ngIf="loginService.loggedIn">
+      <ng-container *ngFor="let navLink of navLinkTextDropDown; let i = index">
+        <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[48px]">
+          <a (click)="this.close.emit('')" routerLink="/myDivar/{{navLink.routerLinkText}}" class="nav-link transition-[color_.36s_ease] flex h-full items-center hover:bg-[rgba(0,0,0,0.04)] hover:text-black pr-[20px] pl-[16px]">
+            <i class="nav-link-icon text-[0.75rem] pt-[1px] {{navLink.icon}}"></i>
+            <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.75rem] w-[1rem] h-[1rem]">{{navLink.text}}</span>
+          </a>
+        </li>
+        <div class="bg-[rgba(0,0,0,0.12)] h-[1px] mx-[16px]" *ngIf="i !== navLinkTextDropDown.length"></div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="!loginService.loggedIn">
+      <ng-container  *ngFor="let navLink of navLinkTextDropDownNotLog; let i = index">
+        <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[48px]">
+          <a (click)="this.close.emit('')" routerLink="/myDivar/{{navLink.routerLinkText}}" class="nav-link transition-[color_.36s_ease] flex h-full items-center hover:bg-[rgba(0,0,0,0.04)] hover:text-black pr-[20px] pl-[16px]">
+            <i class="nav-link-icon text-[0.75rem] pt-[1px] {{navLink.icon}}"></i>
+            <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.75rem] w-[1rem] h-[1rem]">{{navLink.text}}</span>
+          </a>
+        </li>
+        <div class="bg-[rgba(0,0,0,0.12)] h-[1px] mx-[16px]" *ngIf="i !== navLinkTextDropDownNotLog.length"></div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="loginService.loggedIn">
+      <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[48px]">
+        <a (click)="signOut()" class="nav-link transition-[color_.36s_ease] flex h-full items-center hover:bg-[rgba(0,0,0,0.04)] hover:text-black pr-[20px] pl-[16px]">
+          <i class="nav-link-icon text-[0.75rem] pt-[1px] fa fa-sign-out"></i>
+          <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.75rem] w-[1rem] h-[1rem]">خروج</span>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+</div>

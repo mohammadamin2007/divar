@@ -7,6 +7,7 @@ import {RouterModule} from "@angular/router";
 import {DownloadRoutingModule} from "./download-routing.module";
 import {FooterComponent} from "./components/footer/footer.component";
 import {NavbarComponent} from "./components/navbar/navbar.component";
+import {UserDropDownComponent} from "./components/user-drop-down/user-drop-down.component";
 
 
 @NgModule({
@@ -15,13 +16,14 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
     DownloadItemComponent,
     DownloadItemTitleComponent,
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserDropDownComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    DownloadRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        DownloadRoutingModule,
+    ],
   exports: [
     DownloadMainComponent
   ]

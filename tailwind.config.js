@@ -16,6 +16,7 @@ module.exports = {
         "md-c": "626px",
         "l-c": "960px",
         "l": "1024px",
+        "xl-c": "1117px",
         "xxl": "1366px",
         "xxxl": "1599px",
         "xxxxl": "1629px"

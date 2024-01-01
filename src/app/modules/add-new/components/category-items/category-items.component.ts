@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {OnInit, Component, ElementRef, Input, ViewChild, AfterViewInit} from '@angular/core';
 import {GlobalValueService} from "../../../../services/global-value.service";
 
 @Component({

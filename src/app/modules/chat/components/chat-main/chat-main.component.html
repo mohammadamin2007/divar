@@ -1,9 +1,10 @@
-<app-navbar></app-navbar>
-<section id="add-new-main" class="w-full">
-  <div class="container-custom h-[calc(100vh_-_2rem)] pt-[4rem] px-[1rem] lg:max-w-[1024px] max-l-c:max-w-[960px] mx-auto">
-    <div class="chat-window-wrapper overflow-hidden h-full flex w-full my-[1rem] border-solid border-[1px] border-[rgba(0,0,0,0.12)]">
+<app-navbar class="zero:hidden md:flex"></app-navbar>
+<section id="chat-main" class="w-full h-full">
+  <div class="container-custom zero:h-[100vh] md:h-[calc(100vh_-_2rem)] md:pt-[4rem] md:px-[1rem] lg:max-w-[1024px] max-l-c:max-w-[960px] mx-auto">
+    <div class="chat-window-wrapper overflow-hidden h-full flex z-[100] relative w-full md:my-[1rem] border-solid border-[1px] border-[rgba(0,0,0,0.12)]">
         <app-chat-side-bar></app-chat-side-bar>
         <app-chats class="w-full" [chat]="activatedRoute.snapshot.params['chat']"></app-chats>
     </div>
   </div>
+  <div (click)="globalValue.selectFrom = globalValue.selectTo = false" class="close-contact-model absolute top-0 z-[1] right-0 w-full h-full" *ngIf="globalValue.selectFrom || globalValue.selectTo"></div>
 </section>

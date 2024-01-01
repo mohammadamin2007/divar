@@ -1,1 +1,21 @@
-<p>remove-chats works!</p>
+<div (click)="closeRemoveChats()" class="closer bg-[rgba(0,0,0,.48)] z-[10000000000] w-[100vw] h-full absolute top-0 right-full"></div>
+<div class="remove-chats-container h-full">
+  <div class="container-header shadow-[0_1px_2px_rgba(0,0,0,.12)] items-center flex h-[64px]">
+    <a (click)="closeRemoveChats()" class="header-button active:bg-[rgba(0,0,0,0.12)] hover:text-black mr-[6px] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+      <div class="header-icon text-[rgba(0,0,0,0.56)] text-[0.95rem]">
+        <i class="fa fa-arrow-right"></i>
+      </div>
+    </a>
+    <div class="header-text text-[0.85rem] mr-[8px] font-bold text-[rgba(0,0,0,0.56)]">حذف گروهی چت‌ها</div>
+  </div>
+  <div class="remove-chats-main-content">
+    <div class="buttons-container absolute bottom-0 right-0 w-full flex px-[16px] py-[12px] shadow-[0_-1px_2px_0_rgba(0,0,0,.12)]">
+      <div class="button-container flex justify-start">
+        <div class="text-[rgba(0,0,0,.48)] text-[0.75rem] leading-[1.5714285714] items-center flex link-option">{{removeChatsList.length}} مکالمه انتخاب شده</div>
+      </div>
+      <div class="button-container flex-grow flex justify-end">
+        <button (click)="removeSelectedChats($event)" class="submit-button mr-[38px] w-full zero:ml-[0px] zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] text-white hover:bg-[rgb(191,44,44)] bg-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option" [ngClass]="{'disabled': removeChatsList.length === 0}">حذف</button>
+      </div>
+    </div>
+  </div>
+</div>

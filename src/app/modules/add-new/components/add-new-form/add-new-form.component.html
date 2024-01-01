@@ -1,10 +1,10 @@
-<div class="exiter absolute top-0 right-0 w-full h-full z-[10001]" (click)="exit()" *ngIf="open || open2 || open3"></div>
+<div class="exiter absolute top-0 right-0 w-full h-full z-[10001]" (click)="exit()" *ngIf="opens.indexOf(true) !== -1"></div>
 <div class="add-new-form-section">
   <div class="custom-container">
     <div class="form-section-title">
       <div class="title pb-[1rem] mt-[3rem] text-[#303030] text-[1.25rem] leading-[1.5]">ثبت آگهی</div>
       <div class="content-container flex justify-between items-center mt-[1rem] h-[7.5rem] border-solid border-[1px] border-[rgba(0,0,0,0.24)] rounded-[4px]">
-        <div class="form-name leading-[1.5] text-[1.1rem] w-[8.652rem] mr-[8px] text-[rgba(0,0,0,0.56)] flex justify-center">{{addNewFormName}}</div>
+        <div class="form-name leading-[1.5] text-[1.1rem] w-[8.652rem] mr-[8px] text-[rgba(0,0,0,0.56)] flex justify-center">{{addNewFormName.text}}</div>
         <div class="content-wrapper flex">
           <div class="form-img">
             <img src="assets/images/new-{{activatedRoute.snapshot.params['id']}}.png" class="w-[15rem] h-[10.5rem]" alt="form-image">
@@ -15,19 +15,19 @@
         </div>
       </div>
     </div>
-    <form class="send-new-form" [formGroup]="sendNew">
+    <form class="send-new-form" [formGroup]="addNewFormGroup" >
       <div class="form-control-container mt-[2rem]">
         <div class="label">
           <label class="leading-[2]">شهر</label>
         </div>
         <div class="custom-select relative">
-          <div (click)="openOption()" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="contactNumber">
+          <div (click)="openOption(0)" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
             <span [ngClass]="{'text-[#ADADAD]': selectedCity === 'انتخاب شهر...', 'text-[#212121]': selectedCity !== 'انتخاب شهر...'}" class="flex-grow flex items-center leading-[1.625]">{{selectedCity}}</span>
             <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
             </i>
           </div>
-          <div *ngIf="open" [ngClass]="{'block': open, 'hidden': !open, 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+          <div *ngIf="opens[0]" [ngClass]="{'block': opens[0], 'hidden': !opens[0], 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
             <a *ngFor="let option of cityOption" (click)="selectCity(option.city)" [ngClass]="{'text-[#707070]': option.city !== selectedCity, 'text-[#A62626]': option.city === selectedCity}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">{{option.city}}</a>
           </div>
         </div>
@@ -36,15 +36,15 @@
         <div class="label">
           <label class="leading-[2]">محله</label>
         </div>
-        <div class="custom-select relative"  formControlName="Neighbourhood">
-          <div (click)="openOption('ne')" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="contactNumber">
+        <div class="custom-select relative">
+          <div (click)="openOption(1)" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
             <span [ngClass]="{'text-[#ADADAD]': selectedNeighbor === 'انتخاب محله...', 'text-[#212121]': selectedNeighbor !== 'انتخاب محله...'}" class="flex-grow flex items-center leading-[1.625]">{{selectedNeighbor}}</span>
             <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
             </i>
           </div>
-          <div *ngIf="open2" [ngClass]="{'block': open2, 'hidden': !open2, 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
-            <a *ngFor="let option of cityOption" (click)="selectCity(option.city, 'ne')" [ngClass]="{'text-[#707070]': option.city !== selectedNeighbor, 'text-[#A62626]': option.city === selectedNeighbor}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">{{option.city}}</a>
+          <div *ngIf="opens[1]" [ngClass]="{'block': opens[1], 'hidden': !opens[1], 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+            <a *ngFor="let option of neighborOption" (click)="selectCity(option.text, 'ne')" [ngClass]="{'text-[#707070]': option.text !== selectedNeighbor, 'text-[#A62626]': option.text === selectedNeighbor}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">{{option.text}}</a>
           </div>
         </div>
       </div>
@@ -66,7 +66,7 @@
             <div class="dashed-img absolute w-full h-full pt-[1px] cursor-pointer">
               <svg xmlns="http://www.w3.org/2000/svg" class="dashed-img-svg" viewBox="0 0 96 96" fill="rgba(0,0,0,.24)"><path d="M5.5,0h-1A4.45,4.45,0,0,0,0,4.45v1A.5.5,0,0,0,.5,6,.5.5,0,0,0,1,5.5v-1A3.46,3.46,0,0,1,4.46,1h1A.5.5,0,0,0,6,.5.5.5,0,0,0,5.5,0Z"/><path d="M63.25,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,0-1Z"/><path d="M57.44,0H55.49a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1.95a.5.5,0,0,0,.5-.5A.5.5,0,0,0,57.44,0Z"/><path d="M51.64,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,51.64,0Z"/><path d="M86.46,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M74.85,0H72.9a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1.95a.5.5,0,0,0,.5-.5A.5.5,0,0,0,74.85,0Z"/><path d="M80.65,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,80.65,0Z"/><path d="M28.43,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,0-1Z"/><path d="M22.62,0H20.67a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1.95a.5.5,0,0,0,.5-.5A.5.5,0,0,0,22.62,0Z"/><path d="M16.82,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,16.82,0Z"/><path d="M11,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M40,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,40,0Z"/><path d="M45.84,0h-2a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h2a.5.5,0,0,0,0-1Z"/><path d="M34.23,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,.5-.5A.5.5,0,0,0,34.23,0Z"/><path d="M69.05,0h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M5.5,95h-1A3.46,3.46,0,0,1,1,91.54v-1A.5.5,0,0,0,.5,90a.5.5,0,0,0-.5.5v1A4.45,4.45,0,0,0,4.45,96h1a.5.5,0,0,0,0-1Z"/><path d="M34.23,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M69.05,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,1,0,0-1Z"/><path d="M28.43,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,1,0,0-1Z"/><path d="M63.25,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M45.84,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M57.44,95H55.49a.5.5,0,0,0,0,1h1.95a.5.5,0,0,0,0-1Z"/><path d="M40,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M51.64,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M22.62,95H20.67a.5.5,0,0,0,0,1h1.95a.5.5,0,1,0,0-1Z"/><path d="M80.65,95h-2a.5.5,0,1,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M86.46,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M11,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M16.82,95h-2a.5.5,0,0,0,0,1h2a.5.5,0,0,0,0-1Z"/><path d="M74.85,95H72.9a.5.5,0,0,0,0,1h1.95a.5.5,0,0,0,0-1Z"/><path d="M96,4.45A4.45,4.45,0,0,0,91.55,0h-1a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h1A3.46,3.46,0,0,1,95,4.46v1a.5.5,0,0,0,1,0Z"/><path d="M95.5,73.1a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,73.1Z"/><path d="M95.5,9.26a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,9.26Z"/><path d="M95.5,15.07a.5.5,0,0,0-.5.5v1.95a.5.5,0,0,0,1,0V15.57A.5.5,0,0,0,95.5,15.07Z"/><path d="M95.5,44.08a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,44.08Z"/><path d="M95.5,67.3a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,67.3Z"/><path d="M95.5,78.9a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,78.9Z"/><path d="M95.5,84.71a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,84.71Z"/><path d="M95.5,20.87a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,20.87Z"/><path d="M95.5,38.28a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,38.28Z"/><path d="M95.5,55.69a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0v-2A.5.5,0,0,0,95.5,55.69Z"/><path d="M95.5,49.89a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,49.89Z"/><path d="M95.5,32.48a.5.5,0,0,0-.5.5v2a.5.5,0,1,0,1,0V33A.5.5,0,0,0,95.5,32.48Z"/><path d="M95.5,26.67a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0v-2A.5.5,0,0,0,95.5,26.67Z"/><path d="M95.5,61.49a.5.5,0,0,0-.5.5v2a.5.5,0,0,0,1,0V62A.5.5,0,0,0,95.5,61.49Z"/><path d="M95.5,90a.5.5,0,0,0-.5.5v1A3.46,3.46,0,0,1,91.54,95h-1a.5.5,0,0,0,0,1h1A4.45,4.45,0,0,0,96,91.55v-1A.5.5,0,0,0,95.5,90Z"/><path d="M.5,41.24a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,41.24Z"/><path d="M.5,47a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,47Z"/><path d="M.5,29.63a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,29.63Z"/><path d="M.5,12.22a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,12.22Z"/><path d="M.5,18a.5.5,0,0,0,.5-.5V15.57a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v1.95A.5.5,0,0,0,.5,18Z"/><path d="M.5,23.83a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,23.83Z"/><path d="M.5,35.43a.5.5,0,0,0,.5-.5V33a.5.5,0,0,0-.5-.5A.5.5,0,0,0,0,33v2A.5.5,0,0,0,.5,35.43Z"/><path d="M.5,81.86a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,81.86Z"/><path d="M.5,76.05a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,76.05Z"/><path d="M.5,52.84a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,52.84Z"/><path d="M.5,87.66a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,87.66Z"/><path d="M.5,70.25a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,70.25Z"/><path d="M.5,58.65a.5.5,0,0,0,.5-.5v-2a.5.5,0,0,0-.5-.5.5.5,0,0,0-.5.5v2A.5.5,0,0,0,.5,58.65Z"/><path d="M.5,64.45A.5.5,0,0,0,1,64V62a.5.5,0,0,0-1,0v2A.5.5,0,0,0,.5,64.45Z"/></svg>
             </div>
-            <input #fileInput (change)="handelFile(fileInput)" class="w-full h-full send-mail-file-input opacity-0 z-[11] cursor-pointer" type="file" formControlName="file">
+            <input #fileInput (change)="handelFile(fileInput)" class="w-full h-full send-mail-file-input opacity-0 z-[11] cursor-pointer" type="file">
           </div>
           <div *ngFor="let file of filesList">
             <img src="{{file.file}}" alt="uploadedImage">
@@ -77,76 +77,438 @@
         </div>
         <div></div>
       </div>
-      <div class="individual-information">
-        <div class="title">تأیید هویت</div>
-        <div></div>
-        <div class="form-control-container mt-[2rem]" *ngIf="selectedCity !== 'انتخاب شهر...'">
+      <!--  forms-apartment-rent    -->
+      <div class="apartment-rent" *ngIf="addNewFormName.form === 'rent-apartment'">
+        <div class="form-control-container flex flex-col">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pt-[16px]">متراژ</div>
+          <div class="form-control-div flex flex-col relative mt-[8px] mb-[16px]">
+            <div class="relative">
+              <input type="number" (keyup)="forms['rent-apartment'].size.valid = rentApartmentSize.value !== ''" #rentApartmentSize [ngModelOptions]="{standalone: true}" [(ngModel)]="forms['rent-apartment'].size.value" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].size.valid}" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.26)] rounded-[4px] w-[100%] h-[2.5rem] px-[16px]">
+              <span class="toman leading-[calc(2.5rem_-_4px)] absolute h-full  text-[rgba(0,0,0,.32)] text-[0.875rem] left-[8px] top-[2px]">تومان</span>
+            </div>
+            <span class="show text-[1rem] my-[1rem]" *ngIf="rentApartmentSize.value !== ''">
+            {{parseInt(rentApartmentSize.value).toLocaleString()}} متر‌مربع
+          </span>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].size.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[2rem] flex flex-col">
+          <div class="form-control-title text-[rgba(0,0,0,.87)]">ودیعه و اجاره</div>
+          <div class="form-control-description text-[rgba(0,0,0,0.56)] leading-[2] text-[0.75rem] mt-[15px] mb-[8px]">
+            در صورتی که مبلغ ودیعه یا اجاره را وارد نکنید، در آگهی شما «توافقی» و اگر آن را صفر وارد کنید، «رایگان» نمایش داده می‌شود.
+          </div>
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pt-[16px]">ودیعه</div>
+          <div class="form-control-div flex flex-col relative mt-[8px] mb-[16px]">
+            <div class="relative">
+              <input type="number" (keyup)="forms['rent-apartment'].deposit.valid = rentApartmentDeposit.value !== '' && parseInt(forms['rent-apartment'].deposit.value) >= 1000000" #rentApartmentDeposit [ngModelOptions]="{standalone: true}" [(ngModel)]="forms['rent-apartment'].deposit.value" placeholder="مثال: ۵۰٫۰۰۰٫۰۰۰" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].deposit.valid}" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.26)] rounded-[4px] w-[100%] h-[2.5rem] px-[16px]">
+              <span class="toman leading-[calc(2.5rem_-_4px)] absolute h-full text-[rgba(0,0,0,.32)] text-[0.875rem] left-[8px] top-[2px]">تومان</span>
+            </div>
+            <div class="p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="rentApartmentDeposit.value === ''">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div class="p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="parseInt(forms['rent-apartment'].deposit.value) < 1000000">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">مبلغ ودیعه نباید کمتر از ۱٫۰۰۰٫۰۰۰ تومان باشد.</span>
+            </div>
+            <span class="show text-[1rem] my-[1rem]" *ngIf="rentApartmentDeposit.value !== ''">
+              {{parseInt(rentApartmentDeposit.value).toLocaleString()}} تومان
+            </span>
+          </div>
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pt-[16px]">اجاره ماهانه</div>
+          <div class="form-control-div flex flex-col relative mt-[8px] mb-[16px]">
+            <div class="relative">
+              <input type="number" (keyup)="forms['rent-apartment'].monthlyRent.valid = rentApartmentMonthlyRent.value !== '' && parseInt(forms['rent-apartment'].monthlyRent.value) >= 1000000" #rentApartmentMonthlyRent [ngModelOptions]="{standalone: true}" [(ngModel)]="forms['rent-apartment'].monthlyRent.value" placeholder="مثال: ۱٫۰۰۰٫۰۰۰" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].monthlyRent.valid}" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.26)] rounded-[4px] w-[100%] h-[2.5rem] px-[16px]">
+              <span class="toman leading-[calc(2.5rem_-_4px)] absolute h-full text-[rgba(0,0,0,.32)] text-[0.875rem] left-[8px] top-[2px]">تومان</span>
+            </div>
+            <div class="p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="rentApartmentMonthlyRent.value === ''">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div class="p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="parseInt(forms['rent-apartment'].monthlyRent.value) < 1000000">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">مبلغ اجاره ماهانه نباید کمتر از ۱٫۰۰۰٫۰۰۰ تومان باشد.</span>
+            </div>
+            <span class="show text-[1rem] my-[1rem]" *ngIf="rentApartmentMonthlyRent.value !== ''">
+              {{parseInt(rentApartmentMonthlyRent.value).toLocaleString()}} تومان
+            </span>
+          </div>
+        </div>
+        <div class="convert-deposit-rent flex justify-between items-center min-h-[48px]">
+          <div class="convert-container h-full">
+            <div class="convert-texts text-[0.75rem] text-black" [ngClass]="{'text-[rgba(0,0,0,0.32)_!important]': !forms['rent-apartment'].deposit.valid || !forms['rent-apartment'].monthlyRent.valid}">
+              <i class="convert-icon fa fa-exchange ml-[16px] mt-[4px] w-[20px] h-[20px]"></i>
+              <span>قابل تبدیل</span>
+            </div>
+          </div>
+          <div class="converter flex justify-between h-full">
+            <a (click)="forms['rent-apartment'].deposit.valid || forms['rent-apartment'].monthlyRent.valid?forms['rent-apartment'].canChangeDepositMonthlyRent.value = !forms['rent-apartment'].canChangeDepositMonthlyRent.value:''" class="changer bg-[rgba(0,0,0,0.24)] z-[10] rounded-[12px] h-[24px] w-[42px]" [ngClass]="{'bg-[#a62626_!important]': forms['rent-apartment'].canChangeDepositMonthlyRent.value, 'bg-[rgba(0,0,0,.08)_!important]': !forms['rent-apartment'].deposit.valid || !forms['rent-apartment'].monthlyRent.valid, 'not-allowed': !forms['rent-apartment'].deposit.valid || !forms['rent-apartment'].monthlyRent.valid, 'cursor-pointer': forms['rent-apartment'].deposit.valid && forms['rent-apartment'].monthlyRent.valid}">
+              <div class="changer-circle relative rounded-[50%] m-[2px] h-[20px] w-[20px] bg-white" [ngClass]="{'activated': forms['rent-apartment'].canChangeDepositMonthlyRent.value}">
+                <div class="box-shadow absolute bg-[rgba(0,0,0,.04)] z-[10000] rounded-[50px]" [ngClass]="{'bg-[rgba(166,38,38,.08)_!important]': forms['rent-apartment'].canChangeDepositMonthlyRent.value}"></div>
+                <div class="back-white absolute bg-white w-full z-[10001] h-full rounded-[50px]"></div>
+                <div class="box-shadow-red absolute bg-[rgba(166,38,38,.08)] z-[10000] rounded-[50px]"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="bg-[rgba(0,0,0,.12)] h-[1px] w-full"></div>
+        <div class="form-control-description text-[rgba(0,0,0,0.56)] leading-[2] text-[0.75rem] mt-[15px] mb-[8px]" *ngIf="!forms['rent-apartment'].deposit.valid || !forms['rent-apartment'].monthlyRent.valid">
+          برای فعال کردن «قابل تبدیل» باید مبالغ ودیعه و اجاره را به درستی وارد کنید.
+        </div>
+        <div class="form-control-description text-[rgba(0,0,0,0.56)] leading-[2] text-[0.75rem] mt-[15px] mb-[8px]" *ngIf="!forms['rent-apartment'].canChangeDepositMonthlyRent.value && forms['rent-apartment'].deposit.valid && forms['rent-apartment'].monthlyRent.valid">
+          برای تبدیل ودیعه و اجاره به مبالغ دیگر، می‌توانید «قابل تبدیل» را فعال کنید.
+        </div>
+        <div class="form-control-description text-[rgba(0,0,0,0.56)] leading-[2] text-[0.75rem] mt-[15px] mb-[8px]" *ngIf="forms['rent-apartment'].canChangeDepositMonthlyRent.value && forms['rent-apartment'].deposit.valid && forms['rent-apartment'].monthlyRent.valid">
+          نرخ رایج مبنا برای تبدیل به ازای هر ۱ میلیون تومان ودیعه، ۳۰ هزار تومان اجاره است.
+        </div>
+        <div class="form-control-container" *ngIf="forms['rent-apartment'].canChangeDepositMonthlyRent.value && forms['rent-apartment'].deposit.valid && forms['rent-apartment'].monthlyRent.valid">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pt-[16px]">تبدیل مبلغ ودیعه</div>
+          <div class="form-control-div flex flex-col relative mt-[8px] mb-[16px]">
+            <div class="relative">
+              <input type="number" (keyup)="forms['rent-apartment'].changedDeposit.valid = rentApartmentChangeDeposit.value !== ''" #rentApartmentChangeDeposit [ngModelOptions]="{standalone: true}" [(ngModel)]="forms['rent-apartment'].changedDeposit.value" placeholder="مثال: ۵۰٫۰۰۰٫۰۰۰" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].changedDeposit.valid}" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.26)] rounded-[4px] w-[100%] h-[2.5rem] px-[16px]">
+              <span class="toman leading-[calc(2.5rem_-_4px)] absolute h-full text-[rgba(0,0,0,.32)] text-[0.875rem] left-[8px] top-[2px]">تومان</span>
+            </div>
+            <div class="p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="rentApartmentChangeDeposit.value === ''">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <span class="show text-[1rem] my-[1rem]" *ngIf="rentApartmentChangeDeposit.value !== ''">
+              {{parseInt(rentApartmentChangeDeposit.value).toLocaleString()}} تومان
+            </span>
+          </div>
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pt-[16px]">تبدیل مبلغ اجاره ماهانه</div>
+          <div class="form-control-div flex flex-col relative mt-[8px] mb-[16px]">
+            <div class="relative">
+              <input type="number" (keyup)="forms['rent-apartment'].changedMonthlyRent.valid = rentApartmentChangeMonthlyRent.value !== ''" #rentApartmentChangeMonthlyRent [ngModelOptions]="{standalone: true}" [(ngModel)]="forms['rent-apartment'].changedMonthlyRent.value" placeholder="مثال: ۵۰٫۰۰۰٫۰۰۰" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].changedMonthlyRent.valid}" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.26)] rounded-[4px] w-[100%] h-[2.5rem] px-[16px]">
+              <span class="toman leading-[calc(2.5rem_-_4px)] absolute h-full text-[rgba(0,0,0,.32)] text-[0.875rem] left-[8px] top-[2px]">تومان</span>
+            </div>
+            <div class="p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="rentApartmentChangeMonthlyRent.value === ''">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <span class="show text-[1rem] my-[1rem]" *ngIf="rentApartmentChangeMonthlyRent.value !== ''">
+              {{parseInt(rentApartmentChangeMonthlyRent.value).toLocaleString()}} تومان
+            </span>
+          </div>
+        </div>
+        <div class="form-control-container mt-[2rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)]">آگهی‌دهنده</div>
+          <div class="form-control-div flex">
+            <div class="radio-one pt-[16px] py-[8px] cursor-pointer flex" (click)="forms['rent-apartment'].sender.value = 'شخصی'">
+              <div class="radio-button flex justify-between w-[2.25rem] h-[2.25rem]">
+                <a (click)="forms['rent-apartment'].sender.value = 'شخصی'" class="radio-button-link cursor-pointer z-[10] rounded-[1.125rem] h-[1.125rem] w-[1.125rem]" [ngClass]="{'bg-[#a62626_!important]': forms['rent-apartment'].canChangeDepositMonthlyRent.value}">
+                  <div class="radio-button-container flex justify-center items-center relative rounded-[50%] m-[2px] w-full h-full bg-white" [ngClass]="{'activated': forms['rent-apartment'].sender.value === 'شخصی'}">
+                    <div class="checked-circle w-[0.625rem] rounded-[50px] h-[0.625rem] bg-[#a62626] transform scale-0" [ngClass]="{'scale-[1]': forms['rent-apartment'].sender.value === 'شخصی'}"></div>
+                    <div class="box-shadow-red absolute bg-[rgba(166,38,38,.08)] z-[10000] rounded-[50px]" *ngIf="forms['rent-apartment'].sender.value === 'شخصی'"></div>
+                    <div class="box-shadow absolute bg-[rgba(0,0,0,.04)] z-[10000] rounded-[50px]" *ngIf="forms['rent-apartment'].sender.value !== 'شخصی'"></div>
+                  </div>
+                </a>
+              </div>
+              <div class="radio-button-text text-[0.875rem] leading-[2] mr-[4px]">شخصی</div>
+            </div>
+            <div class="radio-two pt-[16px] py-[8px] cursor-pointer flex mr-[32px]" (click)="forms['rent-apartment'].sender.value = 'مشاور املاک'">
+              <div class="radio-button flex justify-between w-[2.25rem] h-[2.25rem]">
+                <a (click)="forms['rent-apartment'].sender.value = 'مشاور املاک'" class="radio-button-link cursor-pointer z-[10] rounded-[1.125rem] h-[1.125rem] w-[1.125rem]" [ngClass]="{'bg-[#a62626_!important]': forms['rent-apartment'].canChangeDepositMonthlyRent.value}">
+                  <div class="radio-button-container flex justify-center items-center relative rounded-[50%] m-[2px] w-full h-full bg-white" [ngClass]="{'activated': forms['rent-apartment'].sender.value === 'مشاور املاک'}">
+                    <div class="checked-circle w-[0.625rem] rounded-[50px] h-[0.625rem] bg-[#a62626] transform scale-0" [ngClass]="{'scale-[1]': forms['rent-apartment'].sender.value === 'مشاور املاک'}"></div>
+                    <div class="box-shadow-red absolute bg-[rgba(166,38,38,.08)] z-[10000] rounded-[50px]" *ngIf="forms['rent-apartment'].sender.value === 'مشاور املاک'"></div>
+                    <div class="box-shadow absolute bg-[rgba(0,0,0,.04)] z-[10000] rounded-[50px]" *ngIf="forms['rent-apartment'].sender.value !== 'مشاور املاک'"></div>
+                  </div>
+                </a>
+              </div>
+              <div class="radio-button-text text-[0.875rem] leading-[2] mr-[4px]">مشاور املاک</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pb-[8px] pt-[16px]">مناسب برای</div>
+          <div class="custom-select relative">
+            <div (click)="opens[3] = true" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].goodFor.valid}">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]" [ngClass]="{'text-[rgba(0,0,0,0.36)]': forms['rent-apartment'].goodFor.value === 'انتخاب کنید'}" >{{forms['rent-apartment'].goodFor.value}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center" [ngClass]="{'text-[red_!important]': forms['rent-apartment'].goodFor.value === 'انتخاب کنید'}">
+                <svg [ngClass]="{'fill-[red_!important]': forms['rent-apartment'].goodFor.value === 'انتخاب کنید'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].goodFor.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div *ngIf="opens[3]" (click)="forms['rent-apartment'].goodFor.valid = true" [ngClass]="{'block': opens[3], 'hidden': !opens[3]}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px]">
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].goodFor.value = 'خانواده و مجرد'" [ngClass]="{'text-[#707070]': 'خانواده و مجرد' !== forms['rent-apartment'].goodFor.value, 'text-[#A62626]': 'خانواده و مجرد' === forms['rent-apartment'].goodFor.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">خانواده و مجرد</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].goodFor.value = 'خانواده'" [ngClass]="{'text-[#707070]': 'خانواده' !== forms['rent-apartment'].goodFor.value, 'text-[#A62626]': 'خانواده' === forms['rent-apartment'].goodFor.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">خانواده</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pb-[8px] pt-[16px]">تعداد اتاق</div>
+          <div class="custom-select relative">
+            <div (click)="opens[4] = true" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].roomCount.valid}" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]" [ngClass]="{'text-[rgba(0,0,0,0.36)]': forms['rent-apartment'].roomCount.value === 'انتخاب کنید'}">{{forms['rent-apartment'].roomCount.value}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+                <svg [ngClass]="{'fill-[red_!important]': forms['rent-apartment'].roomCount.value === 'انتخاب کنید'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].roomCount.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div *ngIf="opens[4]" (click)="forms['rent-apartment'].roomCount.valid = true" [ngClass]="{'block': opens[4], 'hidden': !opens[4]}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px]">
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].roomCount.value = 'بدون اتاق'" [ngClass]="{'text-[#707070]': 'بدون اتاق' !== forms['rent-apartment'].roomCount.value, 'text-[#A62626]': 'بدون اتاق' === forms['rent-apartment'].roomCount.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">بدون اتاق</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].roomCount.value = 'یک'" [ngClass]="{'text-[#707070]': 'یک' !== forms['rent-apartment'].roomCount.value, 'text-[#A62626]': 'یک' === forms['rent-apartment'].roomCount.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">یک</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].roomCount.value = 'دو'" [ngClass]="{'text-[#707070]': 'دو' !== forms['rent-apartment'].roomCount.value, 'text-[#A62626]': 'دو' === forms['rent-apartment'].roomCount.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">دو</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].roomCount.value = 'سه'" [ngClass]="{'text-[#707070]': 'سه' !== forms['rent-apartment'].roomCount.value, 'text-[#A62626]': 'سه' === forms['rent-apartment'].roomCount.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">سه</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].roomCount.value = 'چهار'" [ngClass]="{'text-[#707070]': 'چهار' !== forms['rent-apartment'].roomCount.value, 'text-[#A62626]': 'چهار' === forms['rent-apartment'].roomCount.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">چهار</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].roomCount.value = 'پنج یا بیشتر'" [ngClass]="{'text-[#707070]': 'پنج یا بیشتر' !== forms['rent-apartment'].roomCount.value, 'text-[#A62626]': 'پنج یا بیشتر' === forms['rent-apartment'].roomCount.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">پنج یا بیشتر</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pb-[8px] pt-[16px]">سال ساخت</div>
+          <div class="custom-select relative">
+            <div (click)="opens[5] = true" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].yearOfConstruction.valid}" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]" [ngClass]="{'text-[rgba(0,0,0,0.36)]': forms['rent-apartment'].yearOfConstruction.value === 'انتخاب کنید'}">{{forms['rent-apartment'].yearOfConstruction.value}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" [ngClass]="{'fill-[red_!important]': forms['rent-apartment'].yearOfConstruction.value === 'انتخاب کنید'}" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].yearOfConstruction.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div *ngIf="opens[5]" (click)="forms['rent-apartment'].yearOfConstruction.valid = true" [ngClass]="{'block': opens[5], 'hidden': !opens[5]}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+              <div class="w-full" (click)="exit()" *ngFor="let year of yearOfInstructionList">
+                <a (click)="forms['rent-apartment'].yearOfConstruction.value = year.text" [ngClass]="{'text-[#707070]': year.text !== forms['rent-apartment'].yearOfConstruction.value, 'text-[#A62626]': year.text === forms['rent-apartment'].yearOfConstruction.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">{{year.text}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pb-[8px] pt-[16px]">طبقه</div>
+          <div class="custom-select relative">
+            <div (click)="opens[6] = true" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].floor.valid}" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]" [ngClass]="{'text-[rgba(0,0,0,0.36)]': forms['rent-apartment'].floor.value === 'انتخاب کنید'}">{{forms['rent-apartment'].floor.value}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+                <svg [ngClass]="{'fill-[red_!important]': forms['rent-apartment'].floor.value === 'انتخاب کنید'}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].floor.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div *ngIf="opens[6]" (click)="forms['rent-apartment'].floor.valid = true" [ngClass]="{'block': opens[6], 'hidden': !opens[6]}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+              <div class="w-full" (click)="exit()" *ngFor="let floor of floorList">
+                <a (click)="forms['rent-apartment'].floor.value = floor.text" [ngClass]="{'text-[#707070]': floor.text !== forms['rent-apartment'].floor.value, 'text-[#A62626]': floor.text === forms['rent-apartment'].floor.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">{{floor.text}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pb-[8px] pt-[16px]">اسانسور</div>
+          <div class="custom-select relative">
+            <div (click)="opens[7] = true" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].elevator.valid}" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]" [ngClass]="{'text-[rgba(0,0,0,0.36)]': forms['rent-apartment'].elevator.value === 'انتخاب کنید'}" >{{forms['rent-apartment'].elevator.value}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" [ngClass]="{'fill-[red_!important]': forms['rent-apartment'].elevator.value === 'انتخاب کنید'}" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].elevator.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div *ngIf="opens[7]" (click)="forms['rent-apartment'].elevator.valid = true" [ngClass]="{'block': opens[7], 'hidden': !opens[7]}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px]">
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].elevator.value = 'دارد'" [ngClass]="{'text-[#707070]': 'دارد' !== forms['rent-apartment'].elevator.value, 'text-[#A62626]': 'دارد' === forms['rent-apartment'].elevator.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">دارد</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].elevator.value = 'ندارد'" [ngClass]="{'text-[#707070]': 'ندارد' !== forms['rent-apartment'].elevator.value, 'text-[#A62626]': 'ندارد' === forms['rent-apartment'].elevator.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">ندارد</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pb-[8px] pt-[16px]">پارکینگ</div>
+          <div class="custom-select relative">
+            <div (click)="opens[8] = true" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].parking.valid}" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]" [ngClass]="{'text-[rgba(0,0,0,0.36)]': forms['rent-apartment'].parking.value === 'انتخاب کنید'}" >{{forms['rent-apartment'].parking.value}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" [ngClass]="{'fill-[red_!important]': forms['rent-apartment'].parking.value === 'انتخاب کنید'}" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].parking.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div *ngIf="opens[8]" (click)="forms['rent-apartment'].parking.valid = true" [ngClass]="{'block': opens[8], 'hidden': !opens[8]}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px]">
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].parking.value = 'دارد'" [ngClass]="{'text-[#707070]': 'دارد' !== forms['rent-apartment'].parking.value, 'text-[#A62626]': 'دارد' === forms['rent-apartment'].parking.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">دارد</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].parking.value = 'ندارد'" [ngClass]="{'text-[#707070]': 'ندارد' !== forms['rent-apartment'].parking.value, 'text-[#A62626]': 'ندارد' === forms['rent-apartment'].parking.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">ندارد</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem]">
+          <div class="form-control-title text-[rgba(0,0,0,.87)] pb-[8px] pt-[16px]">انباری</div>
+          <div class="custom-select relative">
+            <div (click)="opens[9] = true" [ngClass]="{'border-[red_!important]': !forms['rent-apartment'].wareHouse.valid}" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
+              <span class="flex-grow flex items-center leading-[1.625] text-[#212121]" [ngClass]="{'text-[rgba(0,0,0,0.36)]': forms['rent-apartment'].wareHouse.value === 'انتخاب کنید'}" >{{forms['rent-apartment'].wareHouse.value}}</span>
+              <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
+                <svg xmlns="http://www.w3.org/2000/svg" [ngClass]="{'fill-[red_!important]': forms['rent-apartment'].wareHouse.value === 'انتخاب کنید'}" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
+              </i>
+            </div>
+            <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="!forms['rent-apartment'].wareHouse.valid">
+              <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+              <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+            </div>
+            <div *ngIf="opens[9]" (click)="forms['rent-apartment'].wareHouse.valid = true" [ngClass]="{'block': opens[9], 'hidden': !opens[9]}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px]">
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].wareHouse.value = 'دارد'" [ngClass]="{'text-[#707070]': 'دارد' !== forms['rent-apartment'].wareHouse.value, 'text-[#A62626]': 'دارد' === forms['rent-apartment'].wareHouse.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">دارد</a>
+              </div>
+              <div class="w-full" (click)="exit()">
+                <a (click)="forms['rent-apartment'].wareHouse.value = 'ندارد'" [ngClass]="{'text-[#707070]': 'ندارد' !== forms['rent-apartment'].wareHouse.value, 'text-[#A62626]': 'ندارد' === forms['rent-apartment'].wareHouse.value}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">ندارد</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[1rem] flex flex-col justify-center">
+          <a (click)="openModel(otherOptionModel)" class="form-control-title flex items-center cursor-pointer text-[#a62626] min-h-[48px] py-[8px]">انتخاب سایر ویژگی‌ها و امکانات</a>
+          <div class="separator bg-[rgba(0,0,0,.12)] h-[1px] w-full"></div>
+        </div>
+        <div #otherOptionModel class="other-option-model model-transition grid hidden z-[100000000000000000000000000000] fixed top-0 right-0 w-full h-full">
+          <div (click)="closeModel(otherOptionModel)" class="close-other-options absolute top-0 right-0 w-full h-full z-[10] bg-[rgba(0,0,0,.48)]"></div>
+          <div class="model-container z-[11] self-center justify-self-center w-[488px] h-[716px]">
+            <div class="model-body bg-white rounded-[4px] mx-[16px] w-full h-full">
+              <div class="header-container flex justify-between p-[2rem] shadow-[0_1px_2px_0_rgba(0,0,0,.12)]">
+                <div class="wrapper m-[-6px] flex items-center justify-between flex-grow">
+                  <span class="login-model-title text-[1rem] text-[rgba(0,0,0,.87)] leading-[1.5] m-[0_6px_0_8px]">انتخاب سایر ویژگی‌ها و امکانات</span>
+                  <a (click)="closeModel(otherOptionModel)" class="close-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+                    <i class="link-icon w-[1.25rem] h-[1.25rem]">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" class="w-full h-full" fill="#707070"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.3945 12.0002L18.3435 7.05025C18.7345 6.66025 18.7345 6.02725 18.3435 5.63625C17.9535 5.24625 17.3205 5.24625 16.9295 5.63625L11.9805 10.5862L7.03049 5.63625C6.63949 5.24625 6.00649 5.24625 5.61649 5.63625C5.22549 6.02725 5.22549 6.66025 5.61649 7.05025L10.5665 12.0002L5.61649 16.9502C5.22549 17.3403 5.22549 17.9733 5.61649 18.3643C5.81149 18.5592 6.06749 18.6573 6.32349 18.6573C6.57949 18.6573 6.83449 18.5592 7.03049 18.3643L11.9805 13.4143L16.9295 18.3643C17.1245 18.5592 17.3805 18.6573 17.6365 18.6573C17.8925 18.6573 18.1485 18.5592 18.3435 18.3643C18.7345 17.9733 18.7345 17.3403 18.3435 16.9502L13.3945 12.0002Z"></path></svg>
+                    </i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <!--  forms-apartment-rent    -->
+        <div class="individual-information">
+          <div class="title mt-[1rem]">تأیید هویت</div>
+          <div class="form-info mt-[20px] text-[rgba(0,0,0,.56)] m-[4px_0_8px] text-[0.75rem] leading-[2]">
+            برای جلوگیری از ورود شمارهٔ موبایل متخلف و افزایش سلامت تعاملات، تأیید هویت در دیوار انجام می‌شود.<br>
+            حساب شما در دیوار با شمارهٔ {{loginService.userPhoneNumber}} فعال است
+        </div>
+        <div class="form-control-container mt-[2rem]">
           <div class="label">
-            <label class="leading-[2]">محله</label>
+            <label class="leading-[2]">ملیت</label>
           </div>
           <div class="custom-select relative">
-            <div (click)="openOption('person-type')" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="contactNumber">
+            <div (click)="openOption(2)" class="mt-[0.5rem] flex cursor-pointer form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]">
               <span class="flex-grow flex items-center leading-[1.625] text-[#212121]">{{selectedPersonType}}</span>
               <i class="icon ml-[-0.5625rem] w-[1.5rem] h-[1.5rem] flex min-w-[1.5rem] min-h-[1.5rem] items-center justify-center self-center">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ADADAD" aria-hidden="true" focusable="false" class="w-full h-full"><path d="M17.293 9.30084C16.901 8.90884 16.266 8.90884 15.874 9.30084L12 13.1748L8.126 9.30084C7.734 8.90884 7.099 8.90884 6.707 9.30084C6.314 9.69284 6.314 10.3278 6.707 10.7198L11.29 15.3038C11.486 15.4998 11.743 15.5978 12 15.5978C12.257 15.5978 12.514 15.4998 12.71 15.3038L17.293 10.7198C17.686 10.3278 17.686 9.69284 17.293 9.30084Z"></path></svg>
               </i>
             </div>
-            <div *ngIf="open3" [ngClass]="{'block': open3, 'hidden': !open3, 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
+            <div *ngIf="opens[2]" [ngClass]="{'block': opens[2], 'hidden': !opens[2], 'opacity-100': optionOpac,'opacity-0': !optionOpac}" class="options-container z-[10002] absolute w-full max-h-[20rem] top-[44px] bg-white rounded-[4px] overflow-y-scroll">
               <a (click)="selectCity('ایرانی', 'person-type')" [ngClass]="{'text-[#707070]': 'ایرانی' !== selectedPersonType, 'text-[#A62626]': 'ایرانی' === selectedPersonType}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">ایرانی</a>
               <a (click)="selectCity('اتباع خارجی', 'person-type')" [ngClass]="{'text-[#707070]': 'اتباع خارجی' !== selectedPersonType, 'text-[#A62626]': 'اتباع خارجی' === selectedPersonType}" class="option w-full cursor-pointer text-[0.875rem] flex bg-white hover:bg-[rgba(0,0,0,.04)]">اتباع خارجی</a>
             </div>
           </div>
         </div>
         <div class="form-control-container mt-[2rem]">
-          <div class="label">
-            <label class="leading-[2]">عنوان آگهی (های) مورد نظر</label>
+          <div class="form-control-container">
+            <div class="form-control-title text-[rgba(0,0,0,.87)] pt-[17px]">تأیید با کد ملی</div>
+            <div class="form-control-description text-[rgba(0,0,0,0.56)] leading-[2] text-[0.75rem] mt-[15px] mb-[8px]">
+              توجه: کد ملی شما به کاربران نمایش داده نمی‌شود.
+              <br>
+              برای سیم‌کارت شرکتی، شناسهٔ ملی ۱۱ رقمی شرکت را وارد کنید.
+            </div>
+            <div class="form-control-div relative mt-[8px] mb-[16px]">
+              <input formControlName="nationalCode" type="text" [ngClass]="{'border-[red_!important]': addNewFormGroup.invalid && (addNewFormGroup.touched || addNewFormGroup.dirty)}" placeholder="مثال: ۰۰۲۰۰۶۸۹۰۰" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.26)] rounded-[4px] w-[100%] h-[2.5rem] px-[16px]">
+              <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="(addNewFormGroup.dirty || addNewFormGroup.touched) && addNewFormGroup.controls['nationalCode'].hasError('required')">
+                <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+                <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+              </div>
+              <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="(addNewFormGroup.dirty || addNewFormGroup.touched) && addNewFormGroup.controls['nationalCode'].hasError('pattern')">
+                <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+                <span class="error leading-[2] text-[0.75rem]">کد ملی وارد شده اشتباه است</span>
+              </div>
+            </div>
           </div>
-          <input class="mt-[0.5rem] form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text" formControlName="title">
+        </div>
+        <div class="form-control-container mt-[2rem]">
+          <div class="chat-divar">
+            چت دیوار
+          </div>
+          <div class="want-to-share-phoneNumber form-info mt-[20px] text-[rgba(0,0,0,.56)] m-[4px_0_8px] text-[0.75rem] leading-[2]">
+            اگر مایل به انتشار شماره موبایل خود نیستید، می توانید انتخاب کنید شماره شما نمایش داده نشود.
+          </div>
+          <div class="chat-on form-info mt-[20px] text-[rgba(0,0,0,.56)] m-[4px_0_8px] text-[0.75rem] leading-[2]">این آگهی با چت فعال ثبت می‌شود.</div>
+          <div class="form-control-container mt-[2rem] flex items-center">
+            <div class="form-check-container relative w-[2.25rem] h-[2.25rem] flex justify-center items-center">
+              <div class="backg"></div>
+              <input formControlName="showPhoneNumber" type="checkbox" class="opacity-0 absolute z-[2] rounded-[0.125rem] cursor-pointer h-[1.125rem] w-[1.125rem]">
+              <div class="form-checkInput relative z-[1] rounded-[0.125rem] cursor-pointer h-[1.125rem] w-[1.125rem]" [ngClass]="{'border-[#a62626] bg-[#a62626]': addNewFormGroup.controls['showPhoneNumber'].value}">
+                <svg class="h-[8px] left-[2px] top-[4px] absolute w-0" [ngClass]="{'w-[12px]': addNewFormGroup.controls['showPhoneNumber'].value}"><polyline transform="translate(5.974874, 2.353553) rotate(-45.000000) translate(-5.974874, -2.353553) " points="2 0.292893219 2 4.29289322 9.94974747 4.41421356" class="kt-switch__icon-check"></polyline><line opacity="0" x1="1.03268998" y1="4" x2="11.0000728" y2="4" id="checkbox_check" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="kt-switch__icon-line"></line></svg>
+              </div>
+            </div>
+            <div class="form-check-label text-[0.75rem]">شمارهٔ موبایل نمایش داده نشود.</div>
+          </div>
+        </div>
+        <div class="form-control-container mt-[2rem]">
+          <div class="label">
+            <label class="leading-[2]">عنوان آگهی</label>
+          </div>
+          <div class="form-control-description my-[8px] leading-[2] text-[0.75rem] text-[rgba(0,0,0,0.56)]">در عنوان آگهی به موارد مهمی مانند نوع ملک، متراژ و محله اشاره کنید.</div>
+          <input formControlName="title"  [ngClass]="{'border-[red_!important]': (addNewFormGroup.dirty || addNewFormGroup.touched) && addNewFormGroup.controls['adDescription'].hasError('required')}" placeholder="مثال: آپارتمان، ۰ متر، ولیعصر" class="mt-[0.5rem] form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] px-[1rem]" type="text">
+          <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="(addNewFormGroup.dirty || addNewFormGroup.touched) && addNewFormGroup.controls['title'].hasError('required')">
+            <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+            <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+          </div>
+        </div>
+        <div class="form-control-container mt-[2rem]">
+          <div class="label">
+            <label class="leading-[2]">توضیحات آگهی</label>
+          </div>
+          <div class="form-control-description my-[8px] leading-[2] text-[0.75rem] text-[rgba(0,0,0,0.56)]">در توضیحات آگهی به مواردی مانند شرایط اجاره، جزئیات و ویژگی‌های قابل توجه، دسترسی‌های محلی و موقعیت قرارگیری ملک اشاره کنید.</div>
+          <textarea formControlName="adDescription" [ngClass]="{'border-[red_!important]': (addNewFormGroup.dirty || addNewFormGroup.touched) && addNewFormGroup.controls['adDescription'].hasError('required')}" placeholder="توضیحات را بنویسید." class="mt-[0.5rem] form-control hover:border-[rgba(0,0,0,.48)] focus:border-[#3F9CEE] focus:px-[0.9375rem] focus:border-[0.125rem] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] min-h-[7.5rem] p-[8px_16px]"></textarea>
+          <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="(addNewFormGroup.dirty || addNewFormGroup.touched) && addNewFormGroup.controls['adDescription'].hasError('required')">
+            <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+            <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+          </div>
+        </div>
+      </div>
+      <div class="button-container py-[32px]">
+        <div class="buttons-container bottom-0 right-0 w-full flex px-[16px] py-[12px]">
+          <div class="button-container flex-grow flex justify-end">
+            <a routerLink="" class="submit-button zero:ml-[0px] zero:flex-grow w-full border-solid border-[rgba(0,0,0,.48)] border-[1px]  sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] hover:bg-[rgba(0,0,0,.04)] text-[rgba(0,0,0,.48)] hover:text-[rgba(0,0,0,0.87)] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option">انصراف</a>
+          </div>
+          <div class="button-container flex-grow flex justify-end">
+            <button (click)="addAd()" class="submit-button w-full zero:ml-[0px] mr-[16px] zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] text-white hover:bg-[rgb(191,44,44)] bg-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option">ارسال اگهی</button>
+          </div>
         </div>
       </div>
     </form>
   </div>
 </div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>
-<div>.</div>

@@ -1,1 +1,64 @@
-<p>settings works!</p>
+<div (click)="closeSettings()" class="closer bg-[rgba(0,0,0,.48)] z-[10000000000] w-[100vw] h-full absolute top-0 right-full"></div>
+<div class="setting-container h-full">
+  <div class="container-header shadow-[0_1px_2px_rgba(0,0,0,.12)] items-center flex h-[64px]">
+    <a (click)="closeSettings()" class="header-button active:bg-[rgba(0,0,0,0.12)] hover:text-black mr-[6px] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+      <div class="header-icon text-[rgba(0,0,0,0.56)] text-[0.95rem]">
+        <i class="fa fa-arrow-right"></i>
+      </div>
+    </a>
+    <div class="header-text text-[0.85rem] mr-[8px] font-bold text-[rgba(0,0,0,0.56)]">تنظیمات چت دیوار</div>
+  </div>
+  <form [formGroup]="formGroup" class="setting-main-content p-[16px]">
+    <label class="form-control-label flex font-bold leading-[2] text-[rgba(0,0,0,0.87)]">نام و نام‌خانوادگی</label>
+    <div class="form-description">
+      <p class="form-content-1 text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[2] mt-[2px] mb-[13px]">کاربران در چت دیوار، شما را با این نام می‌بینند. (بین ۳ تا ۲۰ حرف)</p>
+    </div>
+    <div class="form-select-custom relative mt-[18px]">
+      <input #nameInput formControlName="name" type="text" placeholder="نام و نام‌خانوادگی" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 name-input border-[1px] border-solid border-[rgba(0,0,0,.24)] rounded-[4px] w-[100%] h-[2.5rem] pl-[40px] pr-[16px]">
+      <span (click)="nameInput.value = ''" class="remove-button cursor-pointer p-[8px] top-0 left-0 absolute h-full justify-center items-center">
+        <i class="fa fa-remove text-[12px]  w-[20px] h-[20px] justify-center items-center flex pt-[1px]"></i>
+      </span>
+    </div>
+    <div *ngIf="formGroup.controls['name'].hasError('pattern') || nameInput.value === ''" class="form-error items-center p-[4px_8px_0_0] flex text-[red] text-[0.75rem]">
+      <i class="fa fa-exclamation-circle h-[24px] ml-[4px] flex items-center"></i>
+      <span>کاراکتر وارد شده غیر‌مجاز است.</span>
+    </div>
+    <div *ngIf="formGroup.controls['name'].hasError('maxlength') && !(formGroup.controls['name'].hasError('pattern'))" class="form-error items-center p-[4px_8px_0_0] flex text-[red] text-[0.75rem]">
+      <i class="fa fa-exclamation-circle h-[24px] ml-[4px] flex items-center"></i>
+      <span>تعداد حروف بیشتر از مقدار مجاز است.</span>
+    </div>
+    <div *ngIf="formGroup.controls['name'].hasError('minlength') && !(formGroup.controls['name'].hasError('pattern'))" class="form-error items-center p-[4px_8px_0_0] flex text-[red] text-[0.75rem]">
+      <i class="fa fa-exclamation-circle h-[24px] ml-[4px] flex items-center"></i>
+      <span>تعداد حروف کمتر از مقدار مجاز است.</span>
+    </div>
+    <label class="form-control-label flex font-bold leading-[2] mt-[32px] mb-[8px] text-[rgba(0,0,0,0.87)]">چت‌ها و اعلان‌ها</label>
+    <div class="change-view flex justify-between mt-[16px] mb-[0.7rem] items-center">
+      <label class="form-control-label flex font-bold leading-[2] text-[rgba(0,0,0,0.87)]">نمایش چت‌های غیرفعال</label>
+      <a (click)="disabledChats = !disabledChats" class="changer cursor-pointer bg-[rgba(0,0,0,0.24)] rounded-[12px] h-[24px] w-[42px]" [ngClass]="{'bg-[#a62626_!important]': disabledChats}">
+        <div class="changer-circle relative rounded-[50%] m-[2px] h-[20px] w-[20px] bg-white" [ngClass]="{'activated': disabledChats}">
+          <div class="box-shadow absolute bg-[rgba(0,0,0,.04)] z-[10000] rounded-[50px]" [ngClass]="{'bg-[rgba(166,38,38,.08)_!important]': disabledChats}"></div>
+          <div class="back-white absolute bg-white w-full z-[10001] h-full rounded-[50px]"></div>
+          <div class="box-shadow-red absolute bg-[rgba(166,38,38,.08)] z-[10000] rounded-[50px]"></div>
+        </div>
+      </a>
+    </div>
+    <div class="change-view flex justify-between mt-[16px] mb-[0.7rem] items-center">
+      <label class="form-control-label flex font-bold leading-[2] text-[rgba(0,0,0,0.87)]">نمایش چت‌های مسدود شده</label>
+      <a (click)="restrictedChats = !restrictedChats" class="changer cursor-pointer bg-[rgba(0,0,0,0.24)] rounded-[12px] h-[24px] w-[42px]" [ngClass]="{'bg-[#a62626_!important]': restrictedChats}">
+        <div class="changer-circle relative rounded-[50%] m-[2px] h-[20px] w-[20px] bg-white" [ngClass]="{'activated': restrictedChats}">
+          <div class="box-shadow absolute bg-[rgba(0,0,0,.04)] z-[10000] rounded-[50px]" [ngClass]="{'bg-[rgba(166,38,38,.08)_!important]': restrictedChats}"></div>
+          <div class="back-white absolute bg-white w-full z-[10001] h-full rounded-[50px]"></div>
+          <div class="box-shadow-red absolute bg-[rgba(166,38,38,.08)] z-[10000] rounded-[50px]"></div>
+        </div>
+      </a>
+    </div>
+    <div class="buttons-container absolute bottom-0 right-0 w-full flex px-[16px] py-[12px] shadow-[0_-1px_2px_0_rgba(0,0,0,.12)]">
+      <div class="button-container flex-grow flex justify-end">
+        <a (click)="closeSettings()" class="submit-button zero:ml-[0px] zero:flex-grow w-full border-solid border-[rgba(0,0,0,.48)] border-[1px]  sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] hover:bg-[rgba(0,0,0,.04)] text-[rgba(0,0,0,.48)] hover:text-[rgba(0,0,0,0.87)] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option">انصراف</a>
+      </div>
+      <div class="button-container flex-grow flex justify-end">
+        <button (click)="saveSettings($event)" class="submit-button w-full zero:ml-[0px] mr-[16px] zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] text-white hover:bg-[rgb(191,44,44)] bg-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option" [ngClass]="{'disabled': formGroup.invalid || nameInput.value === ''}">ثبت تغییرات</button>
+      </div>
+    </div>
+  </form>
+</div>

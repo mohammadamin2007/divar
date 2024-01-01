@@ -1,0 +1,62 @@
+<div class="closer absolute top-0 right-0 w-full h-full z-[100000000000000000000000001]" (click)="nationalitySelect = false" *ngIf="nationalitySelect"></div>
+<div class="verify-user-main pt-[64px] flex zero:mx-[20px] lg:ml-[0] lg:mr-[29.5%] w-full">
+  <div class="verify-user-container w-full">
+    <div class="text-[rgba(0,0,0,0.56)] text-[14px] leading-[2] mt-[4px] user-container-title">برای جلوگیری از ورود شمارهٔ موبایل متخلف و افزایش سلامت تعاملات، تأیید هویت در دیوار انجام می‌شود.</div>
+    <div class="text-[rgba(0,0,0,0.56)] text-[14px] leading-[2] mb-[8px] user-phone-number">حساب شما در دیوار با شمارهٔ ۰۹۱۰۹۴۸۹۹۷۱ فعال است.</div>
+    <form class="verify-user-form-main pt-[35px]" [formGroup]="nationalityForm">
+      <div class="form-control-container">
+        <div class="form-control-title text-[rgba(0,0,0,.87)]">ملیت</div>
+        <div class="form-control-description text-[rgba(0,0,0,0.56)] text-[0.75rem] mt-[15px] mb-[8px]">ملیت خود را انتخاب کنید</div>
+        <div class="form-select-custom relative mt-[12px] mb-[16px]">
+          <div (click)="nationalitySelect = !nationalitySelect" [ngClass]="{'border-[rgba(0,0,0.48)_!important]': nationalitySelect}" class="form-select-input ml-[1px] cursor-pointer hover:border-[rgba(0,0,0,.48)] items-center border-solid border-[1px] broder-[rgba(0,0,0,0.16)] rounded-[4px] h-[2.5rem] transition-[border-color_0.36_ease] flex justify-between">
+            <span class="text-black mr-[16px]">{{nationality}}</span>
+            <i class="fa fa-angle-down m-[7px_8px] items-center text-[rgba(0,0,0,0.36)] text-[0.95rem] flex ml-[3px] h-[24px] w-[24px]" [ngClass]="{'active text-black': nationalitySelect}"></i>
+          </div>
+          <div class="form-select-options w-full max-h-[380px] min-w-[301px] z-[100000000000000000000000002] absolute top-[44px] bg-white rounded-[4px] " *ngIf="nationalitySelect">
+            <div (click)="chooseNationality(optionFromText.text)" class="text-[rgba(0,0,0,0.56)] cursor-pointer text-[0.875rem] leading-[2] py-[6px] pr-[16px] pl-[8px] transition-[background-color_.2s] bg-white hover:bg-[rgba(0,0,0,.04)]" [ngClass]="{'rounded-tr-[4px]': i === 0, 'bg-[rgba(0,0,0,.04)_!important] text-[#a62626_!important]': nationality === optionFromText.text}" *ngFor="let optionFromText of nationalitiesList; let i = index">{{optionFromText.text}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-control-container">
+        <div class="form-control-title text-[rgba(0,0,0,.87)] pt-[17px]">تأیید با کد ملی</div>
+        <div class="form-control-description text-[rgba(0,0,0,0.56)] leading-[2] text-[0.75rem] mt-[15px] mb-[8px]">
+          توجه: کد ملی شما به کاربران نمایش داده نمی‌شود.
+          <br>
+          برای سیم‌کارت شرکتی، شناسهٔ ملی ۱۱ رقمی شرکت را وارد کنید.
+        </div>
+        <div class="form-control-div relative mt-[8px] mb-[16px]">
+          <input formControlName="nationalCode" type="text" [ngClass]="{'border-[red_!important]': nationalityForm.invalid && (nationalityForm.touched || nationalityForm.dirty)}" placeholder="مثال: ۰۰۲۰۰۶۸۹۰۰" class="hover:border-[rgba(0,0,0,.48)] focus:border-[rgba(166,38,38,.56)] focus:outline-0 search-input border-[1px] border-solid border-[rgba(0,0,0,.26)] rounded-[4px] w-[100%] h-[2.5rem] px-[16px]">
+          <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="(nationalityForm.dirty || nationalityForm.touched) && nationalityForm.controls['nationalCode'].hasError('required')">
+            <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+            <span class="error leading-[2] text-[0.75rem]">وارد کردن این مورد الزامی است.</span>
+          </div>
+          <div class="nationalityError p-[3px_10px_0_0] mb-[-1px] text-[red]" *ngIf="(nationalityForm.dirty || nationalityForm.touched) && nationalityForm.controls['nationalCode'].hasError('pattern')">
+            <i class="fa ml-[4px] fa-exclamation-circle text-[0.75rem]"></i>
+            <span class="error leading-[2] text-[0.75rem]">کد ملی وارد شده اشتباه است</span>
+          </div>
+        </div>
+      </div>
+      <div class="separator mt-[16px] h-[1px] w-full bg-[rgba(0,0,0,0.26)]"></div>
+      <div class="common-questions mt-[16px]">
+        <a href="https://divar.ir/authentication-landing" class="nav-link min-h-[48px] text-[rgba(0,0,0,.56)] items-center">
+          <div class="flex text-[0.875rem] justify-between leading-[32px] pt-[6px] pb-[9px] whitespace-normal">
+            <div class="flex">
+              <div class="category-icon text-[22px] ml-[1rem]">
+                <i class="fa fa-exclamation-circle w-full h-full"></i>
+              </div>
+              <span class="text text-black">سوالات متداول</span>
+            </div>
+            <span class="link-icon flex items-center pl-[0.45rem] pt-[0.2rem] text-[rgba(0,0,0,0.32)] font-bold">
+              <i class="fa fa-angle-left"></i>
+            </span>
+          </div>
+        </a>
+      </div>
+      <div class="flex">
+        <div (click)="submit()" class="button-container flex-grow mt-[2px] flex justify-end">
+          <a class="submit-button zero:ml-[0px] flex-grow zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] text-white hover:bg-[rgb(191,44,44)] bg-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option">ثبت</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

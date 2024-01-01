@@ -1,0 +1,33 @@
+@media (min-width: 768px) {
+  .divar-for-stores-container {
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 960px) {
+  .divar-for-stores-container {
+    max-width: 66.6666666667%;
+    margin-right: 16.6666666667%;
+  }
+}
+
+@media (min-width: 1366px) {
+  .divar-for-stores-container {
+    max-width: 48.6%;
+    margin-right: 26.4%;
+  }
+}
+
+.option-item:hover {
+  .option-icon {
+    background-color: rgba(0,0,0,.04);
+    color: rgba(0,0,0,.87);
+  }
+}
+
+.option-item {
+  .option-icon {
+    transition: background-color 360ms ease, color 360ms ease;
+  }
+}

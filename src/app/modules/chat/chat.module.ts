@@ -8,6 +8,9 @@ import { SettingsComponent } from './components/settings/settings.component';
 import ChatRoutingModule from './chat-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ChatSideBarComponent } from './components/chat-side-bar/chat-side-bar.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {RouterLink} from "@angular/router";
+import {UserDropDownComponent} from "./components/user-drop-down/user-drop-down.component";
 
 
 
@@ -19,11 +22,14 @@ import { ChatSideBarComponent } from './components/chat-side-bar/chat-side-bar.c
     RemoveChatsComponent,
     SettingsComponent,
     NavbarComponent,
-    ChatSideBarComponent
+    ChatSideBarComponent,
+    UserDropDownComponent
   ],
   imports: [
     CommonModule,
-    ChatRoutingModule
+    ChatRoutingModule,
+    ReactiveFormsModule,
+    RouterLink,
   ]
 })
 export class ChatModule { }

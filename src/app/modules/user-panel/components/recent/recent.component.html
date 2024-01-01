@@ -1,0 +1,39 @@
+<div class="my-posts-main w-full h-[calc(100vh_-_4rem)]">
+  <div class="my-recent-container h-full w-full flex" [ngClass]="{'justify-center': false,'jusitfy-start zero:p-0 zero:pt-[32px] l-c:p-[32px_9px_32px_0]': true}">
+    <div *ngIf="false" class="recent-place-holder flex flex-col items-center pt-[1rem] pr-[1rem] w-[232px]">
+      <div class="place-holder-img">
+        <img src="assets/images/verify-placeholder.svg" alt="my-post-place-holder-image">
+      </div>
+      <div class="place-holder-text text-center text-[rgba(0,0,0,0.56)] text-[0.75rem] mt-[8px] leading-[2]">
+        اخیراً از هیچ آگهی‌ای بازدید نکرده‌اید.
+      </div>
+    </div>
+    <div *ngIf="true" class="flex-grow l-c:ml-[-8px]">
+      <ul class="recent-items-container h-full w-full flex">
+        <li class="recent-item p-[8px] zero:w-full l-c:w-1/2 xl-c:w-1/3">
+          <a class="recent-item-link rounded-[4px] w-full flex p-[15px_15px_19px_16px] border-solid border-[1px]">
+            <div class="recent-item-container flex flex-grow">
+              <div class="img w-[5rem] ml-[16px]">
+                <img src="assets/images/place-holder.jpg" class="rounded-[4px]" alt="recent-item-image">
+              </div>
+              <div class="recent-item-content flex-grow">
+                <div class="recent-item-content-text">
+                  <div class="title text-[0.875rem] leading-[2] text-[rgba(0,0,0,0.87)]">پاسداران 130متر2خوابه</div>
+                  <div class="time text-[rgba(0,0,0,.56)] leading-[2] text-[0.75rem] max-h-[3rem]">دقایقی پیش در پاسداران</div>
+                </div>
+                <div class="trash-share flex justify-end m-[8px_auto_-8px_-8px]">
+                  <a class="links cursor-pointer flex justify-center items-center hover:bg-[rgba(0,0,0,.04)] w-[2rem] h-[2rem] rounded-[50px]">
+                    <i class="fa fa-share text-[rgba(0,0,0,.56)] text-[0.85rem]"></i>
+                  </a>
+                  <a class="links cursor-pointer flex justify-center items-center hover:bg-[rgba(0,0,0,.04)] mr-[8px] w-[2rem] h-[2rem] rounded-[50px]">
+                    <i class="fa fa-trash text-[rgba(0,0,0,.56)] text-[0.85rem]"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

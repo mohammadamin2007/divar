@@ -25,7 +25,7 @@
   <div class="popular-city-section">
     <div class="popular-city-header pt-[32px] pb-[16px] text-[rgba(0,0,0,.87)] font-[500] mx-[-2px] leading-[1.2] text-[15.3px] text-center">شهر‌های پر‌بازدید</div>
     <ul class="popular-city-list flex flex-wrap  mx-[-2px] justify-center">
-      <a  href="{{popCityItem.href}}" class="nav-item text-[rgba(0,0,0,.56)] hover:text-black color-[rgba(0,0,0,.56)] w-[33.3333%] text-[.875rem] leading-[2] px-[10px] py-[1rem]" *ngFor="let popCityItem of popularList">
+      <a  routerLink="/s/{{popCityItem.href}}" class="nav-item text-[rgba(0,0,0,.56)] hover:text-black color-[rgba(0,0,0,.56)] w-[33.3333%] text-[.875rem] leading-[2] px-[10px] py-[1rem]" *ngFor="let popCityItem of popularList">
         <span class="nav-link my-[0.83em] flex justify-center">{{popCityItem.text}}</span>
       </a>
     </ul>

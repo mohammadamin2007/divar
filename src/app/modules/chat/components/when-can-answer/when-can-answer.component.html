@@ -1,38 +1,49 @@
-<div class="closer bg-[rgba(0,0,0,.48)] z-[10000000000] w-[41rem] h-full absolute top-0 right-full"></div>
+<div (click)="closeWhenCanAnswer()" class="closer bg-[rgba(0,0,0,.48)] z-[10000000000] w-[100vw] h-full absolute top-0 right-full"></div>
+<div (click)="globalValue.selectFrom = globalValue.selectTo = false" class="close-contact-model absolute top-0 right-0 h-full z-[100000000000000000000000000] w-[61.9rem]" *ngIf="globalValue.selectFrom || globalValue.selectTo"></div>
 <div class="when-can-answer-container h-full">
     <div class="container-header shadow-[0_1px_2px_rgba(0,0,0,.12)] items-center flex h-[64px]">
-        <a class="header-button active:bg-[rgba(0,0,0,0.12)] hover:text-black mr-[6px] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+        <a (click)="closeWhenCanAnswer()" class="header-button active:bg-[rgba(0,0,0,0.12)] hover:text-black mr-[6px] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
             <div class="header-icon text-[rgba(0,0,0,0.56)] text-[0.95rem]">
                 <i class="fa fa-arrow-right"></i>
             </div>
         </a>
         <div class="header-text text-[0.85rem] mr-[8px] font-bold text-[rgba(0,0,0,0.56)]">ساعت پاسخگویی</div>
     </div>
-    <form class="p-[16px]">
+    <form class="p-[16px] h-[calc(100%_-_64px)] relative">
         <div class="form-contents">
             <p class="form-content-1 text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[2] mt-[13px]">می‌توانید ساعات پاسخگویی خود در چت را مشخص کنید.</p>
             <p class="form-content-2 text-[rgba(0,0,0,0.56)] text-[0.875rem] leading-[2] mb-[13px]">این ساعات زیر اسم شما در چت و برای کاربران نمایش داده می‌شود.</p>
         </div>
         <div class="form-control-container">
             <label class="form-control-label pt-[11px] min-h-[48px] flex font-bold leading-[2] text-[rgba(0,0,0,0.87)]">همهٔ روزهای هفته</label>
-            <div class="form-select-custom mt-[20px] mb-[16px]">
-                <div class="form-select-input items-center border-solid border-[1px] broder-[rgba(0,0,0,0.16)] rounded-[4px] h-[2.5rem] transition-[border-color_0.36_ease] flex justify-between">
-                    <span class="text-[rgba(0,0,0,0.32)] mr-[16px]">از ساعت</span>
-                    <i class="fa fa-angle-down m-[7px_8px] items-center text-[rgba(0,0,0,0.36)] text-[0.95rem] flex ml-[3px] h-[24px] w-[24px]"></i>
+            <div class="form-select-custom relative mt-[20px] mb-[16px]">
+                <div (click)="globalValue.selectFrom = !globalValue.selectFrom" [ngClass]="{'border-[rgba(0,0,0.48)_!important]': globalValue.selectFrom}" class="form-select-input cursor-pointer hover:border-[rgba(0,0,0,.48)] items-center border-solid border-[1px] broder-[rgba(0,0,0,0.16)] rounded-[4px] h-[2.5rem] transition-[border-color_0.36_ease] flex justify-between">
+                    <span class="text-[rgba(0,0,0,0.32)] mr-[16px]" [ngClass]="{'text-black': from !== 'از ساعت'}">{{from}}</span>
+                    <i class="fa fa-angle-down m-[7px_8px] items-center text-[rgba(0,0,0,0.36)] text-[0.95rem] flex ml-[3px] h-[24px] w-[24px]" [ngClass]="{'active text-black': globalValue.selectFrom}"></i>
                 </div>
-                <div class="form-select-options" *ngIf="false">
-                    <div *ngFor="let optionFromText of optionFromList">{{optionFromText.text}}</div>
-                </div>
-            </div>
-            <div class="form-select-custom mt-[16px]">
-                <div class="form-select-input items-center border-solid border-[1px] broder-[rgba(0,0,0,0.16)] rounded-[4px] h-[2.5rem] transition-[border-color_0.36_ease] flex justify-between">
-                    <span class="text-[rgba(0,0,0,0.32)] mr-[16px]">تا ساعت</span>
-                    <i class="fa fa-angle-down m-[7px_8px] items-center text-[rgba(0,0,0,0.36)] text-[0.95rem] flex ml-[3px] h-[24px] w-[24px]"></i>
-                </div>
-                <div class="form-select-options" *ngIf="false">
-                    <div *ngFor="let optionTotext of optionToList">{{optionTotext.text}}</div>
+                <div *ngIf="fromError" class="form-error p-[4px_8px_0_0] flex text-[red] text-[0.75rem]">لطفاً هر دو مورد را انتخاب کنید.</div>
+                <div class="form-select-options max-h-[380px] overflow-y-scroll min-w-[301px] z-[100000000000000000000000002] absolute top-[44px] bg-white rounded-[4px] " *ngIf="globalValue.selectFrom">
+                    <div (click)="chooseFrom(optionFromText.text)" class="text-[rgba(0,0,0,0.56)] cursor-pointer text-[0.875rem] leading-[2] py-[6px] pr-[16px] pl-[8px] transition-[background-color_.2s] bg-white hover:bg-[rgba(0,0,0,.04)]" [ngClass]="{'rounded-tr-[4px]': i === 0, 'bg-[rgba(0,0,0,.04)_!important] text-[#a62626_!important]': from === optionFromText.text}" *ngFor="let optionFromText of optionFromList; let i = index">{{optionFromText.text}}</div>
                 </div>
             </div>
+            <div class="form-select-custom relative mt-[22px]">
+                <div (click)="globalValue.selectTo= !globalValue.selectTo" [ngClass]="{'border-[rgba(0,0,0.48)_!important]': globalValue.selectTo}" class="form-select-input cursor-pointer hover:border-[rgba(0,0,0,.48)] items-center border-solid border-[1px] broder-[rgba(0,0,0,0.16)] rounded-[4px] h-[2.5rem] transition-[border-color_0.36_ease] flex justify-between">
+                    <span class="text-[rgba(0,0,0,0.32)] mr-[16px]" [ngClass]="{'text-black': to !== 'تا ساعت' }">{{to}}</span>
+                    <i class="fa fa-angle-down m-[7px_8px] items-center text-[rgba(0,0,0,0.36)] text-[0.95rem] flex ml-[3px] h-[24px] w-[24px]" [ngClass]="{'active text-black': globalValue.selectTo}"></i>
+                </div>
+              <div *ngIf="toError" class="form-error p-[4px_8px_0_0] flex text-[red] text-[0.75rem]">لطفاً هر دو مورد را انتخاب کنید.</div>
+              <div class="form-select-options max-h-[380px] overflow-y-scroll min-w-[301px] z-[100000000000000000000000002] absolute top-[44px] bg-white rounded-[4px]" *ngIf="globalValue.selectTo">
+                    <div (click)="chooseTo(optionToText.text)" class="text-[rgba(0,0,0,0.56)] cursor-pointer text-[0.875rem] leading-[2] py-[6px] pr-[16px] pl-[8px] transition-[background-color_.2s] bg-white hover:bg-[rgba(0,0,0,.04)]" [ngClass]="{'rounded-tr-[4px]': i === 0, 'bg-[rgba(0,0,0,.04)_!important] text-[#a62626_!important]': to === optionToText.text}" *ngFor="let optionToText of optionToList; let i = index">{{optionToText.text}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="buttons-container absolute bottom-0 right-0 w-full flex px-[16px] py-[12px] shadow-[0_-1px_2px_0_rgba(0,0,0,.12)]">
+          <div class="button-container flex-grow flex justify-end">
+            <a (click)="closeWhenCanAnswer()" class="submit-button zero:ml-[0px] zero:flex-grow w-full border-solid border-[rgba(0,0,0,.48)] border-[1px]  sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] hover:bg-[rgba(0,0,0,.04)] text-[rgba(0,0,0,.48)] hover:text-[rgba(0,0,0,0.87)] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option">انصراف</a>
+          </div>
+          <div class="button-container flex-grow flex justify-end">
+            <button (click)="formSubmit($event)" class="submit-button w-full zero:ml-[0px] mr-[16px] zero:flex-grow sm-c:flex-grow-0 xxl:ml-[0] cursor-pointer h-[2.5rem] px-[1rem] min-w-[6rem] rounded-[0.25rem] text-white hover:bg-[rgb(191,44,44)] bg-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center justify-center flex link-option">ثبت</button>
+          </div>
         </div>
     </form>
 </div>

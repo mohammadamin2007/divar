@@ -1,0 +1,20 @@
+<app-navbar></app-navbar>
+<section id="user-panel-main" class="w-full h-full zero:pb-[55px] md-c:pb-0">
+    <div class="container-custom flex pt-[4rem] lg:max-w-[88rem] max-l-c:max-w-[960px] mx-auto">
+        <app-user-panel-side-nav [ngClass]="{'w-[0_!important]': routeOpened && !notMobile,'w-[100%_!important]': !routeOpened && !notMobile }"></app-user-panel-side-nav>
+        <div class="router w-full overflow-hidden" [ngClass]="{'w-[0_!important]': !routeOpened && !notMobile}">
+            <div class="rotator w-full" *ngIf="!loginService.loggedIn">
+              <span class="py-[2rem] mt-[2rem] mr-[0.5rem] flex justify-center w-full h-[88px]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                  <g class="loading-container">
+                    <path fill="rgba(0,0,0,.12)" d="M8,16a8,8,0,1,1,8-8A8,8,0,0,1,8,16ZM8,2a6,6,0,1,0,6,6A6,6,0,0,0,8,2Z"></path>
+                    <circle class="circle" cx="8" cy="8" r="7" fill="none"></circle>
+                  </g>
+                </svg>
+              </span>
+            </div>
+          <router-outlet *ngIf="loginService.loggedIn"></router-outlet>
+        </div>
+    </div>
+</section>
+

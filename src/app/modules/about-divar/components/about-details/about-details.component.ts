@@ -56,7 +56,6 @@ export class AboutDetailsComponent {
   title = "تاریخچهٔ دیوار: گذشته‌ٔ دیوار را دقیق‌تر ببینید"
 
   constructor(private navbar: NavbarService, private titleService: Title) {
-    this.navbar.whichLinks = ["chooseShahr"]
     this.navbar.showNavbar = true;
     setTimeout(() => {
       this.navbar.shouldActivated = 'all';

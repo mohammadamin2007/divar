@@ -11,7 +11,6 @@ export class AboutMainComponent {
   title = "درباره دیوار"
 
   constructor(private navbar: NavbarService, private titleService: Title) {
-    this.navbar.whichLinks = ["chooseShahr"]
     this.navbar.showNavbar = true;
     setTimeout(() => {
       this.navbar.shouldActivated = 'all';

@@ -14,26 +14,30 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { SendMailComponent } from './components/send-mail/send-mail.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { SupportItemMainComponent } from './components/support-item-main/support-item-main.component';
-
+import {UserDropDownComponent} from './components/user-drop-down/user-drop-down.component'
 
 @NgModule({
-  declarations: [
-    SupportMainComponent,
-    SupportItemComponent,
-    FooterComponent,
-    MajorSupportComponent,
-    LinkBoldListedTextDirective,
-    ContactComponent,
-    NavigationComponent,
-    SendMailComponent,
-    NavbarComponent,
-    SupportItemMainComponent
-  ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        SupportRoutingModule,
-        ReactiveFormsModule
-    ]
+    declarations: [
+        SupportMainComponent,
+        SupportItemComponent,
+        FooterComponent,
+        MajorSupportComponent,
+        LinkBoldListedTextDirective,
+        ContactComponent,
+        NavigationComponent,
+        SendMailComponent,
+        NavbarComponent,
+        SupportItemMainComponent,
+        UserDropDownComponent
+    ],
+    exports: [
+        LinkBoldListedTextDirective
+    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    SupportRoutingModule,
+    ReactiveFormsModule,
+  ]
 })
 export class SupportModule { }

@@ -1,0 +1,14 @@
+<div class="logout-model z-[100000000000000000000000000000] fixed top-0 right-0 w-full h-full" [ngClass]="{'hidden': !globalValue.sureExitDisplay, 'grid': globalValue.sureExitDisplay, 'opacity-0': !globalValue.sureExitOpacity, 'opacity-100': globalValue.sureExitOpacity}">
+  <div (click)="globalValue.closeModelSignOut('no')" class="close-login-model absolute top-0 right-0 w-full h-full z-[-1] bg-[rgba(0,0,0,.48)]"></div>
+  <div class="model-container fixed flex self-center justify-self-center z-[1]">
+    <div class="model-body bg-white rounded-[4px] mx-[16px] w-full max-w-[408px] min-w-[280px]">
+      <div class="model-content">
+        <div class="model-title text-center zero:p-[16px_16px_30px] lgsm:p-[32px_32px_30px]">آیا مایل به خروج از حساب کاربری خود هستید؟</div>
+        <div class="model-button-container justify-center zero:p-[8px_8px_24px] lgsm:p-[8px_24px_24px] flex">
+          <a (click)="globalValue.closeModelSignOut('no')" class="contact-button mx-[8px] justify-center contact-option-button cursor-pointer h-[2.5rem] mt-[2px] px-[0.75rem] min-w-[6rem] rounded-[0.25rem] text-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center flex hover:border-[#A62626] hover:bg-[rgba(166,38,38,0.04)] dialog-option">نه</a>
+          <a (click)="globalValue.closeModelSignOut('yes')" class="contact-button mx-[8px] justify-center contact-option-button cursor-pointer h-[2.5rem] mt-[2px] px-[0.75rem] min-w-[6rem] rounded-[0.25rem] text-[#A62626] text-[0.875rem] leading-[1.5714285714] items-center flex hover:border-[#A62626] hover:bg-[rgba(166,38,38,0.04)] dialog-option">بله</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

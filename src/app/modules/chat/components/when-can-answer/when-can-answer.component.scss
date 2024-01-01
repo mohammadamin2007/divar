@@ -1,3 +1,37 @@
 .fa.fa-angle-down::before{
     margin-bottom: -1px;
+    transition: transform .36s ease,color .36s ease;
 }
+
+.fa.fa-angle-down.active::before {
+  transform: rotate(-180deg);
+}
+
+.send-mail-button {
+   border: 1px solid #CD8585;
+ }
+
+.send-mail-button, .submit-button {
+  transition: color 360ms ease ,background-color 360ms ease, border-color 360ms ease;
+}
+
+.form-select-options {
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.08), 0 -8px 32px -4px rgba(0,0,0,.04), 0 16px 24px -6px rgba(0,0,0,.04);
+}
+
+.form-select-options::-webkit-scrollbar-track {
+  background: white;
+
+}
+
+.form-select-options::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+  border: 6px solid white;
+  border-left-width: 4px;
+  border-top-width: 5px;
+}
+
+.form-select-options::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.39);
+}
+

@@ -20,12 +20,29 @@
 
 
 .pop-up{
-    box-shadow: 
+    box-shadow:
     0 1px 6px 0 rgba(0,0,0,.08),
-    0 -8px 32px -4px rgba(0,0,0,.04), 
+    0 -8px 32px -4px rgba(0,0,0,.04),
     0 16px 24px -6px rgba(0,0,0,.04);
+  transition: opacity 360ms ease;
 }
 
 .nav-link{
     transition: color .36s ease,background-color .36s ease,box-shadow .36s ease,border-color .36s ease,transform .36s ease;
+  img{
+    transition: filter 360ms ease;
+    filter: sepia(0.9);
+  }
+}
+
+.nav-link:hover {
+  img {
+    filter: grayscale(1);
+  }
+}
+
+
+.model {
+    transition: transform .36s ease, opacity .30s ease;
+
 }

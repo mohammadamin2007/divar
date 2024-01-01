@@ -9,7 +9,7 @@ import {AboutRoutingModule} from "./about-routing.module";
 import { AboutDetailsComponent } from './components/about-details/about-details.component';
 import { AboutJobComponent } from './components/about-job/about-job.component';
 import {NavbarComponent} from "./components/navbar/navbar.component";
-
+import {UserDropDownComponent} from "./components/user-drop-down/user-drop-down.component";
 
 @NgModule({
   declarations: [
@@ -20,15 +20,18 @@ import {NavbarComponent} from "./components/navbar/navbar.component";
     AboutFooterComponent,
     AboutDetailsComponent,
     AboutJobComponent,
-    NavbarComponent
+    NavbarComponent,
+    UserDropDownComponent
   ],
-  imports: [
-    CommonModule,
-    AboutRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        AboutRoutingModule,
+
+    ],
     exports: [
         AboutMainComponent,
-        AboutFooterComponent
+        AboutFooterComponent,
+        UserDropDownComponent
     ]
 })
 export class AboutDivarModule { }

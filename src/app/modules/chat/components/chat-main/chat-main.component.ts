@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { GlobalValueService } from 'src/app/services/global-value.service';
 import { NavbarService } from 'src/app/services/navbar.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { NavbarService } from 'src/app/services/navbar.service';
 export class ChatMainComponent {
   title = "چت دیوار"
 
-  constructor(private navbarService: NavbarService, private titleService: Title, public readonly activatedRoute: ActivatedRoute) {
+  constructor(private navbarService: NavbarService, private titleService: Title, public globalValue: GlobalValueService,public readonly activatedRoute: ActivatedRoute) {
     this.navbarService.showNavbar = true;
     setTimeout(() => {
       this.navbarService.shouldActivated = 'all';

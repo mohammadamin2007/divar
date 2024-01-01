@@ -9,7 +9,28 @@ import {GlobalValueService} from "./services/global-value.service";
   animations: [routeAnimation]
 })
 export class AppComponent {
+  navItemList = [
+    {
+      text: "دسته‌ها",
+      link: "",
+      icon: "fa fa-list"
+    }, {
+      text: "ثبت اگهی",
+      link: "/new",
+      icon: "fa fa-plus-circle"
+    }, {
+      text: "چت",
+      link: "/chat",
+      icon: "fa fa-comment"
+    }, {
+      text: "دیوار من",
+      link: "/myDivar",
+      icon: "fa fa-user"
+    }
+  ]
 
   constructor(private globalValue: GlobalValueService) {
   }
+
+  protected readonly window = window;
 }

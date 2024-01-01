@@ -8,8 +8,11 @@ import {NavbarService} from "../../../../services/navbar.service";
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-
+  userDropDown: boolean = false;
   constructor(public globalValue: GlobalValueService, public navbarService: NavbarService) {
   }
 
+  readonly document = document
+  protected readonly window = window;
+  protected readonly history = history;
 }

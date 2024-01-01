@@ -12,11 +12,13 @@ import {GlobalValueService} from "../../../../services/global-value.service";
 export class AddnewMainComponent {
   title = "ثبت اگهی در دیوار"
   constructor(private navbar: NavbarService, private titleService: Title, public loginService: LoginService, public globalService: GlobalValueService) {
-    this.navbar.whichLinks = ["chooseShahr"]
     this.navbar.showNavbar = true;
     setTimeout(() => {
       this.navbar.shouldActivated = 'all';
     }, 500)
     this.titleService.setTitle(this.title);
+    if(!this.loginService.loggedIn) {
+      this.globalService.openModelLogin()
+    }
   }
 }

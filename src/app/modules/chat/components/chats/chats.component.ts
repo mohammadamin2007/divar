@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GlobalValueService } from 'src/app/services/global-value.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-chats',
@@ -8,6 +10,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ChatsComponent implements OnInit{
   @Input('chat') chat: string
   optionContainer = false
+
+  constructor(public globalValue: GlobalValueService, private activatedRoute: ActivatedRoute) {
+
+  }
 
   ngOnInit(): void {
     console.log(this.chat)
@@ -30,7 +36,7 @@ export class ChatsComponent implements OnInit{
     this.optionContainer = false;
     setTimeout(() => {
       model.classList.add("hidden");
- 
+
     }, 500)
   }
 

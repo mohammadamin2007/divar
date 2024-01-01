@@ -1,4 +1,26 @@
+<app-login></app-login>
+<app-sure-exit></app-sure-exit>
 <div class="router" [@routeAnimations]="o && o.activatedRouteData
       && o.activatedRouteData['animation']">
     <router-outlet #o="outlet"></router-outlet>
+</div>
+<div [ngClass]="{'hidden': window.location.href.replace('http://localhost:4200/', '').length === 0}" class="mobile-navbar z-[100000000000000000000000000] fixed md-c:hidden bottom-0 w-full shadow-[0_-1px_2px_0_rgba(0,0,0,.12)] bg-white ">
+  <div class="mobile-navbar-container">
+    <ul class="nav flex">
+      <li class="nav-item flex flex-[1_1] hover:bg-[rgba(0,0,0,.04)] hover:text-[rgba(0,0,0,0.86)] items-center justify-center pt-[3px] pb-[4px] text-[rgba(0,0,0,0.56)] text-[0.75rem] leading-[2]">
+        <a class="nav-link flex flex-[1_1] flex-col w-full items-center justify-center" routerLink="">
+          <div class="divar-icon flex justify-center  w-[24px] h-[24px]">
+            <img src="assets/images/divar.svg" class="transition-[]" alt="divar-icon">
+          </div>
+          <span class="nav-link-text">‌اگهی‌ها</span>
+        </a>
+      </li>
+      <li class="nav-item flex flex-[1_1] items-center justify-center pt-[3px] pb-[4px] text-[rgba(0,0,0,0.56)] text-[0.75rem] leading-[2]" [ngClass]="{'hover:bg-[rgba(0,0,0,.04)] hover:text-[rgba(0,0,0,0.86)]': window.location.href.replace('http://localhost:4200/', '').indexOf(navItem.link) === -1}" *ngFor="let navItem of navItemList">
+        <a class="nav-link flex flex-[1_1] flex-col w-full items-center justify-center" [ngClass]="{'text-[#a62626_!important]': window.location.href.replace('http://localhost:4200', '').indexOf(navItem.link) !== -1}" [routerLink]="navItem.link">
+          <i class="{{navItem.icon}} w-[24px] h-[23px] flex justify-center text-[1.3rem]"></i>
+          <span class="nav-link-text">{{navItem.text}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>

@@ -1,0 +1,37 @@
+.circle {
+  stroke:  rgba(0,0,0,.48);
+  stroke-width: 2px;
+  stroke-linecap: round;
+  stroke-dasharray: 67,100;
+  stroke-dashoffset: 46;
+  animation: loading 1.6s ease-in infinite;
+}
+
+.loading-container{
+  transform-origin: center;
+  animation: rotate .8s linear infinite ;
+}
+
+@keyframes loading {
+  0% {
+    stroke-dasharray: 1,100;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 80,100;
+    stroke-dashoffset: 46;
+  }
+  100% {
+    stroke-dasharray: 1,100;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 1turn;
+  }
+}

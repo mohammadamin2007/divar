@@ -49,4 +49,5 @@ export class NavComponent {
       this.NavbarService.whichLinks = activateList;
     } ,1000)
   }
+
 }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {GlobalValueService} from "./global-value.service";
-import {group} from "@angular/animations";
 
 @Injectable({
   providedIn: 'root'
@@ -1518,11 +1517,90 @@ export class ServerService {
         },
     ]}
   ]
-  // cityNeighbours = {
-  //   'تهران': [
-  //
-  //   ]
-  // }
+  neighbors: {city: string, neighbors: {text: string}[]}[] = [
+    {
+      city: "تهران",
+      neighbors: [
+        { text: "آبشار" },
+        { text: "آبشار تهران" },
+        { text: "آجودانیه" },
+        { text: "آذربایجان" },
+        { text: "آذری" },
+        { text: "آرارات" },
+        { text: "آرژانتین" },
+        { text: "آسمان" },
+        { text: "آشتیانی" },
+        { text: "آهنگ" },
+        { text: "ائمه اطهار" },
+        { text: "اباذر" },
+        { text: "ابراهیم‌آباد" },
+        { text: "ابن بابویه" },
+        { text: "ابوذر (منطقه ۱۵)" },
+        { text: "اتابک" },
+        { text: "اتحاد" },
+        { text: "اختیاریه" },
+        { text: "اراج" },
+        { text: "ارامنه" },
+        { text: "ارم" },
+        { text: "ازگل" },
+        { text: "استاد معین" },
+        { text: "استخر" },
+        { text: "اسفندیاری" },
+        { text: "اسکندری" },
+        { text: "افسریه" },
+        { text: "اقدسیه" },
+        { text: "اکباتان" },
+        { text: "المهدی" },
+        { text: "الهیه" },
+        { text: "امامت" },
+        { text: "امامزاده حسن(ع)" },
+        { text: "امامزاده قاسم" },
+        { text: "امام سجاد(ع)" },
+        { text: "امانیه" },
+        { text: "امیرآباد" },
+        { text: "امیر بهادر" },
+        { text: "امیریه" },
+        { text: "امین حضور" },
+        { text: "اندیشه (شهر زیبا)" },
+        { text: "اوقاف" },
+        { text: "اوین" },
+        { text: "ایران" },
+        { text: "ایرانشهر" },
+        { text: "ایوانک" },
+        { text: "باغ آذری" },
+        { text: "باغ خزانه" },
+        { text: "باغ رضوان" },
+        { text: "باغ فردوس" },
+        { text: "باغ فیض" },
+        { text: "بریانک" },
+        { text: "بلوار کشاورز" },
+        { text: "بلورسازی" },
+        { text: "بهار" },
+        { text: "بهاران" },
+        { text: "بهارستان" },
+        { text: "بهجت‌آباد" },
+        { text: "بهداشت" },
+        { text: "بهمن یار" },
+        { text: "بیسیم" },
+        { text: "پاتریس لومومبا" },
+        { text: "پاسداران" },
+        { text: "پامنار" },
+        { text: "پرستار" },
+        { text: "پرواز" },
+        { text: "پلیس" },
+        { text: "پونک" },
+        { text: "پیروزی" },
+        { text: "تاکسیرانی" },
+        { text: "تجریش" },
+        { text: "تسلیحات" },
+        { text: "توانیر" },
+        { text: "توحید" },
+        { text: "تولید دارو" },
+        { text: "تهرانپارس شرقی" },
+        { text: "تهرانپارس غربی" }
+      ]
+    }
+  ]
 
   constructor(private globalService: GlobalValueService) {}
 
@@ -1567,6 +1645,16 @@ export class ServerService {
   returnNameOfCategory(id: number, id2: number, id3: number) {
     this.globalService.newDataIsLoading = false;
     return this.addNewData[id].groups[id2].groups[id3];
+  }
+
+  returnNeighbors(city: string) {
+    let neighborsList: {text: string}[] = []
+    this.neighbors.forEach(neighbor => {
+      if(neighbor.city === city) {
+        neighborsList = neighbor.neighbors;
+      }
+    })
+    return neighborsList;
   }
 
 }

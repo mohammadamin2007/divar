@@ -1,0 +1,27 @@
+.separator{
+  height: 1px;
+  background-color: rgba(0,0,0,0.12);
+}
+
+.divar-icon {
+  img {
+    transition: filter .36s ease;
+  }
+  img:hover {
+    filter: drop-shadow(2px 4px 6px black);
+  }
+}
+
+.fill-tran {
+  transition: fill 200ms ease;
+}
+
+.social-icon-container{
+  justify-content: center;
+}
+
+.social-icon-container:hover{
+  svg{
+    fill: black;
+  }
+}

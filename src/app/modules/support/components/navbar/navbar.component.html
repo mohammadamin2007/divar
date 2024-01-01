@@ -1,15 +1,19 @@
+<div (click)="userDropDown = false" class="close-contact-model absolute top-0 z-[10000] right-0 w-full h-full" *ngIf="userDropDown"></div>
 <nav class="poshtibani-navbar navbar h-[4rem] px-[1rem] fixed top-0 bg-white w-[100%] z-[10000]"  [ngClass]="{'mr-[-8px]': navbarService.marginRight, 'hide': !(navbarService.shouldActivated === 'posht'), 'show': navbarService.shouldActivated === 'posht'}">
   <div class="navbar-container h-[100%] px-[1rem] justify-between py-[0.3rem] max-w-[90rem] mx-[auto] zero:hidden sm-c:flex">
-    <div class="navbar-icon h-[48px]">
+    <a routerLink="/" class="navbar-icon h-[48px]">
       <img class="w-[100%] h-[100%]" src="assets/images/divar.svg" alt="divar-navbar-icon">
-    </div>
+    </a>
     <ul class="nav-section flex">
-      <a routerLink="" class="nav-item  w-[6rem] focus:text-black focus:bg-[rgba(0,0,0,0.12)]  rounded-[4px] text-[rgba(0,0,0,0.56)] hover:bg-[rgba(0,0,0,0.04)] hover:text-black  items-center justify-center mx-[1.05rem] mr-0 my-[0.5rem] flex">
-        <div class="nav-icon ml-[0.5rem]">
-          <i class="fa fa-user-o"></i>
-        </div>
-        <span class="flex whitespace-nowrap text-[0.75rem]">دیوار من</span>
-      </a>
+      <li class="relative">
+        <a (click)="userDropDown = true" class="nav-item h-[calc(100%_-_1rem)] relative cursor-pointer focus:text-black focus:bg-[rgba(0,0,0,0.12)]  rounded-[4px] text-[rgba(0,0,0,0.56)] hover:bg-[rgba(0,0,0,0.04)] hover:text-black  items-center justify-center px-[1.065rem] my-[0.5rem] flex ">
+          <div class="nav-icon ml-[0.5rem]">
+            <i class="fa fa-user-o"></i>
+          </div>
+          <span class="flex whitespace-nowrap text-[0.75rem]">دیوار من</span>
+        </a>
+        <app-user-drop-down *ngIf="userDropDown" (close)="userDropDown = false"></app-user-drop-down>
+      </li>
       <a routerLink="" class="nav-item  w-[6rem] focus:text-black focus:bg-[rgba(0,0,0,0.12)]  rounded-[4px] text-[rgba(0,0,0,0.56)] hover:bg-[rgba(0,0,0,0.04)] hover:text-black  items-center justify-center mx-[1.05rem] mr-0 my-[0.5rem] flex">
         <div class="nav-icon ml-[0.5rem]">
           <i class="fa fa-comment-o"></i>
@@ -23,7 +27,7 @@
   </div>
   <div class="mobile-navbar h-[100%] sm-c:hidden zero:flex items-center">
     <div class="navbar-information flex items-center">
-      <a routerLink="{{globalValue.getPreviousRoute()}}" class="justify-center ml-[0.6rem] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] text-[#707070] mr-[-10px] w-[2.5rem] h-[2.5rem] items-center flex"><i class="fa fa-arrow-right"></i></a>
+      <a (click)="history.back()" class="justify-center cursor-pointer ml-[0.6rem] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] text-[#707070] mr-[-10px] w-[2.5rem] h-[2.5rem] items-center flex"><i class="fa fa-arrow-right"></i></a>
       <div class="text text-[0.875rem] font-[700]">پشتیبانی و قوانین</div>
     </div>
   </div>

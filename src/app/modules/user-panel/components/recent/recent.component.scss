@@ -1,0 +1,15 @@
+.recent-item-link{
+  border-color: rgba(0,0,0,0.06);
+}
+.links{
+  transition: background-color 360ms ease;
+  i{
+    transition: color 360ms ease;
+
+  }
+}
+.links:hover {
+  i{
+    color: rgba(0,0,0,0.87) !important;
+  }
+}

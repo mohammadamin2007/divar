@@ -1,11 +1,18 @@
 <div class="chat-window-container h-full w-full">
-    <div class="chat-mode-header relative w-full justify-between flex items-center bg-[hsla(0,0%,100%,.98)] shadow-[0_1px_2px_rgba(0,0,0,.12)] h-[64px]">
+    <div [ngClass]="{'z-[-1]': globalValue.modelOpen}" class="chat-mode-header relative w-full justify-between flex items-center bg-[hsla(0,0%,100%,.98)] shadow-[0_1px_2px_rgba(0,0,0,.12)] h-[64px]">
         <div class="divider bg-white w-[3px] absolute right-[-1px] h-full">
             <div *ngIf="chat !== undefined" class="divider-body w-[1px] bg-[rgb(0_0_0_/_12%)] my-[1rem] h-[calc(100%_-_2rem)]"></div>
         </div>
         <ng-container *ngIf="chat !== undefined">
             <div (click)="closeModel(optionPopUp)" class="close-contact-model z-[10000000000000000000000000] absolute top-0 right-0 w-full h-full" *ngIf="optionContainer"></div>
-            <div class="header-text text-[0.825rem] mr-[1rem] font-bold text-[rgba(0,0,0,0.56)]">پستچی دیوار</div>
+            <div class="flex items-center">
+              <a routerLink="/chat" class="header-button active:bg-[rgba(0,0,0,0.12)] hover:text-black mr-[6px] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
+                <div class="header-icon text-[rgba(0,0,0,0.56)] text-[0.95rem]">
+                  <i class="fa fa-arrow-right"></i>
+                </div>
+              </a>
+              <div class="header-text text-[0.825rem] mr-[1rem] font-bold text-[rgba(0,0,0,0.56)]">پستچی دیوار</div>
+            </div>
             <div class="chat-header-option-container cursor-pointer relative text-[rgba(0,0,0,0.56)] ml-[1rem] mt-[0.5px]">
                 <a (click)="openModel(optionPopUp)" class="header-button active:bg-[rgba(0,0,0,0.12)] rounded-[50px] hover:bg-[rgba(0,0,0,0.04)] flex w-[2.5rem] h-[2.5rem] justify-center cursor-pointer items-center">
                     <div class="header-icon">
@@ -26,9 +33,15 @@
         </ng-container>
     </div>
     <div class="choose-chat flex justify-center items-center h-[calc(100%_-_64px)]" *ngIf="chat === undefined">
-        <div class="title flex items-center mt-[-68px] text-[0.75rem] leading-[2] self-center text-[rgba(0,0,0,0.56)] text-center select-none">برای شروع چت یک مکالمه را انتخاب کنید.</div>
+        <div class="title flex items-center text-[0.75rem] leading-[2] self-center text-[rgba(0,0,0,0.56)] text-center select-none">برای شروع چت یک مکالمه را انتخاب کنید.</div>
     </div>
     <div class="chat-window h-[calc(100%_-_64px)]" *ngIf="chat !== undefined">
-
+      <div class="postchi-divar p-[16px]">
+        <div class="wrapper p-[16px] bg-[rgba(230,80,0,.12)] text-[0.75rem] leading-[2]">
+          این مکالمه مربوط به «پستچی دیوار» است.
+          <br>
+          در فهرست مکالمه‌های شما در چت، پستچی دیوار در بالای فهرست و با رنگی متفاوت قرار گرفته‌است.
+        </div>
+      </div>
     </div>
 </div>

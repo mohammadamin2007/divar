@@ -1,17 +1,19 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NavbarService } from 'src/app/services/navbar.service';
 import { chatOptionModel } from '../../enum';
+import { GlobalValueService } from 'src/app/services/global-value.service';
+import {ActivatedRoute} from "@angular/router";
+import {query} from "@angular/animations";
 
 @Component({
   selector: 'app-chat-side-bar',
   templateUrl: './chat-side-bar.component.html',
   styleUrls: ['./chat-side-bar.component.scss']
 })
-export class ChatSideBarComponent implements AfterViewInit{
+export class ChatSideBarComponent {
   @ViewChild('removeChats') removeChats: ElementRef;
   @ViewChild('settings') settings: ElementRef;
   @ViewChild('whenCanAnswer') whenCanAnswer: ElementRef;
-
   mode = "all"
   optionContainer = false
   navLinkText = [
@@ -29,22 +31,33 @@ export class ChatSideBarComponent implements AfterViewInit{
       whichToOpen: chatOptionModel.settings
     },
   ]
+  goToChat: boolean = false
 
-  constructor(private navbarService: NavbarService) {}
+  constructor(private navbarService: NavbarService, public globalValue: GlobalValueService, private activatedRoute: ActivatedRoute) {
+    activatedRoute.params.subscribe(params => {
+      if(window.innerWidth < 768) {
+        this.goToChat = params['chat'] !== undefined;
+      }
+    })
 
-  ngAfterViewInit(): void {
-    console.log(this.removeChats);
-    console.log(this.settings);
-    console.log(this.whenCanAnswer);
+    window.addEventListener('resize', () => {
+      if(window.innerWidth < 768) {
+        this.goToChat = activatedRoute.snapshot.params['chat'] !== undefined;
+      } else {
+        this.goToChat = false;
+      }
+    })
   }
 
   openModel(model:HTMLDivElement) {
     model.classList.remove("hidden");
     model.classList.add("opacity-0");
     this.optionContainer = true;
+    this.globalValue.modelOpen = true;
     setTimeout(() => {
       model.classList.remove("opacity-0");
       model.classList.add("opacity-100");
+      model.classList.add("translate-x-[0_!important]");
     },200);
   }
 
@@ -52,10 +65,11 @@ export class ChatSideBarComponent implements AfterViewInit{
   closeModel(model:HTMLDivElement) {
     model.classList.remove("opacity-100");
     model.classList.add("opacity-0");
+    model.classList.remove("translate-x-[0_!important]");
     this.optionContainer = false;
     setTimeout(() => {
       model.classList.add("hidden");
- 
+      this.globalValue.modelOpen = true;
     }, 500)
   }
 

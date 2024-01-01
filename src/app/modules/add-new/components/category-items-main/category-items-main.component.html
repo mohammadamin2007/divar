@@ -6,7 +6,7 @@
     </div>
     <div class="change-view flex justify-between mt-[28px] mb-[0.7rem]">
       <div class="text text-[rgba(0,0,0,.87)] text-[0.8rem] leading-[2]">نمایش راهنمای دسته‌بندی</div>
-      <a (click)="detailed = !detailed;" class="changer cursor-pointer bg-[rgba(0,0,0,0.24)] rounded-[12px] h-[24px] w-[42px]" [ngClass]="{'bg-[#a62626_!important]': detailed}">
+      <a (click)="detailed = !detailed;" class="changer cursor-pointer bg-[rgba(0,0,0,0.24)] z-[10] rounded-[12px] h-[24px] w-[42px]" [ngClass]="{'bg-[#a62626_!important]': detailed}">
         <div class="changer-circle relative rounded-[50%] m-[2px] h-[20px] w-[20px] bg-white" [ngClass]="{'activated': detailed}">
           <div class="box-shadow absolute bg-[rgba(0,0,0,.04)] z-[10000] rounded-[50px]" [ngClass]="{'bg-[rgba(166,38,38,.08)_!important]': detailed}"></div>
           <div class="back-white absolute bg-white w-full z-[10001] h-full rounded-[50px]"></div>

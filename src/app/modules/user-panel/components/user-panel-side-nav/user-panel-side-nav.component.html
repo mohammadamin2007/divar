@@ -1,0 +1,65 @@
+<div class="user-panel-side-nav-container sticky zero:pl-0 md-c:pl-[16px] py-[32px] h-[calc(100vh_-_64px)] flex">
+    <ul class="options-container zero:flex-grow md-c:flex-grow-0 justify-between flex flex-col w-[239px] overflow-y-scroll">
+        <div class="nav-container flex flex-col">
+            <ng-container *ngIf="!loginService.loggedIn">
+              <div class="login-warning text-[0.875rem] text-[rgba(0,0,0,0.86)] leading-[2] py-[16px]">
+                برای استفاده از تمام امکانات دیوار وارد حساب خود شوید.
+              </div>
+              <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[48px]" >
+                <a (click)="globalValue.openModelLogin()" class="nav-link transition-[color_.36s_ease] flex h-[48px] items-center hover:text-black zero:p-[8px] md-c:p-[11px_18px_8px_7px]">
+                  <i class="nav-link-icon pt-[1px] fa fa-sign-in"></i>
+                  <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.875rem] leading-[2]">ورود به حساب کاربری</span>
+                </a>
+              </li>
+              <div class="bg-[rgba(0,0,0,0.12)] h-[1px] my-[8px]"></div>
+              <ng-container *ngFor="let navLink of navLinkTextDropDownNotLog; let i = index">
+                <div class="bg-[rgba(0,0,0,0.12)] h-[1px] my-[8px]" *ngIf="navLink.text ===  'دیوار برای کسب‌وکارها'"></div>
+                <li class="nav-item text-[rgba(0,0,0,0.56)] cursor-pointer h-[48px]">
+                  <a *ngIf="currentRoute.indexOf(navLink.routerLinkText) === -1" routerLink="{{'/myDivar/' + navLink.routerLinkText}}" class="nav-link transition-[color_.36s_ease] flex h-[48px] items-center hover:text-black zero:p-[8px] md-c:p-[11px_18px_8px_7px]">
+                    <i class="nav-link-icon pt-[1px] {{navLink.icon}}"></i>
+                    <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.875rem] leading-[2]">{{navLink.text}}</span>
+                  </a>
+                  <div *ngIf="currentRoute.indexOf(navLink.routerLinkText) !== -1"  class="nav-link transition-[color_.36s_ease] cursor-default flex h-[48px] items-center text-[#a62626] zero:p-[8px] md-c:p-[11px_18px_8px_7px]">
+                    <i class="nav-link-icon pt-[1px] {{navLink.icon}}"></i>
+                    <span class="nav-link-text flex-grow pr-[9px] mt-[-4px] text-[0.875rem] leading-[2]">{{navLink.text}}</span>
+                  </div>
+                </li>
+                </ng-container>
+            </ng-container>
+            <ng-container *ngIf="loginService.loggedIn">
+              <li class="nav-item text-[rgba(0,0,0,0.56)] zero:h-auto md-c:h-[68px]">
+                <div class="nav-link zero:justify-center zero:text-center md-c:text-start zero:flex-col md-c:flex-row md-c:justify-start flex zero:p-[8px] md-c:p-[11px_18px_8px_7px]">
+                  <i class="nav-link-icon pt-[3px] fa fa-user"></i>
+                  <div class="wrapper flex flex-col">
+                    <span class="nav-link-text flex-grow pr-[9px]  text-[0.875rem]">کاربر دیوار</span>
+                    <span class="nav-link-text flex-grow pr-[9px] text-[rgba(0,0,0,0.32)] pt-[5px] text-[0.75rem]">تلفن: {{userPhoneNumber}}</span>
+                  </div>
+                </div>
+              </li>
+              <ng-container *ngFor="let navLink of navLinkText; let i = index">
+                <div class="bg-[rgba(0,0,0,0.12)] h-[1px] my-[8px]" *ngIf="navLink.text ===  'دیوار برای کسب‌وکارها'"></div>
+                <li class="nav-item zero:h-[64px] md-c:h-[48px] zero:flex md-c:block  zero:justify-center md-c:justify-start text-[rgba(0,0,0,0.56)] cursor-pointer">
+                  <a *ngIf="currentRoute.indexOf(navLink.routerLink) === -1" routerLink="{{'/myDivar/' + navLink.routerLink}}" class="nav-link transition-[color_.36s_ease] zero:flex-col zero:w-full md-c:w-auto md-c:flex-row flex zero:hover:bg-[rgba(0,0,0,0.12)] md-c:hover:bg-[white] zero:h-[64px] md-c:h-[48px] items-center hover:text-black zero:p-[8px] md-c:p-[11px_18px_8px_7px]">
+                    <i class="nav-link-icon pt-[1px] {{navLink.icon}}"></i>
+                    <span class="nav-link-text flex-grow zero:pr-0 md-c:pr-[9px] mt-[-4px] text-[0.875rem] leading-[2]">{{navLink.text}}</span>
+                  </a>
+                  <div *ngIf="currentRoute.indexOf(navLink.routerLink) !== -1"  class="nav-link transition-[color_.36s_ease] zero:flex-col zero:w-full md-c:w-auto md-c:flex-row cursor-default flex zero:h-[64px] md-c:h-[48px] items-center text-[#a62626] zero:p-[8px] md-c:p-[11px_18px_8px_7px]">
+                    <i class="nav-link-icon pt-[1px] {{navLink.icon}}"></i>
+                    <span class="nav-link-text flex-grow zero:pr-0 md-c:pr-[9px] mt-[-4px] text-[0.875rem] leading-[2]">{{navLink.text}}</span>
+                  </div>
+                </li>
+                <div class="bg-[rgba(0,0,0,0.12)] my-[8px] h-[1px]" *ngIf="navLink.text ===  'دیوار برای کسب‌وکارها'"></div>
+              </ng-container>
+              <li class="nav-item zero:h-[64px] md-c:h-[48px] zero:flex md-c:block  zero:justify-center md-c:justify-start text-[rgba(0,0,0,0.56)] cursor-pointer">
+                <a (click)="globalValue.openModelSignOut()" routerLink="/myDivar/myPosts" class="nav-link transition-[color_.36s_ease] zero:flex-col zero:w-full md-c:w-auto md-c:flex-row flex zero:hover:bg-[rgba(0,0,0,0.12)] md-c:hover:bg-[white] zero:h-[64px] md-c:h-[48px] items-center hover:text-black zero:p-[8px] md-c:p-[11px_18px_8px_7px]">
+                  <i class="nav-link-icon pt-[1px] fa fa-sign-out"></i>
+                  <span class="nav-link-text flex-grow zero:pr-0 md-c:pr-[9px] mt-[-4px] text-[0.875rem] leading-[2]">خروج</span>
+                </a>
+              </li>
+            </ng-container>
+        </div>
+        <div class="footer-container">
+            <app-footer></app-footer>
+        </div>
+    </ul>
+</div>

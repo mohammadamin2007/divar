@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<section id="add-new-main" class="w-full">
+<section id="add-new-main" class="w-full zero:pb-[55px] md-c:pb-0">
   <div class="container-custom pt-[4rem] px-[1rem] xxl:max-w-[1184px] l:max-w-[960px] md:max-w-[758px] xsm:max-w-[100%] mx-auto">
     <div class="rotator w-full" *ngIf="globalService.newDataIsLoading">
       <span class="py-[2rem]  flex justify-center w-full h-[88px]">
@@ -13,9 +13,6 @@
     </div>
     <div *ngIf="loginService.loggedIn">
       <router-outlet></router-outlet>
-    </div>
-    <div *ngIf="!loginService.loggedIn">
-      <app-login></app-login>
     </div>
   </div>
 </section>
